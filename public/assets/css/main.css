@@ -1,0 +1,541 @@
+:root {
+    --color-white: #ffffff;
+    --color-black: #000000;
+
+    --color-dark: #202020;
+    --color-dark-blue: #2B2A3A;
+    --color-frame: #181722;
+    --color-frame-second: #223363;
+
+    --color-text: #FFFFFF;
+    --color-text-second: #ACACAC;
+    --color-text-accent: #5061FF;
+
+    --btn-color: #5061FF;
+
+    --btn-color-category: #5061FF;
+    --btn-color-category-hover: #2e41bf;
+
+    --color-bg-avatar: #FFFFFF;
+    --color-bg-comment: #FFFFFF;
+
+    --spacing-extra-small: 0.25rem; /* 4px 1*/
+    --spacing-small: 0.5rem; /* 8px 2*/
+    --spacing-medium: 1rem; /* 16px 3*/
+    --spacing-large: 1.5rem; /* 24px 4*/
+    --spacing-extra-large: 3rem; /* 48px 5*/
+
+    --font-size-small: 1rem; /* 16px */
+    --font-size-normal: 1.125rem; /* 18px */
+    --font-size-medium: 1.5rem; /* 24 */
+    --font-size-large: 2.5rem; /* 32 */
+
+    --border-author-right: 1px solid var(--color-white);
+    --border-author-bottom: 1px solid var(--color-white);
+
+    --width-line: 1.5rem;
+    --height-line: 2px;
+
+    --block-number-width: 3rem;
+
+    /*--box-shadow: 0 2px 24px rgba(168, 175, 196, 0.5);*/
+}
+
+@font-face {
+    font-family: "Jura Regular";
+    font-weight: 400;
+    font-style: normal;
+    src: local("Jura Regular"),
+    url("../fonts/Jura-Regular.woff");
+}
+
+@font-face {
+    font-family: "Jura Medium";
+    font-weight: 500;
+    font-style: normal;
+    src: local("Jura Medium"),
+    url("../fonts/Jura-Medium.woff");
+}
+
+@font-face {
+    font-family: "Jura SemiBold";
+    font-weight: 600;
+    font-style: normal;
+    src: local("Jura SemiBold"),
+    url("../fonts/Jura-SemiBold.woff");
+}
+
+h1 {
+    font-family: "Jura SemiBold", sans-serif;
+    font-size: var(--font-size-large);
+    font-weight: 600;
+    color: var(--color-text);
+}
+
+h2 {
+    font-family: "Jura Medium", sans-serif;
+    font-size: var(--font-size-medium);
+    font-weight: 500;
+    color: var(--color-text);
+}
+
+h3 {
+    font-family: "Jura Regular", sans-serif;
+    font-size: var(--font-size-normal);
+    font-weight: 400;
+    color: var(--color-text);
+}
+
+a {
+    color: var(--color-text);
+}
+
+a:hover {
+    cursor: pointer;
+    color: var(--color-text-accent);
+}
+
+html, body {
+    font-family: "Jura Regular", sans-serif;
+    height: 100%;
+}
+
+body {
+    background: var(--color-dark-blue);
+}
+
+/* header */
+.header {
+    min-height: 80px;
+}
+
+.header-nav {
+    height: 100%;
+    justify-content: space-between;
+    padding: var(--spacing-medium);
+}
+
+.header-nav-list {
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-nav-list__item {
+    align-items: center;
+}
+
+.header-nav-list__item:not(:last-child) {
+    margin-right: var(--spacing-large);
+}
+
+.header-nav-list__item a {
+    font-family: "Jura Regular", sans-serif;
+    font-size: var(--font-size-medium);
+}
+
+.header-nav-list__icon {
+    width: 16px;
+    height: 9px;
+    background: url("../image/icon/arrow.svg") no-repeat;
+    background-size: contain;
+    margin-left: var(--spacing-small);
+}
+
+.active-header a {
+    color: var(--color-text-accent);
+}
+
+.header-nav-list__user {
+    align-items: center;
+}
+
+.header-nav-list__user-img {
+    max-height: 48px;
+    max-width: 48px;
+    background: var(--color-bg-avatar);
+}
+
+.header-nav-list__user-img img {
+    max-height: 48px;
+    max-width: 48px;
+    object-fit: cover;
+}
+
+.header-nav-list__user-name {
+    margin-left: var(--spacing-small);
+    color: var(--color-text);
+    font-size: var(--font-size-normal);
+    align-items: center;
+}
+
+.header-nav-list__logo {
+    align-items: center;
+}
+
+.site-logo {
+    width: 150px;
+    height: 40px;
+    background: url("../image/logo/Logo.png") no-repeat;
+    background-size: contain;
+    margin-left: var(--spacing-small);
+}
+
+/* post */
+.post {
+    color: var(--color-text);
+}
+
+.post__img-container {
+    position: relative;
+}
+
+.post__img-container img {
+    width: 100%;
+    max-height: 300px;
+    object-fit: cover;
+}
+
+.post__title {
+    position: absolute;
+    left: var(--spacing-large);
+    bottom: var(--spacing-large);
+    background-color: var(--color-dark);
+    padding: var(--spacing-extra-small);
+    color: var(--color-text);
+}
+
+/* post main */
+.post__main-container {
+    position: relative;
+}
+
+.post__category {
+    text-align: center;
+}
+
+.post__tags {
+    text-align: center;
+}
+
+.post__content {
+    font-size: var(--font-size-normal);
+    text-align: justify;
+}
+
+/* post footer */
+.post__author-img img {
+    max-height: 50px;
+    max-width: 50px;
+    background-color: var(--color-bg-avatar);
+}
+
+.post__author-info {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.post__author-item {
+    color: var(--color-text-second);
+}
+
+.post__action {
+    position: absolute;
+    right: var(--spacing-large);
+    bottom: var(--spacing-large);
+}
+
+.post__action-list {
+    align-items: center;
+}
+
+.post__action-list-item:not(:last-child) {
+    margin-right: var(--spacing-medium);
+}
+
+.post__action-list-item:first-child {
+    margin-right: var(--spacing-small);
+}
+
+.like-icon {
+    width: 20px;
+    height: 18px;
+    background: url("../image/icon/heart.svg") no-repeat;
+    background-size: contain;
+}
+
+.fav-icon {
+    width: 24px;
+    height: 24px;
+    background: url("../image/icon/star.svg") no-repeat;
+    background-size: contain;
+}
+
+/* character */
+.character-post__title {
+    color: var(--color-text);
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.character-post__title p {
+    font-family: "Jura Regular", sans-serif;
+    font-size: var(--font-size-normal);
+    color: var(--color-text-second);
+}
+
+.character-post__img-container {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.character-post__img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    clip-path: polygon(0 0, 100% 0, 80% 100%, 0% 100%);
+}
+
+/* aside */
+.aside h2 {
+    text-align: center;
+}
+
+.aside-post {
+    position: relative;
+    margin-top: var(--spacing-medium);
+}
+
+.aside-post-container {
+    width: 100%;
+}
+
+.aside-post-container img {
+    max-width: 274px;
+}
+
+.aside-post__title {
+    position: absolute;
+    bottom: var(--spacing-small);
+    left: var(--spacing-small);
+    color: var(--color-text);
+    background-color: var(--color-dark);
+    padding: var(--spacing-extra-small);
+}
+
+/* category/tag list */
+.cat-tag-main {
+    background: var(--btn-color-category);
+    clip-path: polygon(0 0, 100% 0, 80% 100%, 0% 100%);
+}
+
+.cat-tag-main h1 {
+    padding: var(--spacing-large) var(--spacing-extra-large);
+}
+
+.cat-tag-list__item {
+    margin-right: var(--spacing-small);
+    padding: var(--spacing-small);
+    background-color: var(--btn-color-category);
+}
+
+.cat-tag-list__item:hover {
+    color: var(--color-text);
+    background-color: var(--btn-color-category-hover);
+}
+
+/* map */
+.map-list__item {
+    display: flex;
+}
+
+.map-list__item {
+    align-items: center;
+    background: var(--color-frame-second);
+}
+
+.map-list__item:not(:last-child) {
+    margin-bottom: var(--spacing-small);
+}
+
+.map-list__item a {
+    font-size: var(--font-size-normal);
+    margin-left: var(--spacing-small);
+}
+
+.map-list__item-num {
+    min-width: var(--block-number-width);
+    padding: var(--spacing-medium);
+    background: var(--btn-color-category);
+    clip-path: polygon(0 0, 100% 0, 80% 100%, 0% 100%);
+}
+
+
+/* footer */
+.footer {
+    max-height: 243px;
+    display: block;
+    padding: var(--spacing-large);
+}
+
+.footer small {
+    text-align: center;
+    color: var(--color-text-second);
+    margin-top: var(--spacing-large);
+}
+
+.footer-nav {
+    color: var(--color-text);
+    justify-content: space-evenly;
+}
+
+.bg-color {
+    background-color: var(--color-frame);
+}
+
+.pl-4-aside {
+    padding-left: 1.5rem;
+}
+
+.line hr {
+    max-width: 30px;
+    height: var(--height-line);
+    background-color: var(--color-white);
+}
+
+.line-right {
+    height: 100%;
+    padding-right: var(--spacing-medium);
+    border-right: var(--border-author-right);
+    margin-right: var(--spacing-medium);
+}
+
+.line-bottom {
+    width: 100%;
+    padding-bottom: var(--spacing-medium);
+    border-bottom: var(--border-author-bottom);
+    margin-bottom: var(--spacing-medium);
+}
+
+.discord {
+    height: 500px;
+    margin-top: var(--spacing-extra-large);
+}
+
+/* comment */
+.form-comment-container {
+
+}
+
+.form-comment__field {
+    width: 100%;
+    height: 200px;
+    max-height: 350px;
+    resize: vertical;
+    padding: var(--spacing-medium);
+    font-family: "Jura SemiBold", sans-serif;
+    font-size: var(--font-size-normal);
+    border: 0;
+}
+
+.form-comment__button {
+    padding: var(--spacing-small);
+    color: var(--color-text);
+    background-color: var(--color-text-accent);
+    border: 0;
+    cursor: pointer;
+    font-size: var(--font-size-normal);
+    font-family: "Jura SemiBold", sans-serif;
+    width: 150px;
+}
+
+/* user comment */
+.comment__author {
+    display: inline-block;
+    color: var(--color-text);
+    margin-right: var(--spacing-medium);
+    padding: var(--spacing-small);
+}
+
+.comment__author img {
+    min-width: 100px;
+    min-height: 100px;
+    background-color: var(--color-bg-avatar);
+}
+
+.comment__author-info {
+    flex-direction: column;
+    text-align: center;
+}
+
+.comment__user-name {
+    font-size: var(--font-size-normal);
+}
+
+.comment__date {
+    font-size: var(--font-size-small);
+    color: var(--color-text-second);
+}
+
+.comment__field {
+    width: 100%;
+    padding: var(--spacing-small);
+}
+
+.comment__content {
+    width: 100%;
+    padding: var(--spacing-medium);
+    background-color: var(--color-bg-comment);
+    font-family: "Jura Medium", sans-serif;
+    font-size: var(--font-size-normal);
+
+}
+
+@media (max-width: 1199.98px) {
+    .pl-4-aside {
+        padding-left: 0;
+    }
+
+    .aside-article-container {
+        display: flex;
+        justify-content: space-evenly;
+    }
+
+    .discord {
+        height: 462px;
+        width: 35%;
+        margin-top: var(--spacing-medium);
+    }
+}
+
+@media (max-width: 992px) {
+    .header-nav {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .header-nav-list {
+        margin-top: var(--spacing-medium);
+        margin-bottom: var(--spacing-medium);
+        flex-direction: column;
+        align-items: unset;
+        justify-content: unset;
+    }
+
+    .character-post__title {
+        text-align: center;
+    }
+
+    .character-post__img-container {
+        text-align: center;
+    }
+
+    .character-post__img-container img {
+        object-fit: cover;
+        width: 100%;
+        height: 130px;
+        clip-path: unset;
+    }
+}
