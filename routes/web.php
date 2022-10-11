@@ -32,6 +32,12 @@ Route::group(['namespace' => 'Tag', 'prefix' => 'tag'], function () {
 Route::group(['namespace' => 'Map', 'prefix' => 'map'], function () {
     Route::get('/', 'IndexController')->name('map.index');
 });
+Route::group(['namespace' => 'Item', 'prefix' => 'item'], function () {
+    Route::get('/', 'IndexController')->name('item.index');
+});
+Route::group(['namespace' => 'Character', 'prefix' => 'character'], function () {
+    Route::get('/', 'IndexController')->name('character.index');
+});
 
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
     Route::group(['namespace' => 'Main'], function () {
@@ -64,6 +70,52 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
         Route::get('/{category}/edit', 'EditController')->name('admin.category.edit');
         Route::patch('/{category}', 'UpdateController')->name('admin.category.update');
         Route::delete('/{category}', 'DeleteController')->name('admin.category.delete');
+    });
+    Route::group(['namespace' => 'Character', 'prefix' => 'characters'], function () {
+        Route::get('/', 'IndexController')->name('admin.character.index');
+        Route::get('/create', 'CreateController')->name('admin.character.create');
+        Route::post('/', 'StoreController')->name('admin.character.store');
+        Route::get('/{character}', 'ShowController')->name('admin.character.show');
+        Route::get('/{character}/edit', 'EditController')->name('admin.character.edit');
+        Route::patch('/{character}', 'UpdateController')->name('admin.character.update');
+        Route::delete('/{character}', 'DeleteController')->name('admin.character.delete');
+    });
+    Route::group(['namespace' => 'Spec', 'prefix' => 'spec'], function () {
+        Route::get('/', 'IndexController')->name('admin.spec.index');
+        Route::get('/create', 'CreateController')->name('admin.spec.create');
+        Route::post('/', 'StoreController')->name('admin.spec.store');
+        Route::get('/{spec}', 'ShowController')->name('admin.spec.show');
+        Route::get('/{spec}/edit', 'EditController')->name('admin.spec.edit');
+        Route::patch('/{spec}', 'UpdateController')->name('admin.spec.update');
+        Route::delete('/{spec}', 'DeleteController')->name('admin.spec.delete');
+    });
+    Route::group(['namespace' => 'Weapon', 'prefix' => 'weapons'], function () {
+        Route::get('/', 'IndexController')->name('admin.weapon.index');
+        Route::get('/create', 'CreateController')->name('admin.weapon.create');
+        Route::post('/', 'StoreController')->name('admin.weapon.store');
+        Route::get('/{weapon}', 'ShowController')->name('admin.weapon.show');
+        Route::get('/{weapon}/edit', 'EditController')->name('admin.weapon.edit');
+        Route::patch('/{weapon}', 'UpdateController')->name('admin.weapon.update');
+        Route::delete('/{weapon}', 'DeleteController')->name('admin.weapon.delete');
+    });
+
+    Route::group(['namespace' => 'Rarity', 'prefix' => 'rarity'], function () {
+        Route::get('/', 'IndexController')->name('admin.rarity.index');
+        Route::get('/create', 'CreateController')->name('admin.rarity.create');
+        Route::post('/', 'StoreController')->name('admin.rarity.store');
+        Route::get('/{rarity}', 'ShowController')->name('admin.rarity.show');
+        Route::get('/{rarity}/edit', 'EditController')->name('admin.rarity.edit');
+        Route::patch('/{rarity}', 'UpdateController')->name('admin.rarity.update');
+        Route::delete('/{rarity}', 'DeleteController')->name('admin.rarity.delete');
+    });
+    Route::group(['namespace' => 'Element', 'prefix' => 'elements'], function () {
+        Route::get('/', 'IndexController')->name('admin.element.index');
+        Route::get('/create', 'CreateController')->name('admin.element.create');
+        Route::post('/', 'StoreController')->name('admin.element.store');
+        Route::get('/{element}', 'ShowController')->name('admin.element.show');
+        Route::get('/{element}/edit', 'EditController')->name('admin.element.edit');
+        Route::patch('/{element}', 'UpdateController')->name('admin.element.update');
+        Route::delete('/{element}', 'DeleteController')->name('admin.element.delete');
     });
 
     Route::group(['namespace' => 'User', 'prefix' => 'users'], function () {

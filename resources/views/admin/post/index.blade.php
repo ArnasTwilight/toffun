@@ -44,7 +44,7 @@
                                         <tr>
                                             <td>{{ $post->id }}</td>
                                             <td>{{ $post->title }}</td>
-                                            <td>{{ $post->content }}</td>
+                                            <td>{{ Str::limit($post->content, 128, ' ...') }}</td>
                                             <td><a href="{{ route('admin.post.show', $post->id) }}"
                                                    class="btn btn-primary">View</a></td>
                                             <td><a href="{{ route('admin.post.edit', $post->id) }}"

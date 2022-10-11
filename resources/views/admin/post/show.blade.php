@@ -25,11 +25,11 @@
             <div class="container-fluid">
                 <!-- Small boxes (Stat box) -->
                 <div class="row">
-                    <div class="col-6 mt-2">
+                    <div class="col-12 mt-2">
                         <div class="card">
                             <!-- /.card-header -->
                             <div class="card-body table-responsive p-0">
-                                <table class="table table-hover text-nowrap">
+                                <table class="table table-hover">
                                     <tbody>
                                     <tr>
                                         <td>ID</td>
@@ -45,7 +45,9 @@
                                     </tr>
                                     <tr>
                                         <td>Image</td>
-                                        <td>{{ $post->image }}</td>
+                                        <td>
+                                            <img src="{{ asset( 'storage/' . $post->image) }}" alt="post image" width="50%">
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>Category</td>

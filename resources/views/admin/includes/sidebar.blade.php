@@ -34,8 +34,8 @@
 
                 <li class="nav-header">Character</li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-users"></i>
+                    <a href="{{ route('admin.character.index') }}" class="nav-link">
+                        <i class="nav-icon fa-solid fa-person"></i>
                         <p>
                             Characters
                         </p>
@@ -54,6 +54,64 @@
                         <i class="nav-icon fas fa-shopping-cart"></i>
                         <p>
                             Gacha
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.spec.index') }}" class="nav-link">
+                        <i class="nav-icon fa-solid fa-burst"></i>
+                        <p>
+                            Spec
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.weapon.index') }}" class="nav-link">
+                        <i class="nav-icon fa-solid fa-shield"></i>
+                        <p>
+                            Weapons
+                        </p>
+                    </a>
+                </li>
+
+                <li class="nav-header">Other</li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.rarity.index') }}" class="nav-link">
+                        <i class="nav-icon fa-solid fa-palette"></i>
+                        <p>
+                            Rarity
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fa-solid fa-bowl-food"></i>
+                        <p>
+                            Food
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fa-solid fa-walkie-talkie"></i>
+                        <p>
+                            Relic
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fa-solid fa-microchip"></i>
+                        <p>
+                            Matrices
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.element.index') }}" class="nav-link">
+                        <i class="nav-icon fa-solid fa-fire"></i>
+                        <p>
+                            Elements
                         </p>
                     </a>
                 </li>
@@ -101,6 +159,7 @@
                         </p>
                     </a>
                 </li>
+
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

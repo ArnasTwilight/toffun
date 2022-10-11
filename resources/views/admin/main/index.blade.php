@@ -106,7 +106,6 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Title</th>
-                                        <th>Status</th>
                                         <th>Likes</th>
                                         <th>Views</th>
                                     </tr>
@@ -116,7 +115,6 @@
                                     <tr>
                                         <td><a href="{{ route('admin.post.show', $post->id) }}">{{ $post->id }}</a></td>
                                         <td>{{ $post->title }}</td>
-                                        <td><span class="badge badge-success">OK</span></td>
                                         <td>
                                             <div class="sparkbar" data-color="#00a65a" data-height="20">0</div>
                                         </td>
@@ -162,7 +160,7 @@
 
                         <div class="info-box-content">
                             <span class="info-box-text">Character</span>
-                            <span class="info-box-number">0</span>
+                            <span class="info-box-number">{{ $characterCount }}</span>
                         </div>
                         <!-- /.info-box-content -->
                     </div>

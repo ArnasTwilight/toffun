@@ -48,7 +48,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label>Content</label>
-                                        <textarea class="form-control" name="content" rows="3"
+                                        <textarea class="form-control" name="content" rows="4"
                                                   placeholder="Enter content ...">{{ $post->content }}
                                         </textarea>
                                         @error('content')
@@ -56,37 +56,40 @@
                                         @enderror
                                     </div>
                                     <div class="form-group">
-                                        <label for="image">Image</label>
-                                        <input type="text" class="form-control" name="image"
-                                               placeholder="Enter image"
-                                               value="{{ $post->image }}"
-                                        >
+                                        <label for="InputFile">Image</label>
+                                        <div class="input-group">
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input" name="image">
+                                                <label class="custom-file-label" for="InputFile">Choose image</label>
+                                            </div>
+                                        </div>
+                                        <img src="{{ asset('storage/' . $post->image) }}" alt="Post image" width="50%"
+                                             class="mt-2">
+                                        <p>{{ asset('storage/' . $post->image) }}</p>
                                         @error('image')
                                         <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
-{{--                                    <div class="form-group">--}}
-{{--                                        <label for="image">Image</label>--}}
-{{--                                        <div class="input-group">--}}
-{{--                                            <div class="custom-file">--}}
-{{--                                                <input type="file" class="custom-file-input" id="exampleInputFile">--}}
-{{--                                                <label class="custom-file-label" for="exampleInputFile">Choose image</label>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                        @error('image')--}}
-{{--                                        <div class="text-danger">{{ $message }}</div>--}}
-{{--                                        @enderror--}}
-{{--                                    </div>--}}
                                     <div class="form-group">
                                         <label>Category</label>
-                                        <select class="form-control">
-                                            <option>option 1</option>
+                                        <select name="category_id" class="form-control">
+                                            @foreach($categories as $category)
+                                                <option value="{{ $category->id }}"
+                                                    {{ $category->id == $post->category_id ? ' selected' : '' }}
+                                                >{{ $category->title }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                     <div class="form-group">
                                         <label>Tags</label>
-                                        <select multiple="" class="form-control">
-                                            <option>option 1</option>
+                                        <select name="tag_ids[]" class="select2" multiple="multiple"
+                                                data-placeholder="Select a tags"
+                                                style="width: 100%">
+                                            @foreach($tags as $tag)
+                                                <option value="{{ $tag->id }}"
+                                                    {{ is_array($post->tags->pluck('id')->toArray()) && in_array($tag->id, $post->tags->pluck('id')->toArray()) ? ' selected' : '' }}
+                                                >{{ $tag->title }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>

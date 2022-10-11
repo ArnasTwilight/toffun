@@ -6,6 +6,12 @@
     --color-dark-blue: #2B2A3A;
     --color-frame: #181722;
     --color-frame-second: #223363;
+    --color-frame-item: #ffffff;
+
+    --color-rarity-gold: #D1C028;
+    --color-rarity-violet: #B17CC3;
+    --color-rarity-green: green;
+    --color-rarity-grey: gray;
 
     --color-text: #FFFFFF;
     --color-text-second: #ACACAC;
@@ -32,6 +38,7 @@
 
     --border-author-right: 1px solid var(--color-white);
     --border-author-bottom: 1px solid var(--color-white);
+    --border-item-left: 1px solid var(--color-black);
 
     --width-line: 1.5rem;
     --height-line: 2px;
@@ -192,7 +199,7 @@ body {
 
 .post__img-container img {
     width: 100%;
-    max-height: 300px;
+    height: 300px;
     object-fit: cover;
 }
 
@@ -372,7 +379,6 @@ body {
     clip-path: polygon(0 0, 100% 0, 80% 100%, 0% 100%);
 }
 
-
 /* footer */
 .footer {
     max-height: 243px;
@@ -390,6 +396,8 @@ body {
     color: var(--color-text);
     justify-content: space-evenly;
 }
+
+/* other */
 
 .bg-color {
     background-color: var(--color-frame);
@@ -412,6 +420,13 @@ body {
     margin-right: var(--spacing-medium);
 }
 
+.line-left {
+    height: 50%;
+    padding-left: var(--spacing-medium);
+    border-left: var(--border-item-left);
+    margin-left: var(--spacing-medium);
+}
+
 .line-bottom {
     width: 100%;
     padding-bottom: var(--spacing-medium);
@@ -422,6 +437,14 @@ body {
 .discord {
     height: 500px;
     margin-top: var(--spacing-extra-large);
+}
+
+.gold {
+    background-color: var(--color-rarity-gold);
+}
+
+.violet {
+    background-color: var(--color-rarity-violet);
 }
 
 /* comment */
@@ -491,6 +514,26 @@ body {
     font-family: "Jura Medium", sans-serif;
     font-size: var(--font-size-normal);
 
+}
+
+/* item */
+.item-main {
+    display: flex;
+    background-color: var(--color-frame-item);
+}
+
+.item-main__bg {
+    width: 50%;
+    clip-path: polygon(0 0, 100% 0, 80% 100%, 0% 100%);
+    text-align: center;
+}
+
+.item-main__name {
+    align-items: center;
+}
+
+.item-main__title {
+    color: var(--color-black);
 }
 
 @media (max-width: 1199.98px) {

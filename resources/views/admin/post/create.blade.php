@@ -51,24 +51,18 @@
                                         @enderror
                                     </div>
                                     <div class="form-group">
-                                        <label for="image">Image</label>
-                                        <input type="text" class="form-control" name="image" placeholder="Enter image">
+                                        <label for="InputFile">Image</label>
+                                        <div class="input-group">
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input" name="image">
+                                                <label class="custom-file-label" for="InputFile">Choose
+                                                    image</label>
+                                            </div>
+                                        </div>
                                         @error('image')
                                         <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
-                                    {{--                                    <div class="form-group">--}}
-                                    {{--                                        <label for="exampleInputFile">Image</label>--}}
-                                    {{--                                        <div class="input-group">--}}
-                                    {{--                                            <div class="custom-file">--}}
-                                    {{--                                                <input type="file" class="custom-file-input" name="image">--}}
-                                    {{--                                                <label class="custom-file-label" for="exampleInputFile">Choose image</label>--}}
-                                    {{--                                            </div>--}}
-                                    {{--                                        </div>--}}
-                                    {{--                                        @error('image')--}}
-                                    {{--                                        <div class="text-danger">{{ $message }}</div>--}}
-                                    {{--                                        @enderror--}}
-                                    {{--                                    </div>--}}
                                     <div class="form-group">
                                         <label>Category</label>
                                         <select name="category_id" class="form-control">
@@ -81,7 +75,8 @@
                                     </div>
                                     <div class="form-group">
                                         <label>Tags</label>
-                                        <select name="tag_ids[]" class="select2" multiple="multiple" data-placeholder="Select a tags"
+                                        <select name="tag_ids[]" class="select2" multiple="multiple"
+                                                data-placeholder="Select a tags"
                                                 style="width: 100%">
                                             @foreach($tags as $tag)
                                                 <option value="{{ $tag->id }}"

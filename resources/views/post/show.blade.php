@@ -10,7 +10,7 @@
             <article class="post row mt-4 bg-color">
                 <div class="post__img-container p-0">
                     <h1 class="post__title">{{ $post->title }}</h1>
-                    <img src="{{ asset('assets/image/post/post-img-1.png') }}" alt="post_img">
+                    <img src="{{ asset('storage/' . $post->image) }}" alt="post_img">
                 </div>
 
                 <div class="post__main-container p-4">

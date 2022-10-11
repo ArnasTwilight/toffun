@@ -18,7 +18,7 @@
                     <a href="#">Character</a>
                 </li>
                 <li class="header-nav-list__item d-flex">
-                    <a href="#">Item</a>
+                    <a href="{{ route('item.index') }}">Item</a>
                     <div class="header-nav-list__icon"></div>
                 </li>
                 <li class="header-nav-list__item">
