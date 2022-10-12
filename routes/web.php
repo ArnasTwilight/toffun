@@ -108,6 +108,15 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
         Route::patch('/{rarity}', 'UpdateController')->name('admin.rarity.update');
         Route::delete('/{rarity}', 'DeleteController')->name('admin.rarity.delete');
     });
+    Route::group(['namespace' => 'Matrix', 'prefix' => 'matrices'], function () {
+        Route::get('/', 'IndexController')->name('admin.matrix.index');
+        Route::get('/create', 'CreateController')->name('admin.matrix.create');
+        Route::post('/', 'StoreController')->name('admin.matrix.store');
+        Route::get('/{matrix}', 'ShowController')->name('admin.matrix.show');
+        Route::get('/{matrix}/edit', 'EditController')->name('admin.matrix.edit');
+        Route::patch('/{matrix}', 'UpdateController')->name('admin.matrix.update');
+        Route::delete('/{matrix}', 'DeleteController')->name('admin.matrix.delete');
+    });
     Route::group(['namespace' => 'Element', 'prefix' => 'elements'], function () {
         Route::get('/', 'IndexController')->name('admin.element.index');
         Route::get('/create', 'CreateController')->name('admin.element.create');

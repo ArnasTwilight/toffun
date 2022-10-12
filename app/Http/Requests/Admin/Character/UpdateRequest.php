@@ -33,6 +33,7 @@ class UpdateRequest extends FormRequest
             'weapon_id' => 'nullable|integer',
             'spec_id' => 'nullable|integer',
             'rarity_id' => 'nullable|integer',
+            'matrix_id' => 'nullable|integer',
         ];
     }
 }

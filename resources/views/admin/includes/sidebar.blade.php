@@ -43,14 +43,6 @@
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">
-                        <i class="nav-icon far fa-heart"></i>
-                        <p>
-                            Relations
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-shopping-cart"></i>
                         <p>
                             Gacha
@@ -100,7 +92,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="{{ route('admin.matrix.index') }}" class="nav-link">
                         <i class="nav-icon fa-solid fa-microchip"></i>
                         <p>
                             Matrices

@@ -27,4 +27,9 @@ class Character extends Model
         return $this->belongsTo(Weapon::class, 'weapon_id', 'id');
     }
 
+    public function matrix()
+    {
+        return $this->belongsTo(Matrix::class, 'matrix_id', 'id');
+    }
+
 }

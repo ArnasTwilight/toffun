@@ -113,6 +113,16 @@
                                         </select>
                                     </div>
                                     <div class="form-group">
+                                        <label>Matrix</label>
+                                        <select name="matrix_id" class="form-control">
+                                            @foreach($matrices as $matrix)
+                                                <option value="{{ $matrix->id }}"
+                                                    {{ $matrix->id == old('matrix_id') ? ' selected' : '' }}
+                                                >{{ $matrix->title }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
                                         <label>Skills</label>
                                         <textarea class="form-control" name="skills" rows="2"
                                                   placeholder="Enter skills ...">{{ $character->skills }}</textarea>

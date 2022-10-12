@@ -35,6 +35,7 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Title</th>
+                                        <th>Image</th>
                                         <th>Content</th>
                                         <th colspan="3">Action</th>
                                     </tr>
@@ -44,7 +45,10 @@
                                         <tr>
                                             <td>{{ $post->id }}</td>
                                             <td>{{ $post->title }}</td>
-                                            <td>{{ Str::limit($post->content, 128, ' ...') }}</td>
+                                            <td>
+                                                <img src="{{ asset('storage/' . $post->image) }}" alt="Post image" width="200px">
+                                            </td>
+                                            <td>{{ Str::limit($post->content, 100, ' ...') }}</td>
                                             <td><a href="{{ route('admin.post.show', $post->id) }}"
                                                    class="btn btn-primary">View</a></td>
                                             <td><a href="{{ route('admin.post.edit', $post->id) }}"

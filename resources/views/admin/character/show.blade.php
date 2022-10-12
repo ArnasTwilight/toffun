@@ -90,6 +90,15 @@
                                             @endif
                                         </td>
                                     </tr>
+                                    <tr>
+                                        <td>Matrix</td>
+                                        <td>
+                                            @if(isset($character->matrix->title))
+                                                <a class="btn-sm btn-info"
+                                                   href="{{ route('admin.matrix.show', $character->matrix->id) }}">{{ $character->matrix->title }}</a>
+                                            @endif
+                                        </td>
+                                    </tr>
                                     </tbody>
                                 </table>
                             </div>
