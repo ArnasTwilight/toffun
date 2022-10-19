@@ -25,11 +25,11 @@ class StoreRequest extends FormRequest
     {
         return [
             'title' => 'required|string',
-            'image' => 'required|file',
-            'shatter' => 'required|numeric',
-            'charge' => 'required|numeric',
-            'element_id' => 'required|integer',
-            'rarity_id' => 'required|integer',
+            'image' => 'nullable|file',
+            'shatter' => 'nullable|numeric',
+            'charge' => 'nullable|numeric',
+            'element_id' => 'nullable|integer',
+            'rarity_id' => 'nullable|integer',
         ];
     }
 }

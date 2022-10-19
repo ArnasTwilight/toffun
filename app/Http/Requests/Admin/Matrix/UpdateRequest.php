@@ -27,7 +27,8 @@ class UpdateRequest extends FormRequest
             'title' => 'required|string',
             'image' => 'file',
             'bonus' => 'required|string',
-            'rarity_id' => 'required|string',
+            'rarity_id' => 'required|integer',
+            'stars_id' => 'required|integer',
         ];
     }
 }

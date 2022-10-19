@@ -32,4 +32,9 @@ class Character extends Model
         return $this->belongsTo(Matrix::class, 'matrix_id', 'id');
     }
 
+    public function stars()
+    {
+        return $this->belongsTo(Star::class, 'stars_id', 'id');
+    }
+
 }

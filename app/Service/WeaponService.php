@@ -16,7 +16,7 @@ class WeaponService
             if (isset($data['image'])) {
                 $data['image'] = Storage::disk('public')->put('/images/weapon', $data['image']);
             } else {
-                $data['image'] = 'images/weapon/no_image.jpg';
+                $data['image'] = 'images/weapon/no_weapon_image.jpg';
             }
 
             Weapon::firstOrCreate($data);
@@ -35,8 +35,8 @@ class WeaponService
 
             if (isset($data['image'])) {
                 $data['image'] = Storage::disk('public')->put('/images/weapon', $data['image']);
-            } else {
-                $data['image'] = 'images/weapon/no_image.jpg';
+            } elseif ($weapon['image'] != 'images/weapon/no_weapon_image.jpg') {
+                $data['image'] = $weapon['image'];
             }
 
             $weapon->update($data);

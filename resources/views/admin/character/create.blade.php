@@ -38,7 +38,7 @@
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label for="title">Name</label>
-                                        <input type="text" class="form-control" name="name" placeholder="Enter name">
+                                        <input type="text" class="form-control" name="name" placeholder="Enter name" value="{{ old('title') }}">
                                         @error('name')
                                         <div class="text-danger">{{ $message }}</div>
                                         @enderror
@@ -128,12 +128,16 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label>Advancement</label>
-                                        <textarea class="form-control" name="advancement" rows="3"
-                                                  placeholder="Enter advancement ...">{{ old('advancement') }}</textarea>
-                                        @error('advancement')
-                                        <div class="text-danger">{{ $message }}</div>
-                                        @enderror
+                                        <label>Stars</label>
+                                        <div class="d-flex">
+                                            @for($i = 0; $i <= 6; $i++)
+                                                <textarea class="mr-1 form-control" name="C{{ $i }}" rows="4"
+                                                          placeholder="Enter Star {{ $i }} ...">{{ old('C' . $i) }}</textarea>
+                                                @error('C' . $i)
+                                                <div class="text-danger">{{ $message }}</div>
+                                                @enderror
+                                            @endfor
+                                        </div>
                                     </div>
                                 </div>
                                 <!-- /.card-body -->

@@ -12,4 +12,8 @@ class Element extends Model
     protected $table = 'element';
     protected $guarded = false;
 
+    public function weapon()
+    {
+        return $this->hasMany(Weapon::class, 'element_id','id');
+    }
 }

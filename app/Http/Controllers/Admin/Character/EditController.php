@@ -6,6 +6,7 @@ use App\Models\Character;
 use App\Models\Matrix;
 use App\Models\Rarity;
 use App\Models\Spec;
+use App\Models\Star;
 use App\Models\Weapon;
 
 class EditController extends BaseController
@@ -16,6 +17,7 @@ class EditController extends BaseController
         $rarityList = Rarity::all();
         $weapons = Weapon::all();
         $matrices = Matrix::all();
-        return view('admin.character.edit', compact('character', 'specList', 'rarityList', 'weapons', 'matrices'));
+        $stars = Star::find($character->stars_id);
+        return view('admin.character.edit', compact('character', 'specList', 'rarityList', 'weapons', 'matrices', 'stars'));
     }
 }

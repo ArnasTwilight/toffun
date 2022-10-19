@@ -108,6 +108,33 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
         Route::patch('/{rarity}', 'UpdateController')->name('admin.rarity.update');
         Route::delete('/{rarity}', 'DeleteController')->name('admin.rarity.delete');
     });
+    Route::group(['namespace' => 'Food', 'prefix' => 'food'], function () {
+        Route::get('/', 'IndexController')->name('admin.food.index');
+        Route::get('/create', 'CreateController')->name('admin.food.create');
+        Route::post('/', 'StoreController')->name('admin.food.store');
+        Route::get('/{food}', 'ShowController')->name('admin.food.show');
+        Route::get('/{food}/edit', 'EditController')->name('admin.food.edit');
+        Route::patch('/{food}', 'UpdateController')->name('admin.food.update');
+        Route::delete('/{food}', 'DeleteController')->name('admin.food.delete');
+    });
+    Route::group(['namespace' => 'Ingredient', 'prefix' => 'ingredients'], function () {
+        Route::get('/', 'IndexController')->name('admin.ingredient.index');
+        Route::get('/create', 'CreateController')->name('admin.ingredient.create');
+        Route::post('/', 'StoreController')->name('admin.ingredient.store');
+        Route::get('/{ingredient}', 'ShowController')->name('admin.ingredient.show');
+        Route::get('/{ingredient}/edit', 'EditController')->name('admin.ingredient.edit');
+        Route::patch('/{ingredient}', 'UpdateController')->name('admin.ingredient.update');
+        Route::delete('/{ingredient}', 'DeleteController')->name('admin.ingredient.delete');
+    });
+    Route::group(['namespace' => 'Relic', 'prefix' => 'relics'], function () {
+        Route::get('/', 'IndexController')->name('admin.relic.index');
+        Route::get('/create', 'CreateController')->name('admin.relic.create');
+        Route::post('/', 'StoreController')->name('admin.relic.store');
+        Route::get('/{relic}', 'ShowController')->name('admin.relic.show');
+        Route::get('/{relic}/edit', 'EditController')->name('admin.relic.edit');
+        Route::patch('/{relic}', 'UpdateController')->name('admin.relic.update');
+        Route::delete('/{relic}', 'DeleteController')->name('admin.relic.delete');
+    });
     Route::group(['namespace' => 'Matrix', 'prefix' => 'matrices'], function () {
         Route::get('/', 'IndexController')->name('admin.matrix.index');
         Route::get('/create', 'CreateController')->name('admin.matrix.create');

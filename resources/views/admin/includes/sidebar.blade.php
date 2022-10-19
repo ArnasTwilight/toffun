@@ -76,7 +76,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="{{ route('admin.food.index') }}" class="nav-link">
                         <i class="nav-icon fa-solid fa-bowl-food"></i>
                         <p>
                             Food
@@ -84,7 +84,15 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="{{ route('admin.ingredient.index') }}" class="nav-link">
+                        <i class="nav-icon fa-solid fa-apple-whole"></i>
+                        <p>
+                            Ingredients
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.relic.index') }}" class="nav-link">
                         <i class="nav-icon fa-solid fa-walkie-talkie"></i>
                         <p>
                             Relic

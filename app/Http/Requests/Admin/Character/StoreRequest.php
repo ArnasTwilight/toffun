@@ -34,6 +34,14 @@ class StoreRequest extends FormRequest
             'spec_id' => 'nullable|integer',
             'rarity_id' => 'nullable|integer',
             'matrix_id' => 'nullable|integer',
+
+            'C0' => 'nullable|string',
+            'C1' => 'nullable|string',
+            'C2' => 'nullable|string',
+            'C3' => 'nullable|string',
+            'C4' => 'nullable|string',
+            'C5' => 'nullable|string',
+            'C6' => 'nullable|string',
         ];
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Service;
 
 use App\Models\Character;
+use App\Models\Star;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
@@ -25,6 +26,14 @@ class CharacterService
                 $data['main_image'] = 'images/character/no_character_main_image.jpg';
             }
 
+            for ($i = 0; $i <= 6; $i++) {
+                $stars['C' . $i] = $data['C' . $i];
+                unset($data['C' . $i]);
+            }
+
+            $star = Star::firstOrCreate($stars);
+            $data['stars_id'] = $star->id;
+
             Character::firstOrCreate($data);
 
             DB::commit();
@@ -34,7 +43,7 @@ class CharacterService
         }
     }
 
-    public function update($data, $character)
+    public function update($data, $character, $star)
     {
         try {
             DB::beginTransaction();
@@ -51,6 +60,12 @@ class CharacterService
                 $data['main_image'] = $character['main_image'];
             }
 
+            for ($i = 0; $i <= 6; $i++) {
+                $stars['C' . $i] = $data['C' . $i];
+                unset($data['C' . $i]);
+            }
+
+            $star->update($stars);
             $character->update($data);
 
             DB::commit();

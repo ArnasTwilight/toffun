@@ -141,12 +141,16 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label>Advancement</label>
-                                        <textarea class="form-control" name="advancement" rows="3"
-                                                  placeholder="Enter advancement ...">{{ $character->advancement }}</textarea>
-                                        @error('advancement')
-                                        <div class="text-danger">{{ $message }}</div>
-                                        @enderror
+                                        <label>Stars</label>
+                                        <div class="d-flex">
+                                            @for($i = 0, $star = 'C' . $i; $i <= 6; $i++, $star = 'C' . $i)
+                                                <textarea class="mr-1 form-control" name="{{ $star }}" rows="4"
+                                                          placeholder="Enter Star {{ $star }} ...">{{ $stars->$star }}</textarea>
+                                                @error($star)
+                                                <div class="text-danger">{{ $message }}</div>
+                                                @enderror
+                                            @endfor
+                                        </div>
                                     </div>
                                 </div>
                                 <!-- /.card-body -->

@@ -5,7 +5,7 @@
     --color-dark: #202020;
     --color-dark-blue: #2B2A3A;
     --color-frame: #181722;
-    --color-frame-second: #223363;
+    --color-second-frame: #3c3953;
     --color-frame-item: #ffffff;
 
     --color-rarity-gold: #D1C028;
@@ -403,6 +403,10 @@ body {
     background-color: var(--color-frame);
 }
 
+.bg-color-second {
+    background-color: var(--color-second-frame);
+}
+
 .pl-4-aside {
     padding-left: 1.5rem;
 }
@@ -445,6 +449,12 @@ body {
 
 .violet {
     background-color: var(--color-rarity-violet);
+}
+
+.line-vertical {
+    height: 100%;
+    width: 1px;
+    background-color: var(--color-frame);
 }
 
 /* comment */
@@ -534,6 +544,108 @@ body {
 
 .item-main__title {
     color: var(--color-black);
+}
+
+/* character list */
+.character-list-header {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.character-list-header__item li img {
+    width: 32px;
+    height: 32px;
+}
+
+.character-list-header__text {
+    font-family: "DM Sans", sans-serif;
+    font-weight: 600;
+    font-style: italic;
+    color: var(--color-black);
+    cursor: pointer;
+}
+
+.character-list-header__item :not(:last-child) {
+    margin-right: var(--spacing-small);
+}
+
+.R {
+    color: var(--color-rarity-green);
+}
+
+.SR {
+    color: var(--color-rarity-violet);
+}
+
+.SSR {
+    color: var(--color-rarity-gold);
+}
+
+.character-list {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.character-list__character {
+    width: 170px;
+    margin-top: var(--spacing-large);
+    display: inline-block;
+}
+
+.character-list__avatar {
+    position: relative;
+    display: block;
+    text-align: center;
+}
+
+.character-list__avatar img {
+    width: 100px;
+}
+
+.character-list__spec-element img {
+    position: absolute;
+    width: 32px;
+}
+
+.spec img {
+    left: var(--spacing-small);
+    bottom: var(--spacing-extra-small);
+}
+
+.element img {
+    right: var(--spacing-small);
+    bottom: var(--spacing-extra-small);
+}
+
+.character-name {
+    text-align: center;
+    overflow: hidden;
+}
+
+.character-weapon {
+    align-items: center;
+    justify-content: space-between;
+}
+
+.character-weapon__name {
+    overflow: hidden;
+    text-align: center;
+}
+
+.character-weapon__name a {
+    text-wrap: normal;
+    margin-right: var(--spacing-extra-small);
+    color: var(--color-text-second);
+}
+
+.character-weapon__name a:hover {
+    color: var(--color-text);
+}
+
+.character-weapon__img img {
+    max-width: 64px;
 }
 
 @media (max-width: 1199.98px) {

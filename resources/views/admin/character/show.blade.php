@@ -11,7 +11,8 @@
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item active">{{ $character->name }}</li>
-                            <li class="breadcrumb-item"><a href="{{ route('admin.character.index') }}">Characters</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.character.index') }}">Characters</a>
+                            </li>
                             <li class="breadcrumb-item"><a href="{{ route('admin.main.index') }}">Main</a></li>
                         </ol>
                     </div><!-- /.col -->
@@ -42,13 +43,15 @@
                                     <tr>
                                         <td>Avatar</td>
                                         <td>
-                                            <img src="{{ asset( 'storage/' . $character->image) }}" alt="character avatar" width="25%">
+                                            <img src="{{ asset( 'storage/' . $character->image) }}"
+                                                 alt="character avatar" width="25%">
                                         </td>
                                     </tr>
                                     <tr>
                                         <td class="text-nowrap">Main Image</td>
                                         <td>
-                                            <img src="{{ asset( 'storage/' . $character->main_image) }}" alt="main image" width="50%">
+                                            <img src="{{ asset( 'storage/' . $character->main_image) }}"
+                                                 alt="main image" width="50%">
                                         </td>
                                     </tr>
                                     <tr>
@@ -59,10 +62,14 @@
                                         <td>Trait</td>
                                         <td>{{ $character->trait }}</td>
                                     </tr>
-                                    <tr>
-                                        <td>Advancement</td>
-                                        <td>{{ $character->advancement }}</td>
-                                    </tr>
+                                    @if(isset($character->stars))
+                                        <tr>
+                                            <td>Stars</td>
+                                            @for($i = 0, $star = 'C' . $i; $i <= 6; $i++, $star = 'C' . $i)
+                                                <td class="d-flex">{{ $character->stars->$star }}</td>
+                                            @endfor
+                                        </tr>
+                                    @endif
                                     <tr>
                                         <td>Spec</td>
                                         <td>
