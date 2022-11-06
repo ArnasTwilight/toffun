@@ -35,6 +35,7 @@
                                     <tr>
                                         <th style="width: 10px">ID</th>
                                         <th>Title</th>
+                                        <th>Image</th>
                                         <th colspan="3">Action</th>
                                     </tr>
                                     </thead>
@@ -43,6 +44,9 @@
                                         <tr>
                                             <td>{{ $spec->id }}</td>
                                             <td>{{ $spec->title }}</td>
+                                            <td>
+                                                <img src="{{ asset('storage/' . $spec->image) }}" alt="spec">
+                                            </td>
                                             <td><a href="{{ route('admin.spec.show', $spec->id) }}"
                                                    class="btn btn-primary">View</a></td>
                                             <td><a href="{{ route('admin.spec.edit', $spec->id) }}"

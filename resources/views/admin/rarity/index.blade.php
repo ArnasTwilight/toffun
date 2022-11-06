@@ -35,6 +35,7 @@
                                     <tr>
                                         <th style="width: 10px">ID</th>
                                         <th>Title</th>
+                                        <th>Image</th>
                                         <th colspan="3">Action</th>
                                     </tr>
                                     </thead>
@@ -43,6 +44,9 @@
                                         <tr>
                                             <td>{{ $rarity->id }}</td>
                                             <td>{{ $rarity->title }}</td>
+                                            <td>
+                                                <img src="{{ asset('storage/' . $rarity->image) }}" alt="Rarity img" width="15%">
+                                            </td>
                                             <td><a href="{{ route('admin.rarity.show', $rarity->id) }}"
                                                    class="btn btn-primary">View</a></td>
                                             <td><a href="{{ route('admin.rarity.edit', $rarity->id) }}"

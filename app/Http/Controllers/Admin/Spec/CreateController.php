@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers\Admin\Spec;
 
-use App\Http\Controllers\Controller;
-
-class CreateController extends Controller
+class CreateController extends BaseController
 {
     public function __invoke()
     {

@@ -81,12 +81,25 @@
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <label>Rarity</label>
-                                        <select name="rarity_id" class="form-control">
+                                        <label>Spec</label>
+                                        <select name="spec_id" class="form-control">
+                                            <option value="">Null</option>
                                             @foreach($specList as $spec)
                                                 <option value="{{ $spec->id }}"
                                                     {{ $spec->id == $food->spec_id ? ' selected' : '' }}
                                                 >{{ $spec->title }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Ingredients</label>
+                                        <select name="ingredient_ids[]" class="select2" multiple="multiple"
+                                                data-placeholder="Select a ingredients"
+                                                style="width: 100%">
+                                            @foreach($ingredients as $ingredient)
+                                                <option value="{{ $ingredient->id }}"
+                                                    {{ is_array($food->ingredients->pluck('id')->toArray()) && in_array($ingredient->id, $food->ingredients->pluck('id')->toArray()) ? ' selected' : '' }}
+                                                >{{ $ingredient->title }}</option>
                                             @endforeach
                                         </select>
                                     </div>

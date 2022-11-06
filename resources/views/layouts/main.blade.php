@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Toffun | </title>
+    <title>Toffun | {{ config('app.name', 'Laravel') }}</title>
 
     <link rel="stylesheet" href="{{ asset('assets/css/reset.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}">

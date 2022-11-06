@@ -2,16 +2,15 @@
 
 namespace App\Http\Controllers\Admin\Rarity;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\Tag\UpdateRequest;
+use App\Http\Requests\Admin\Rarity\UpdateRequest;
 use App\Models\Rarity;
 
-class UpdateController extends Controller
+class UpdateController extends BaseController
 {
     public function __invoke(UpdateRequest $request, Rarity $rarity)
     {
         $data = $request->validated();
-        $rarity->update($data);
+        $this->service->update($data, $rarity);
         return redirect()->route('admin.rarity.show', compact('rarity'));
     }
 }

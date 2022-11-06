@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers\Admin\Element;
 
-use App\Http\Controllers\Controller;
 use App\Models\Element;
 
-class DeleteController extends Controller
+class DeleteController extends BaseController
 {
     public function __invoke(Element $element)
     {

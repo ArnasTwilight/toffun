@@ -2,16 +2,14 @@
 
 namespace App\Http\Controllers\Admin\Rarity;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\Category\StoreRequest;
-use App\Models\Rarity;
+use App\Http\Requests\Admin\Rarity\StoreRequest;
 
-class StoreController extends Controller
+class StoreController extends BaseController
 {
     public function __invoke(StoreRequest $request)
     {
         $data = $request->validated();
-        Rarity::firstOrCreate($data);
+        $this->service->store($data);
         return redirect()->route('admin.rarity.index');
     }
 }

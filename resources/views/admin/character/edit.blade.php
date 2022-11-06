@@ -49,7 +49,8 @@
                                     <div class="form-group">
                                         <label for="InputImage">Avatar</label>
                                         <div class="mb-1">
-                                            <img src="{{ asset('storage/' . $character->image) }}" alt="character avatar"
+                                            <img src="{{ asset('storage/' . $character->image) }}"
+                                                 alt="character avatar"
                                                  width="10%">
                                             <p class="text-gray">{{ asset('storage/' . $character->image) }}</p>
                                         </div>
@@ -73,7 +74,8 @@
                                         </div>
                                         <div class="input-group">
                                             <div class="custom-file">
-                                                <input type="file" class="custom-file-input" name="main_image" value="{{ asset('storage/' . $character->main_image) }}">
+                                                <input type="file" class="custom-file-input" name="main_image"
+                                                       value="{{ asset('storage/' . $character->main_image) }}">
                                                 <label class="custom-file-label" for="InputMainImage">Choose
                                                     main image</label>
                                             </div>
@@ -145,7 +147,7 @@
                                         <div class="d-flex">
                                             @for($i = 0, $star = 'C' . $i; $i <= 6; $i++, $star = 'C' . $i)
                                                 <textarea class="mr-1 form-control" name="{{ $star }}" rows="4"
-                                                          placeholder="Enter Star {{ $star }} ...">{{ $stars->$star }}</textarea>
+                                                          placeholder="Enter Star {{ $star }} ...">{{ isset($stars->$star) ? $stars->$star : '' }}</textarea>
                                                 @error($star)
                                                 <div class="text-danger">{{ $message }}</div>
                                                 @enderror

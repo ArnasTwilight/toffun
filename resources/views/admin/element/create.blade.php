@@ -31,13 +31,26 @@
                             </div>
                             <!-- /.card-header -->
                             <!-- form start -->
-                            <form action="{{ route('admin.element.store') }}" method="POST">
+                            <form action="{{ route('admin.element.store') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label for="title">Title</label>
                                         <input type="text" class="form-control" name="title" placeholder="Enter title">
                                         @error('title')
+                                        <div class="text-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="InputFile">Image</label>
+                                        <div class="input-group">
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input" name="image">
+                                                <label class="custom-file-label" for="InputFile">Choose image</label>
+                                            </div>
+                                        </div>
+                                        @error('image')
                                         <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>

@@ -72,44 +72,16 @@
                                         @enderror
                                     </div>
                                     <div class="form-group">
-                                        <label>1 Star</label>
-                                        <textarea class="form-control" name="one_star"
-                                                  placeholder="Enter..." rows="2">{{ old('bonus') }}</textarea>
-                                        @error('bonus')
-                                        <div class="text-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                    <div class="form-group">
-                                        <label>2 Star</label>
-                                        <textarea class="form-control" name="two_star"
-                                                  placeholder="Enter..." rows="2">{{ old('bonus') }}</textarea>
-                                        @error('bonus')
-                                        <div class="text-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                    <div class="form-group">
-                                        <label>3 Star</label>
-                                        <textarea class="form-control" name="three_star"
-                                                  placeholder="Enter..." rows="2">{{ old('bonus') }}</textarea>
-                                        @error('bonus')
-                                        <div class="text-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                    <div class="form-group">
-                                        <label>4 Star</label>
-                                        <textarea class="form-control" name="four_star"
-                                                  placeholder="Enter..." rows="2">{{ old('bonus') }}</textarea>
-                                        @error('bonus')
-                                        <div class="text-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                    <div class="form-group">
-                                        <label>5 Star</label>
-                                        <textarea class="form-control" name="five_star"
-                                                  placeholder="Enter..." rows="2">{{ old('bonus') }}</textarea>
-                                        @error('bonus')
-                                        <div class="text-danger">{{ $message }}</div>
-                                        @enderror
+                                        <label>Stars</label>
+                                        <div class="d-flex">
+                                            @for($i = 1; $i <= 5; $i++)
+                                                <textarea class="mr-1 form-control" name="C{{ $i }}" rows="4"
+                                                          placeholder="Enter Star {{ $i }} ...">{{ old('C' . $i) }}</textarea>
+                                                @error('C' . $i)
+                                                <div class="text-danger">{{ $message }}</div>
+                                                @enderror
+                                            @endfor
+                                        </div>
                                     </div>
                                     <div class="form-group">
                                         <label>Rarity</label>

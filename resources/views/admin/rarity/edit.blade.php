@@ -31,7 +31,7 @@
                             </div>
                             <!-- /.card-header -->
                             <!-- form start -->
-                            <form action="{{ route('admin.rarity.update', $rarity->id) }}" method="POST">
+                            <form action="{{ route('admin.rarity.update', $rarity->id) }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 @method('PATCH')
                                 <div class="card-body">
@@ -42,6 +42,23 @@
                                                value="{{ $rarity->title }}"
                                         >
                                         @error('title')
+                                        <div class="text-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="InputFile">Image</label>
+                                        <div>
+                                            <img src="{{ asset('storage/' . $rarity->image) }}" alt="Rarity img" class="mt-2">
+                                            <p>{{ asset('storage/' . $rarity->image) }}</p>
+                                        </div>
+                                        <div class="input-group">
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input" name="image">
+                                                <label class="custom-file-label" for="InputFile">Choose image</label>
+                                            </div>
+                                        </div>
+                                        @error('image')
                                         <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>

@@ -42,33 +42,24 @@
                                     <tr>
                                         <td>Image</td>
                                         <td>
-                                            <img src="{{ asset( 'storage/' . $relic->image) }}" alt="relic image" width="25%">
+                                            <img src="{{ asset( 'storage/' . $relic->image) }}" alt="relic image"
+                                                 width="25%">
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>Bonus</td>
                                         <td>{{ $relic->description }}</td>
                                     </tr>
-                                    <tr>
-                                        <td>1 Star</td>
-                                        <td>{{ $relic->one_star }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>2 Star</td>
-                                        <td>{{ $relic->two_star }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>3 Star</td>
-                                        <td>{{ $relic->three_star }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>4 Star</td>
-                                        <td>{{ $relic->four_star }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>5 Star</td>
-                                        <td>{{ $relic->five_star }}</td>
-                                    </tr>
+                                    @if(isset($relic->stars))
+                                        <tr>
+                                            <td>Stars</td>
+                                            @for($i = 1, $star = 'C' . $i; $i <= 5; $i++, $star = 'C' . $i)
+                                                @if (isset($relic->stars->$star))
+                                                    <td class="d-flex">{{ $i }} - {{ $relic->stars->$star }}</td>
+                                                @endif
+                                            @endfor
+                                        </tr>
+                                    @endif
                                     <tr>
                                         <td>Rarity</td>
                                         <td>

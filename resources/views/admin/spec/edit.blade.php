@@ -31,7 +31,7 @@
                             </div>
                             <!-- /.card-header -->
                             <!-- form start -->
-                            <form action="{{ route('admin.spec.update', $spec->id) }}" method="POST">
+                            <form action="{{ route('admin.spec.update', $spec->id) }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 @method('PATCH')
                                 <div class="card-body">
@@ -39,9 +39,25 @@
                                         <label for="title">Title</label>
                                         <input type="text" class="form-control" name="title"
                                                placeholder="Enter title"
-                                               value="{{ $spec->title }}"
-                                        >
+                                               value="{{ $spec->title }}">
                                         @error('title')
+                                        <div class="text-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="InputFile">Image</label>
+                                        <div>
+                                            <img src="{{ asset('storage/' . $spec->image) }}" alt="Spec image" width="50%"
+                                                  class="mt-2">
+                                            <p>{{ asset('storage/' . $spec->image) }}</p>
+                                        </div>
+                                        <div class="input-group">
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input" name="image">
+                                                <label class="custom-file-label" for="InputFile">Choose image</label>
+                                            </div>
+                                        </div>
+                                        @error('image')
                                         <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>

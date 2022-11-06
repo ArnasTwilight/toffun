@@ -13,41 +13,30 @@
                 <div class="character-list-header bg-color-second p-1">
                     <ul class="character-list-header__item d-flex">
                         <li>
-                            <h3 class="character-list-header__text R">R</h3>
+                            <h3 class="character-list-header__text blue">R</h3>
                         </li>
                         <li>
-                            <h3 class="character-list-header__text SR">SR</h3>
+                            <h3 class="character-list-header__text violet">SR</h3>
                         </li>
                         <li>
-                            <h3 class="character-list-header__text SSR">SSR</h3>
+                            <h3 class="character-list-header__text gold">SSR</h3>
                         </li>
                     </ul>
                     <div class="line-vertical"></div>
                     <ul class="character-list-header__item d-flex">
+                        @foreach($elements as $element)
                         <li>
-                            <img src="images/icon/fire.png" alt="Flame">
+                            <img src="{{ asset('storage/' . $element->image) }}" alt="{{ $element->title }}">
                         </li>
-                        <li>
-                            <img src="images/icon/ice.png" alt="Frost">
-                        </li>
-                        <li>
-                            <img src="images/icon/physical.png" alt="Physical">
-                        </li>
-                        <li>
-                            <img src="images/icon/volt.png" alt="Volt">
-                        </li>
+                        @endforeach
                     </ul>
                     <div class="line-vertical"></div>
                     <ul class="character-list-header__item d-flex">
+                        @foreach($specList as $spec)
                         <li>
-                            <img src="images/icon/dps.png" alt="DPS">
+                            <img src="{{ asset('storage/' . $spec->image) }}" alt="{{ $spec->title }}">
                         </li>
-                        <li>
-                            <img src="images/icon/defense.png" alt="Defense">
-                        </li>
-                        <li>
-                            <img src="images/icon/support.png" alt="Support">
-                        </li>
+                        @endforeach
                     </ul>
                 </div>
 
@@ -56,17 +45,18 @@
                     @foreach($characters as $character)
                         <div class="character-list__character bg-color-second p-3">
                             <div class="character-list__avatar">
-                                <img src="{{ asset('storage/' . $character->image) }}" alt="character avatar">
+
+                                <a href="#">
+                                    <img src="{{ asset('storage/' . $character->image) }}" alt="character avatar">
+                                </a>
 
                                 <div class="character-list__spec-element spec">
-                                    <img src="images/icon/dps.png" alt="spec">
+                                    <img src="{{ asset('storage/' . $character->spec->image) }}" alt="spec">
                                 </div>
                                 <div class="character-list__spec-element element">
-                                    <img src="images/icon/ice.png" alt="element">
+                                    <img src="{{ asset('storage/' . $character->weapon->element->image) }}" alt="element">
                                 </div>
-                                <div class="line">
-                                    <hr>
-                                </div>
+                                <div class="line"><hr></div>
                             </div>
                             <div class="character-name mt-2">
                                 <a href="#">{{ $character->name }}</a>
@@ -76,7 +66,9 @@
                                     <a href="#">{{ $character->weapon->title }}</a>
                                 </div>
                                 <div class="character-weapon__img">
-                                    <img src="{{ asset('storage/' . $character->weapon->image) }}" alt="weapon image">
+                                    <a href="#">
+                                        <img src="{{ asset('storage/' . $character->weapon->image) }}" alt="weapon image">
+                                    </a>
                                 </div>
                             </div>
                         </div>

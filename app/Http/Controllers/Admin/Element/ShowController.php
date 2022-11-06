@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers\Admin\Element;
 
-use App\Http\Controllers\Controller;
 use App\Models\Element;
 
-class ShowController extends Controller
+class ShowController extends BaseController
 {
     public function __invoke(Element $element)
     {

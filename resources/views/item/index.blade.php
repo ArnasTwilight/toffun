@@ -12,26 +12,26 @@
                 <div class="row">
                     <section class="col-xl-6">
                         <article class="item-main  p-0">
-                            <div class="item-main__bg violet">
+                            <div class="item-main__bg SR">
                                 <img src="{{ asset('assets/image/item/purple-yam-pie.png') }}" alt="item img">
                             </div>
 
                             <div class="item-main__name d-flex">
                                 <div class="line-left"></div>
-                                <h2><a class="item-main__title" href="#">Food</a></h2>
+                                <h2><a class="item-main__title" href="{{ route('food.index') }}">Food</a></h2>
                             </div>
                         </article>
                     </section>
 
                     <section class="col-xl-6">
                         <article class="item-main  p-0">
-                            <div class="item-main__bg gold">
+                            <div class="item-main__bg SSR">
                                 <img src="{{ asset('assets/image/item/colossus-arms.png') }}" alt="item img">
                             </div>
 
                             <div class="item-main__name d-flex">
                                 <div class="line-left"></div>
-                                <h2><a class="item-main__title" href="#">Relic</a></h2>
+                                <h2><a class="item-main__title" href="{{ route('relic.index') }}">Relic</a></h2>
                             </div>
                         </article>
                     </section>

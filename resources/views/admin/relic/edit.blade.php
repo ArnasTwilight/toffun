@@ -39,23 +39,24 @@
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label for="title">Title</label>
-                                        <input type="text" class="form-control" name="title" placeholder="Enter title" value="{{ $relic->title }}">
+                                        <input type="text" class="form-control" name="title" placeholder="Enter title"
+                                               value="{{ $relic->title }}">
                                         @error('title')
                                         <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <div class="form-group">
                                         <label for="InputImage">Image</label>
+                                        <div class="mb-1">
+                                            <img src="{{ asset('storage/' . $relic->image) }}" alt="relic image"
+                                                 width="10%">
+                                            <p class="text-gray">{{ asset('storage/' . $relic->image) }}</p>
+                                        </div>
                                         <div class="input-group">
                                             <div class="custom-file">
                                                 <input type="file" class="custom-file-input" name="image">
                                                 <label class="custom-file-label" for="InputImage">Choose
                                                     image</label>
-                                            </div>
-                                            <div class="mb-1">
-                                                <img src="{{ asset('storage/' . $relic->image) }}" alt="relic image"
-                                                     width="10%">
-                                                <p class="text-gray">{{ asset('storage/' . $relic->image) }}</p>
                                             </div>
                                         </div>
                                         @error('image')
@@ -71,11 +72,23 @@
                                         @enderror
                                     </div>
                                     <div class="form-group">
+                                        <label>Stars</label>
+                                        <div class="d-flex">
+                                            @for($i = 1, $star = 'C' . $i; $i <= 5; $i++, $star = 'C' . $i)
+                                                <textarea class="mr-1 form-control" name="{{ $star }}" rows="4"
+                                                          placeholder="Enter Star {{ $star }} ...">{{ isset($stars->$star) ? $stars->$star : '' }}</textarea>
+                                                @error($star)
+                                                <div class="text-danger">{{ $message }}</div>
+                                                @enderror
+                                            @endfor
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
                                         <label>Rarity</label>
                                         <select name="rarity_id" class="form-control">
                                             @foreach($rarityList as $rarity)
                                                 <option value="{{ $rarity->id }}"
-                                                    {{ $rarity->id == $relic->element_id ? ' selected' : '' }}
+                                                    {{ $rarity->id == $relic->rarity_id ? ' selected' : '' }}
                                                 >{{ $rarity->title }}</option>
                                             @endforeach
                                         </select>

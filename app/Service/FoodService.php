@@ -18,12 +18,11 @@ class FoodService
                 unset($data['ingredient_ids']);
             }
 
-//            if (isset($data['image'])) {
-//                $data['image'] = Storage::disk('public')->put('/images/food', $data['image']);
-//            } else {
-//                $data['image'] = 'images/food/no_food_image.jpg';
-//            }
-
+            if (isset($data['image'])) {
+                $data['image'] = Storage::disk('public')->put('/images/food', $data['image']);
+            } else {
+                $data['image'] = 'images/food/no_food_image.jpg';
+            }
 
             $food = Food::firstOrCreate($data);
 
@@ -48,16 +47,16 @@ class FoodService
                 unset($data['ingredient_ids']);
             }
 
-//            if (isset($data['image'])) {
-//                $data['image'] = Storage::disk('public')->put('/images/food', $data['image']);
-//            } elseif ($food['image'] != 'images/food/no_food_image.jpg') {
-//                $data['image'] = $food['image'];
-//            }
+            if (isset($data['image'])) {
+                $data['image'] = Storage::disk('public')->put('/images/food', $data['image']);
+            } elseif ($food['image'] != 'images/food/no_food_image.jpg') {
+                $data['image'] = $food['image'];
+            }
 
             $food->update($data);
 
             if (isset($ingredientIds)) {
-                $food->ingredient()->attach($ingredientIds);
+                $food->ingredients()->attach($ingredientIds);
             }
 
             DB::commit();

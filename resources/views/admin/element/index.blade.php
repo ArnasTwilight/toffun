@@ -35,6 +35,7 @@
                                     <tr>
                                         <th style="width: 10px">ID</th>
                                         <th>Title</th>
+                                        <th>Image</th>
                                         <th colspan="3">Action</th>
                                     </tr>
                                     </thead>
@@ -43,6 +44,9 @@
                                         <tr>
                                             <td>{{ $element->id }}</td>
                                             <td>{{ $element->title }}</td>
+                                            <td>
+                                                <img src="{{ asset('storage/' . $element->image) }}" alt="Element img">
+                                            </td>
                                             <td><a href="{{ route('admin.element.show', $element->id) }}"
                                                    class="btn btn-primary">View</a></td>
                                             <td><a href="{{ route('admin.element.edit', $element->id) }}"

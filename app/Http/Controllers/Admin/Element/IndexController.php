@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers\Admin\Element;
 
-use App\Http\Controllers\Controller;
 use App\Models\Element;
 
-class IndexController extends Controller
+class IndexController extends BaseController
 {
     public function __invoke()
     {

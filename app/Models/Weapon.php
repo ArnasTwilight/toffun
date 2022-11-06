@@ -14,7 +14,7 @@ class Weapon extends Model
 
     public function element()
     {
-        return $this->belongsTo(Rarity::class, 'element_id', 'id');
+        return $this->belongsTo(Element::class, 'element_id', 'id');
     }
 
     public function rarity()

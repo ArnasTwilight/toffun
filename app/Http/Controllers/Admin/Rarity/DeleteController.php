@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers\Admin\Rarity;
 
-use App\Http\Controllers\Controller;
 use App\Models\Rarity;
 
-class DeleteController extends Controller
+class DeleteController extends BaseController
 {
     public function __invoke(Rarity $rarity)
     {

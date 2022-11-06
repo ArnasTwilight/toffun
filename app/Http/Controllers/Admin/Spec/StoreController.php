@@ -2,16 +2,14 @@
 
 namespace App\Http\Controllers\Admin\Spec;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\Category\StoreRequest;
-use App\Models\Spec;
+use App\Http\Requests\Admin\Spec\StoreRequest;
 
-class StoreController extends Controller
+class StoreController extends BaseController
 {
     public function __invoke(StoreRequest $request)
     {
         $data = $request->validated();
-        Spec::firstOrCreate($data);
+        $this->service->store($data);
         return redirect()->route('admin.spec.index');
     }
 }

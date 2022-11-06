@@ -28,12 +28,13 @@ class UpdateRequest extends FormRequest
             'image' => 'nullable|file',
             'cooldown' => 'nullable|string',
             'description' => 'nullable|string',
-            'one_star' => 'nullable|string',
-            'two_star' => 'nullable|string',
-            'three_star' => 'nullable|string',
-            'four_star' => 'nullable|string',
-            'five_star' => 'nullable|string',
             'rarity_id' => 'nullable|integer',
+
+            'C1' => 'nullable|string',
+            'C2' => 'nullable|string',
+            'C3' => 'nullable|string',
+            'C4' => 'nullable|string',
+            'C5' => 'nullable|string',
         ];
     }
 }

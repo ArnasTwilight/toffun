@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers\Admin\Spec;
 
-use App\Http\Controllers\Controller;
 use App\Models\Spec;
 
-class ShowController extends Controller
+class ShowController extends BaseController
 {
     public function __invoke(Spec $spec)
     {

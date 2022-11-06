@@ -38,6 +38,12 @@
                                         <td>Title</td>
                                         <td>{{ $spec->title }}</td>
                                     </tr>
+                                    <tr>
+                                        <td>Image</td>
+                                        <td>
+                                            <img src="{{ asset('storage/' . $spec->image) }}" alt="spec">
+                                        </td>
+                                    </tr>
                                     </tbody>
                                 </table>
                             </div>

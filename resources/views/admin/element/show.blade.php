@@ -38,6 +38,12 @@
                                         <td>Title</td>
                                         <td>{{ $element->title }}</td>
                                     </tr>
+                                    <tr>
+                                        <td>Image</td>
+                                        <td>
+                                            <img src="{{ asset('storage/' . $element->image) }}" alt="Element img">
+                                        </td>
+                                    </tr>
                                     </tbody>
                                 </table>
                             </div>

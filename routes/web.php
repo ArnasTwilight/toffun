@@ -35,6 +35,14 @@ Route::group(['namespace' => 'Map', 'prefix' => 'map'], function () {
 Route::group(['namespace' => 'Item', 'prefix' => 'item'], function () {
     Route::get('/', 'IndexController')->name('item.index');
 });
+Route::group(['namespace' => 'Food', 'prefix' => 'food'], function () {
+    Route::get('/', 'IndexController')->name('food.index');
+    Route::get('/{food}', 'ShowController')->name('food.show');
+});
+Route::group(['namespace' => 'Relic', 'prefix' => 'relic'], function () {
+    Route::get('/', 'IndexController')->name('relic.index');
+    Route::get('/{relic}', 'ShowController')->name('relic.show');
+});
 Route::group(['namespace' => 'Character', 'prefix' => 'character'], function () {
     Route::get('/', 'IndexController')->name('character.index');
 });
