@@ -10,8 +10,8 @@
 
             <div class="row mt-4">
                 <div class="items-list-header bg-color-second d-flex p-0">
-                    <div class="items-list-header__img-container SSR">
-                        <img src="{{ asset('assets/image/item/colossus-arms.png') }}" alt="relic">
+                    <div class="items-list-header__img-container SR">
+                        <img src="{{ asset('assets/image/item/cybernetic-arm.png') }}" alt="relic">
                     </div>
                     <div class="items-list-header__name">
                         <div class="line-left"></div>
@@ -26,14 +26,14 @@
                 <div class="p-0 d-flex">
 
                     <div class="{{ $relic->rarity->title }}">
-                        <img src="{{ asset('storage/' . $relic->image) }}" alt="relic img">
+                        <img src="{{ asset('storage/' . $relic->image) }}" class="item-image" alt="relic img">
                     </div>
 
                     <div class="line-vertical-white mx-4"></div>
 
                     <div class="element-title">
                         <h2>{{ $relic->title }}</h2>
-                        <img src="{{ asset('storage/' . $relic->rarity->image) }}" alt="rarity">
+                        <img src="{{ asset('storage/' . $relic->rarity->image) }}" class="rarity-image" alt="rarity">
                     </div>
 
                 </div>

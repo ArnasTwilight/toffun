@@ -26,22 +26,22 @@ class StoreRequest extends FormRequest
         return [
             'name' => 'required|string',
             'image' => 'nullable|file',
-            'main_image' => 'nullable|file',
-            'skills' => 'nullable|string',
-            'trait' => 'nullable|string',
+            'trait_1' => 'nullable|string',
+            'trait_2' => 'nullable|string',
             'advancement' => 'nullable|string',
             'weapon_id' => 'nullable|integer',
             'spec_id' => 'nullable|integer',
             'rarity_id' => 'nullable|integer',
             'matrix_id' => 'nullable|integer',
 
-            'C0' => 'nullable|string',
-            'C1' => 'nullable|string',
-            'C2' => 'nullable|string',
-            'C3' => 'nullable|string',
-            'C4' => 'nullable|string',
-            'C5' => 'nullable|string',
-            'C6' => 'nullable|string',
+            'C' => 'required|array',
+            'C.*' => 'nullable|string',
+
+            'title_effect' => 'required|array',
+            'title_effect.*' => 'nullable|string',
+
+            'effect' => 'required|array',
+            'effect.*' => 'nullable|string',
         ];
     }
 }

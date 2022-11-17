@@ -36,13 +36,18 @@
                                   enctype="multipart/form-data">
                                 @csrf
                                 <div class="card-body">
+                                    {{--Name--}}
                                     <div class="form-group">
                                         <label for="title">Name</label>
-                                        <input type="text" class="form-control" name="name" placeholder="Enter name" value="{{ old('title') }}">
+                                        <input type="text" class="form-control" name="name" placeholder="Enter name"
+                                               value="{{ old('title') }}">
                                         @error('name')
                                         <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
+                                    {{--Name end--}}
+
+                                    {{--Image--}}
                                     <div class="form-group">
                                         <label for="InputImage">Image</label>
                                         <div class="input-group">
@@ -56,89 +61,136 @@
                                         <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
-                                    <div class="form-group">
-                                        <label for="InputMainImage">Image</label>
-                                        <div class="input-group">
-                                            <div class="custom-file">
-                                                <input type="file" class="custom-file-input" name="main_image">
-                                                <label class="custom-file-label" for="InputMainImage">Choose
-                                                    main image</label>
-                                            </div>
+                                    {{--Image end--}}
+
+                                    {{--Rarity, Spec, Weapon, Matrix--}}
+                                    <div class="row col-xl-12 p-0">
+                                        <div class="form-group col-xl-3 col-md-6">
+                                            <label>Rarity</label>
+                                            <select name="rarity_id" class="form-control">
+                                                @foreach($rarityList as $rarity)
+                                                    <option value="{{ $rarity->id }}"
+                                                        {{ $rarity->id == old('rarity_id') ? ' selected' : '' }}
+                                                    >{{ $rarity->title }}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
-                                        @error('main_image')
-                                        <div class="text-danger">{{ $message }}</div>
-                                        @enderror
+                                        <div class="form-group col-xl-3 col-md-6">
+                                            <label>Spec</label>
+                                            <select name="spec_id" class="form-control">
+                                                @foreach($specList as $spec)
+                                                    <option value="{{ $spec->id }}"
+                                                        {{ $spec->id == old('spec_id') ? ' selected' : '' }}
+                                                    >{{ $spec->title }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-xl-3 col-md-6">
+                                            <label>Weapon</label>
+                                            <select name="weapon_id" class="form-control">
+                                                @foreach($weapons as $weapon)
+                                                    <option value="{{ $weapon->id }}"
+                                                        {{ $weapon->id == old('weapon_id') ? ' selected' : '' }}
+                                                    >{{ $weapon->title }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-xl-3 col-md-6">
+                                            <label>Matrix</label>
+                                            <select name="matrix_id" class="form-control">
+                                                @foreach($matrices as $matrix)
+                                                    <option value="{{ $matrix->id }}"
+                                                        {{ $matrix->id == old('matrix_id') ? ' selected' : '' }}
+                                                    >{{ $matrix->title }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label>Rarity</label>
-                                        <select name="rarity_id" class="form-control">
-                                            @foreach($rarityList as $rarity)
-                                                <option value="{{ $rarity->id }}"
-                                                    {{ $rarity->id == old('rarity_id') ? ' selected' : '' }}
-                                                >{{ $rarity->title }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Spec</label>
-                                        <select name="spec_id" class="form-control">
-                                            @foreach($specList as $spec)
-                                                <option value="{{ $spec->id }}"
-                                                    {{ $spec->id == old('spec_id') ? ' selected' : '' }}
-                                                >{{ $spec->title }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Weapon</label>
-                                        <select name="weapon_id" class="form-control">
-                                            @foreach($weapons as $weapon)
-                                                <option value="{{ $weapon->id }}"
-                                                    {{ $weapon->id == old('weapon_id') ? ' selected' : '' }}
-                                                >{{ $weapon->title }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Matrix</label>
-                                        <select name="matrix_id" class="form-control">
-                                            @foreach($matrices as $matrix)
-                                                <option value="{{ $matrix->id }}"
-                                                    {{ $matrix->id == old('matrix_id') ? ' selected' : '' }}
-                                                >{{ $matrix->title }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Skills</label>
-                                        <textarea class="form-control" name="skills" rows="2"
-                                                  placeholder="Enter skills ...">{{ old('skills') }}</textarea>
-                                        @error('skills')
-                                        <div class="text-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
+                                    {{--Rarity, Spec, Weapon, Matrix end--}}
 
-                                    <div class="form-group">
-                                        <label>Trait</label>
-                                        <textarea class="form-control" name="trait" rows="2"
-                                                  placeholder="Enter trait ...">{{ old('trait') }}</textarea>
-                                        @error('trait')
-                                        <div class="text-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
+                                    {{--Effects--}}
+                                    <div class="row col-xl-12 p-0">
+                                        <div class="form-group col-lg-6">
+                                            <label>Effect</label>
+                                            <input type="text" class="form-control mb-1" name="title_effect[0]" placeholder="Enter title effect"
+                                                   value="{{ old('title_effect[0]') }}">
+                                            @error('title_effect')
+                                            <div class="text-danger">{{ $message }}</div>
+                                            @enderror
+                                            <textarea class="form-control" name="effect[0]" rows="2"
+                                                      placeholder="Enter effect ...">{{ old('effect[0]') }}</textarea>
+                                            @error('effect')
+                                            <div class="text-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                        <div class="form-group col-lg-6">
+                                            <label>Effect</label>
+                                            <input type="text" class="form-control mb-1" name="title_effect[1]" placeholder="Enter title effect"
+                                                   value="{{ old('title_effect[1]') }}">
+                                            @error('title_effect')
+                                            <div class="text-danger">{{ $message }}</div>
+                                            @enderror
+                                            <textarea class="form-control" name="effect[1]" rows="2"
+                                                      placeholder="Enter effect ...">{{ old('effect[1]') }}</textarea>
+                                            @error('effect')
+                                            <div class="text-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
 
-                                    <div class="form-group">
-                                        <label>Stars</label>
-                                        <div class="d-flex">
-                                            @for($i = 0; $i <= 6; $i++)
-                                                <textarea class="mr-1 form-control" name="C{{ $i }}" rows="4"
+                                        <div class="form-group col-lg-6">
+                                            <label>Skills</label>
+                                            <textarea class="form-control" name="skills" rows="2"
+                                                      placeholder="Enter skills ...">{{ old('skills') }}</textarea>
+                                            @error('skills')
+                                            <div class="text-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    {{--Effects end--}}
+
+                                    {{--Traits--}}
+                                    <div class="row col-xl-12 p-0">
+                                        <div class="form-group col-12 mb-0">
+                                            <label>Traits</label>
+                                        </div>
+                                        <div class="form-group col-lg-6">
+                                            <textarea
+                                                class="form-control"
+                                                name="trait_1" rows="2"
+                                                placeholder="Enter trait 1200 Awakening...">{{ old('trait_1') }}</textarea>
+                                            @error('trait_1')
+                                            <div class="text-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                        <div class="form-group col-lg-6">
+                                            <textarea
+                                                class="form-control"
+                                                name="trait_2" rows="2"
+                                                placeholder="Enter trait 4000 Awakening...">{{ old('trait_2') }}</textarea>
+                                            @error('trait_2')
+                                            <div class="text-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    {{--Traits end--}}
+
+                                    {{--Stars--}}
+                                    <div class="row col-xl-12 p-0">
+                                        <div class="form-group col-12 mb-0">
+                                            <label>Stars</label>
+                                        </div>
+                                        @for($i = 1; $i <= 6; $i++)
+                                            <div class="form-group col-xl-4 col-lg-6">
+                                                <textarea class="form-control" name="C[{{ $i }}]"
+                                                          rows="3"
                                                           placeholder="Enter Star {{ $i }} ...">{{ old('C' . $i) }}</textarea>
                                                 @error('C' . $i)
                                                 <div class="text-danger">{{ $message }}</div>
                                                 @enderror
-                                            @endfor
-                                        </div>
+                                            </div>
+                                        @endfor
                                     </div>
+                                    {{--Stars end--}}
                                 </div>
                                 <!-- /.card-body -->
 

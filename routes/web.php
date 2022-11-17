@@ -43,8 +43,13 @@ Route::group(['namespace' => 'Relic', 'prefix' => 'relic'], function () {
     Route::get('/', 'IndexController')->name('relic.index');
     Route::get('/{relic}', 'ShowController')->name('relic.show');
 });
+Route::group(['namespace' => 'Matrix', 'prefix' => 'matrix'], function () {
+    Route::get('/', 'IndexController')->name('matrix.index');
+    Route::get('/{matrix}', 'ShowController')->name('matrix.show');
+});
 Route::group(['namespace' => 'Character', 'prefix' => 'character'], function () {
     Route::get('/', 'IndexController')->name('character.index');
+    Route::get('/{character}', 'ShowController')->name('character.show');
 });
 
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {

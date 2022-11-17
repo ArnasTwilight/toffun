@@ -26,7 +26,7 @@
                     <ul class="character-list-header__item d-flex">
                         @foreach($elements as $element)
                         <li>
-                            <img src="{{ asset('storage/' . $element->image) }}" alt="{{ $element->title }}">
+                            <img src="{{ asset('storage/' . $element->image) }}" class="character-list-header__image" alt="{{ $element->title }}">
                         </li>
                         @endforeach
                     </ul>
@@ -34,7 +34,7 @@
                     <ul class="character-list-header__item d-flex">
                         @foreach($specList as $spec)
                         <li>
-                            <img src="{{ asset('storage/' . $spec->image) }}" alt="{{ $spec->title }}">
+                            <img src="{{ asset('storage/' . $spec->image) }}" class="character-list-header__image" alt="{{ $spec->title }}">
                         </li>
                         @endforeach
                     </ul>
@@ -46,7 +46,7 @@
                         <div class="character-list__character bg-color-second p-3">
                             <div class="character-list__avatar">
 
-                                <a href="#">
+                                <a href="{{ route('character.show', $character->id) }}">
                                     <img src="{{ asset('storage/' . $character->image) }}" alt="character avatar">
                                 </a>
 
@@ -59,7 +59,7 @@
                                 <div class="line"><hr></div>
                             </div>
                             <div class="character-name mt-2">
-                                <a href="#">{{ $character->name }}</a>
+                                <a href="{{ route('character.show', $character->id) }}">{{ $character->name }}</a>
                             </div>
                             <div class="character-weapon d-flex">
                                 <div class="character-weapon__name">

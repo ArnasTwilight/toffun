@@ -1,15 +1,16 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Character;
+namespace App\Http\Controllers\Character;
 
+use App\Http\Controllers\Controller;
 use App\Models\Character;
 use App\Models\WeaponEffects;
 
-class ShowController extends BaseController
+class ShowController extends Controller
 {
     public function __invoke(Character $character)
     {
         $effects = WeaponEffects::query()->where('character_id', $character->id)->get();
-        return view('admin.character.show', compact('character','effects'));
+        return view('character.show', compact('character', 'effects'));
     }
 }

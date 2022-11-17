@@ -37,4 +37,9 @@ class Character extends Model
         return $this->belongsTo(Star::class, 'stars_id', 'id');
     }
 
+//    public function effects($characterId)
+//    {
+//        return WeaponEffects::query()->where('character_id', $characterId)->get();
+//    }
+
 }

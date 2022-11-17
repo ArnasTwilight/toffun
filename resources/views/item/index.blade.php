@@ -12,8 +12,8 @@
                 <div class="row">
                     <section class="col-xl-6">
                         <article class="item-main  p-0">
-                            <div class="item-main__bg SR">
-                                <img src="{{ asset('assets/image/item/purple-yam-pie.png') }}" alt="item img">
+                            <div class="item-main__bg R">
+                                <img src="{{ asset('assets/image/item/seafood-soup.png') }}" class="item-image" alt="item img">
                             </div>
 
                             <div class="item-main__name d-flex">
@@ -25,13 +25,28 @@
 
                     <section class="col-xl-6">
                         <article class="item-main  p-0">
-                            <div class="item-main__bg SSR">
-                                <img src="{{ asset('assets/image/item/colossus-arms.png') }}" alt="item img">
+                            <div class="item-main__bg SR">
+                                <img src="{{ asset('assets/image/item/cybernetic-arm.png') }}" class="item-image" alt="item img">
                             </div>
 
                             <div class="item-main__name d-flex">
                                 <div class="line-left"></div>
                                 <h2><a class="item-main__title" href="{{ route('relic.index') }}">Relic</a></h2>
+                            </div>
+                        </article>
+                    </section>
+                </div>
+
+                <div class="row mt-4">
+                    <section class="col-xl-6">
+                        <article class="item-main  p-0">
+                            <div class="item-main__bg SSR">
+                                <img src="{{ asset('assets/image/item/frigg.png') }}" class="item-image" alt="item img">
+                            </div>
+
+                            <div class="item-main__name d-flex">
+                                <div class="line-left"></div>
+                                <h2><a class="item-main__title" href="{{ route('matrix.index') }}">Matrix</a></h2>
                             </div>
                         </article>
                     </section>

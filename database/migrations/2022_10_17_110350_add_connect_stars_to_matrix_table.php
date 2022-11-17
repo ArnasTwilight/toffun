@@ -27,7 +27,7 @@ class AddConnectStarsToMatrixTable extends Migration
     public function down()
     {
         Schema::table('matrix', function (Blueprint $table) {
-            $table->dropForeign('matrix_stars_idx');
+            $table->dropForeign('matrix_stars_fk');
             $table->dropIndex('matrix_stars_idx');
         });
     }

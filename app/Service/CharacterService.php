@@ -4,37 +4,35 @@ namespace App\Service;
 
 use App\Models\Character;
 use App\Models\Star;
+use App\Models\WeaponEffects;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class CharacterService
 {
+    private $data;
+    private $character;
+    private $stars;
+    private $effects;
+
     public function store($data)
     {
+        $this->data = $data;
+
         try {
             DB::beginTransaction();
 
-            if (isset($data['image'])) {
-                $data['image'] = Storage::disk('public')->put('/images/character/avatar', $data['image']);
-            } else {
-                $data['image'] = 'images/character/no_character_image.jpg';
-            }
+            $this->effects();
 
-            if (isset($data['main_image'])) {
-                $data['main_image'] = Storage::disk('public')->put('/images/character/main', $data['main_image']);
-            } else {
-                $data['main_image'] = 'images/character/no_character_main_image.jpg';
-            }
+            $this->saveImage();
 
-            for ($i = 0; $i <= 6; $i++) {
-                $stars['C' . $i] = $data['C' . $i];
-                unset($data['C' . $i]);
-            }
+            $this->stars();
 
-            $star = Star::firstOrCreate($stars);
-            $data['stars_id'] = $star->id;
+            $this->starsCreate();
 
-            Character::firstOrCreate($data);
+            $this->character = Character::firstOrCreate($this->data);
+
+            $this->effectsCreate();
 
             DB::commit();
         } catch (\Exception $exception) {
@@ -45,33 +43,116 @@ class CharacterService
 
     public function update($data, $character, $star)
     {
+        $this->data = $data;
+        $this->character = $character;
+
         try {
             DB::beginTransaction();
 
-            if (isset($data['image'])) {
-                $data['image'] = Storage::disk('public')->put('/images/character/avatar', $data['image']);
-            } elseif ($character['image'] != 'images/character/no_character_image.jpg') {
-                $data['image'] = $character['image'];
-            }
+            $this->effects();
 
-            if (isset($data['main_image'])) {
-                $data['main_image'] = Storage::disk('public')->put('/images/character/main', $data['main_image']);
-            } elseif ($character['main_image'] != 'images/character/no_character_main_image.jpg') {
-                $data['main_image'] = $character['main_image'];
-            }
+            $this->saveImage();
 
-            for ($i = 0; $i <= 6; $i++) {
-                $stars['C' . $i] = $data['C' . $i];
-                unset($data['C' . $i]);
-            }
+            $this->effectsUpdate($character);
 
-            $star->update($stars);
-            $character->update($data);
+            $this->stars();
+
+            $star->update($this->stars);
+
+            $character->update($this->data);
 
             DB::commit();
         } catch (\Exception $exception) {
             DB::rollBack();
             abort(500);
         }
+    }
+
+
+    private function saveImage()
+    {
+        if (isset($this->data['image'])) {
+            $this->data['image'] = Storage::disk('public')->put('/images/character/avatar', $this->data['image']);
+        } elseif (isset($this->character['image']) && $this->character['image'] != 'images/character/no_character_image.jpg') {
+            $this->data['image'] = $this->character['image'];
+        } else {
+            $this->data['image'] = 'images/character/no_character_image.jpg';
+        }
+    }
+
+    private function effects()
+    {
+        for ($i = 0; $i < $this->countEffects(); $i++) {
+            if (empty($this->data['title_effect'][$i]) && empty($this->data['effect'][$i]) && !empty($this->data['id_effect'][$i])) {
+                WeaponEffects::query()->where('id', $this->data['id_effect'][$i])->delete();
+                unset($this->data['id_effect'][$i], $this->data['title_effect'][$i], $this->data['effect'][$i]);
+            } else {
+                if (!empty($this->data['title_effect'][$i])) {
+                    $this->effects[$i]['title_effect'] = $this->data['title_effect'][$i];
+                } else {
+                    $this->effects[$i]['title_effect'] = null;
+                }
+                if (!empty($this->data['effect'][$i])) {
+                    $this->effects[$i]['effect'] = $this->data['effect'][$i];
+                } else {
+                    $this->effects[$i]['effect'] = null;
+                }
+            }
+        }
+        unset($this->data['title_effect'], $this->data['effect']);
+    }
+
+    private function countEffects()
+    {
+        if (!empty($this->data['title_effect']) && !empty($this->data['effect']))
+        {
+            if (count($this->data['title_effect']) >= count($this->data['effect'])) {
+                $count = count($this->data['title_effect']);
+            } else {
+                $count = count($this->data['effect']);
+            }
+            return $count;
+        }
+        return 0;
+    }
+
+    private function stars()
+    {
+        for ($i = 1; $i <= count($this->data['C']); $i++) {
+            $this->stars['C' . $i] = $this->data['C'][$i];
+        }
+        unset($this->data['C']);
+    }
+
+    private function starsCreate()
+    {
+        $star = Star::firstOrCreate($this->stars);
+        $this->data['stars_id'] = $star->id;
+    }
+
+    private function effectsCreate()
+    {
+        for ($i = 0; $i < count($this->effects); $i++) {
+            $this->effects[$i]['character_id'] = $this->character->id;
+            WeaponEffects::firstOrCreate($this->effects[$i]);
+        }
+    }
+
+    private function effectsUpdate($character)
+    {
+        for ($i = 0; $i < WeaponEffects::where('character_id', $character->id)->count(); $i++) {
+            $this->effects[$i]['character_id'] = $character->id;
+            WeaponEffects::where('id', $this->data['id_effect'][$i])->update($this->effects[$i]);
+            unset($this->effects[$i]);
+        }
+
+        if (!empty($this->effects)) {
+            foreach ($this->effects as $effect) {
+                $effect['character_id'] = $character->id;
+                WeaponEffects::firstOrCreate($effect);
+            }
+        }
+
+        unset($this->data['id_effect'], $this->data['title_effect'], $this->data['effect']);
     }
 }

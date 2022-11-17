@@ -558,6 +558,11 @@ body {
     align-items: center;
 }
 
+.item-image {
+    width: 100px;
+    height: 100px;
+}
+
 /* character list */
 .character-list-header {
     display: flex;
@@ -565,16 +570,15 @@ body {
     align-items: center;
 }
 
-.character-list-header__item li img {
+.character-list-header__image {
     width: 30px;
-    height: 30px;
 }
 
 .character-list-header__text {
-    font-family: "DM Sans", sans-serif;
-    font-weight: 600;
-    font-style: italic;
+    font-family: "Cyberwar",
+    sans-serif;
     cursor: pointer;
+    font-size: var(--font-size-medium);
 }
 
 .character-list-header__item :not(:last-child) {
@@ -753,7 +757,7 @@ body {
     justify-content: space-between;
 }
 
-.element-title img {
+.rarity-image {
     width: 64px;
 }
 
@@ -777,8 +781,13 @@ body {
     display: inline-block;
 }
 
+.description-single__cooldown li:not(:last-child) {
+    margin-bottom: var(--spacing-small);
+}
+
 .description-single__text {
     font-size: var(--font-size-normal);
+    color: var(--color-text);
 }
 
 .advancements-list li {
@@ -832,7 +841,7 @@ body {
     margin-bottom: var(--spacing-medium);
 }
 
-    /* food table */
+/* food table */
 .food-table {
     border-spacing: 0 var(--spacing-small);
 }
@@ -879,6 +888,159 @@ body {
 .ingredient-image {
     width: 32px;
     height: 32px;
+}
+
+/* character */
+.character-menu {
+    display: flex;
+}
+
+.character-menu__item {
+    background-color: var(--color-second-frame);
+    padding: var(--spacing-small);
+}
+
+.active-menu-char {
+    background-color: var(--color-frame);
+}
+
+.active-menu-char a {
+    color: var(--color-text-accent) !important;
+}
+
+.character-container-header {
+    justify-content: space-between;
+}
+
+.character-menu__item:first-child {
+    margin-left: var(--spacing-medium);
+}
+
+.character-menu__item:not(:last-child) {
+    margin-right: var(--spacing-small);
+}
+
+.character-image-container img {
+    width: 100px;
+    height: 100px;
+}
+
+.weapon-image {
+    align-items: center;
+}
+
+.weapon-image-container img {
+    width: 64px;
+    height: 64px;
+}
+
+.weapon-stats-list {
+    color: var(--color-text);
+}
+
+.weapon-stats-list__item div {
+    align-items: center;
+}
+
+.weapon-stats-list__item:not(:last-child) {
+    margin-right: var(--spacing-medium);
+}
+
+.weapon-stats-name {
+    color: var(--color-text-second);
+}
+
+.stat-image {
+    width: 32px;
+    margin-right: var(--spacing-extra-small);
+}
+
+.weapon-stats-name__item {
+    font-size: var(--font-size-medium);
+}
+
+.description-main-character {
+    display: flex;
+    flex-direction: column;
+}
+
+.character-star {
+    display: flex;
+    align-items: center;
+    color: var(--color-text);
+}
+
+.character-star:not(:first-child) {
+    margin-top: var(--spacing-small);
+}
+
+.star-container {
+    margin-right: var(--spacing-small);
+}
+
+.star-image {
+    width: 24px;
+    height: 24px;
+    margin-right: var(--spacing-small);
+}
+
+.star-num {
+    font-size: var(--font-size-normal);
+}
+
+.star-description {
+    font-size: var(--font-size-normal);
+}
+
+.character-matrix-container {
+    align-items: center;
+}
+
+.character-matrix {
+    display: flex;
+    align-items: center;
+    color: var(--color-text);
+    font-size: var(--font-size-normal);
+    padding: var(--spacing-small);
+}
+
+.character-matrix:not(:first-child) {
+    margin-top: var(--spacing-small);
+}
+
+.character-matrix-image img {
+    width: 100px;
+    height: 100px;
+    margin-right: var(--spacing-small);
+}
+
+.weapon-attack {
+    color: var(--color-text);
+    font-size: var(--font-size-normal);
+}
+
+.weapon-attack__combo-title {
+}
+
+.weapon-attack-list__item {
+    padding: var(--spacing-small);
+    align-items: center;
+}
+
+.weapon-attack-list__item:not(:first-child) {
+    margin-top: var(--spacing-extra-small);
+}
+
+.weapon-attack-list__num {
+    width: 32px;
+    height: 32px;
+    align-items: center;
+    justify-content: center;
+    margin-right: var(--spacing-small);
+}
+
+.weapon-attack h2 {
+    margin-bottom: var(--spacing-medium);
 }
 
 @media (max-width: 1199.98px) {

@@ -8,6 +8,7 @@ use App\Models\Rarity;
 use App\Models\Spec;
 use App\Models\Star;
 use App\Models\Weapon;
+use App\Models\WeaponEffects;
 
 class EditController extends BaseController
 {
@@ -18,6 +19,16 @@ class EditController extends BaseController
         $weapons = Weapon::all();
         $matrices = Matrix::all();
         $stars = Star::find($character->stars_id);
-        return view('admin.character.edit', compact('character', 'specList', 'rarityList', 'weapons', 'matrices', 'stars'));
+        $effects = WeaponEffects::query()->where('character_id', $character->id)->get();
+        return view('admin.character.edit',
+            compact(
+                'character',
+                'specList',
+                'rarityList',
+                'weapons',
+                'matrices',
+                'stars',
+                'effects'
+            ));
     }
 }

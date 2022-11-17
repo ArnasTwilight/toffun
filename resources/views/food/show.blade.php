@@ -26,14 +26,14 @@
                 <div class="p-0 d-flex">
 
                     <div class="{{ $food->rarity->title }}">
-                        <img src="{{ asset('storage/' . $food->image) }}" alt="recipe img">
+                        <img src="{{ asset('storage/' . $food->image) }}" class="item-image" alt="recipe img">
                     </div>
 
                     <div class="line-vertical-white mx-4"></div>
 
                     <div class="element-title">
                         <h2>{{ $food->title }}</h2>
-                        <img src="{{ asset('storage/' . $food->rarity->image) }}" alt="rarity">
+                        <img src="{{ asset('storage/' . $food->rarity->image) }}" class="rarity-image" alt="rarity">
                     </div>
 
                 </div>

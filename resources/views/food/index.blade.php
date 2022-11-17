@@ -9,8 +9,8 @@
         <main class="col-xl-9">
             <div class="row mt-4">
                 <div class="items-list-header bg-color-second p-0">
-                    <div class="items-list-header__img-container SR">
-                        <img src="{{ asset('assets/image/item/purple-yam-pie.png') }}" alt="food">
+                    <div class="items-list-header__img-container R">
+                        <img src="{{ asset('assets/image/item/seafood-soup.png') }}" alt="food">
                     </div>
                     <div class="items-list-header__name">
                         <div class="line-left"></div>

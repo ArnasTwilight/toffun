@@ -47,25 +47,25 @@
                                                  alt="character avatar" width="25%">
                                         </td>
                                     </tr>
+                                    @for($i = 0; $i < count($effects); $i++)
+                                        <tr>
+                                            <td>{{ $effects[$i]->title_effect }}</td>
+                                            <td>
+                                                {{ $effects[$i]->effect }}
+                                            </td>
+                                        </tr>
+                                    @endfor
                                     <tr>
-                                        <td class="text-nowrap">Main Image</td>
-                                        <td>
-                                            <img src="{{ asset( 'storage/' . $character->main_image) }}"
-                                                 alt="main image" width="50%">
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Skills</td>
-                                        <td>{{ $character->skills }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Trait</td>
-                                        <td>{{ $character->trait }}</td>
+                                        <td>Traits </td>
+                                        <td class="d-flex">1200 Awakening:</td>
+                                        <td class="d-flex">{{ $character->trait_1 }}</td>
+                                        <td class="d-flex">4000 Awakening:</td>
+                                        <td class="d-flex">{{ $character->trait_2 }}</td>
                                     </tr>
                                     @if(isset($character->stars))
                                         <tr>
                                             <td>Stars</td>
-                                            @for($i = 0, $star = 'C' . $i; $i <= 6; $i++, $star = 'C' . $i)
+                                            @for($i = 1, $star = 'C' . $i; $i <= 6; $i++, $star = 'C' . $i)
                                                 <td class="d-flex">{{ $character->stars->$star }}</td>
                                             @endfor
                                         </tr>
