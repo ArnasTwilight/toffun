@@ -51,6 +51,9 @@ Route::group(['namespace' => 'Character', 'prefix' => 'character'], function () 
     Route::get('/', 'IndexController')->name('character.index');
     Route::get('/{character}', 'ShowController')->name('character.show');
 });
+Route::group(['namespace' => 'Gift', 'prefix' => 'gifts'], function () {
+    Route::get('/', 'IndexController')->name('gift.index');
+});
 
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
     Route::group(['namespace' => 'Main'], function () {
@@ -165,6 +168,15 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
         Route::get('/{element}/edit', 'EditController')->name('admin.element.edit');
         Route::patch('/{element}', 'UpdateController')->name('admin.element.update');
         Route::delete('/{element}', 'DeleteController')->name('admin.element.delete');
+    });
+    Route::group(['namespace' => 'Gift', 'prefix' => 'gifts'], function () {
+        Route::get('/', 'IndexController')->name('admin.gift.index');
+        Route::get('/create', 'CreateController')->name('admin.gift.create');
+        Route::post('/', 'StoreController')->name('admin.gift.store');
+        Route::get('/{gift}', 'ShowController')->name('admin.gift.show');
+        Route::get('/{gift}/edit', 'EditController')->name('admin.gift.edit');
+        Route::patch('/{gift}', 'UpdateController')->name('admin.gift.update');
+        Route::delete('/{gift}', 'DeleteController')->name('admin.gift.delete');
     });
 
     Route::group(['namespace' => 'User', 'prefix' => 'users'], function () {

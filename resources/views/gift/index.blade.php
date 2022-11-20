@@ -9,12 +9,12 @@
         <main class="col-xl-9">
             <div class="row mt-4">
                 <div class="items-list-header bg-color-second p-0">
-                    <div class="items-list-header__img-container SSR">
-                        <img src="{{ asset('assets/image/item/frigg.png') }}" alt="matrices">
+                    <div class="items-list-header__img-container N">
+                        <img src="{{ asset('assets/image/item/snack-box.png') }}" alt="gifts">
                     </div>
                     <div class="items-list-header__name">
                         <div class="line-left"></div>
-                        <h2>Matrix</h2>
+                        <h2>Gift</h2>
                     </div>
                 </div>
             </div>
@@ -27,20 +27,18 @@
                         <th>Name</th>
                         <th>Rarity</th>
                     </tr>
-                    @foreach($matrices as $matrix)
+                    @foreach($gifts as $gift)
                         <tr class="bg-color-second">
-                            <td class="food-table__image p-4 {{ $matrix->rarity->title }}">
-                                <a href="{{ route('matrix.show', $matrix->id) }}">
-                                    <img src="{{ asset('storage/' . $matrix->image) }}" alt="matrix image">
-                                </a>
+                            <td class="food-table__image p-4 {{ $gift->rarity->title }}">
+                                <img src="{{ asset('storage/' . $gift->image) }}" alt="gift image">
                             </td>
                             <td class="food-table__recipe">
-                                <a href="{{ route('matrix.show', $matrix->id) }}">
-                                    {{ $matrix->title }}
-                                </a>
+                                <p>
+                                    {{ $gift->title }}
+                                </p>
                             </td>
                             <td class="food-table__rarity">
-                                <img src="{{ asset('storage/' . $matrix->rarity->image) }}" alt="rarity">
+                                <img src="{{ asset('storage/' . $gift->rarity->image) }}" alt="rarity">
                             </td>
                         </tr>
                     @endforeach

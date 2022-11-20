@@ -50,6 +50,19 @@
                             </div>
                         </article>
                     </section>
+
+                    <section class="col-xl-6">
+                        <article class="item-main  p-0">
+                            <div class="item-main__bg N">
+                                <img src="{{ asset('assets/image/item/snack-box.png') }}" class="item-image" alt="item img">
+                            </div>
+
+                            <div class="item-main__name d-flex">
+                                <div class="line-left"></div>
+                                <h2><a class="item-main__title" href="{{ route('gift.index') }}">Gift</a></h2>
+                            </div>
+                        </article>
+                    </section>
                 </div>
 
             </section>

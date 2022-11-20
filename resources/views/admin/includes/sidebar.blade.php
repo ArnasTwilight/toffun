@@ -42,10 +42,26 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-shopping-cart"></i>
+                    <a href="{{ route('admin.weapon.index') }}" class="nav-link">
+                        <i class="nav-icon fa-solid fa-shield"></i>
                         <p>
-                            Gacha
+                            Weapons
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.matrix.index') }}" class="nav-link">
+                        <i class="nav-icon fa-solid fa-microchip"></i>
+                        <p>
+                            Matrices
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.element.index') }}" class="nav-link">
+                        <i class="nav-icon fa-solid fa-fire"></i>
+                        <p>
+                            Elements
                         </p>
                     </a>
                 </li>
@@ -58,10 +74,10 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('admin.weapon.index') }}" class="nav-link">
-                        <i class="nav-icon fa-solid fa-shield"></i>
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-shopping-cart"></i>
                         <p>
-                            Weapons
+                            Gacha
                         </p>
                     </a>
                 </li>
@@ -100,18 +116,10 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('admin.matrix.index') }}" class="nav-link">
-                        <i class="nav-icon fa-solid fa-microchip"></i>
+                    <a href="{{ route('admin.gift.index') }}" class="nav-link">
+                        <i class="nav-icon fa-solid fa-gift"></i>
                         <p>
-                            Matrices
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ route('admin.element.index') }}" class="nav-link">
-                        <i class="nav-icon fa-solid fa-fire"></i>
-                        <p>
-                            Elements
+                            Gift
                         </p>
                     </a>
                 </li>

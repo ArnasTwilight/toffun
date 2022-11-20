@@ -37,6 +37,11 @@ class Character extends Model
         return $this->belongsTo(Star::class, 'stars_id', 'id');
     }
 
+    public function gift()
+    {
+        return $this->belongsToMany(Gift::class, 'character_gifts', 'character_id', 'gift_id');
+    }
+
 //    public function effects($characterId)
 //    {
 //        return WeaponEffects::query()->where('character_id', $characterId)->get();

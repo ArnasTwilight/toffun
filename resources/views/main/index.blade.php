@@ -67,18 +67,24 @@
             </article>
             @endforeach
 
+            @foreach($characters as $character)
             <article class="row mt-4 bg-color">
-                <div class="character-post__img-container col-lg-6 p-0">
-                    <img src="{{ asset('assets/image/post/character-img-1.png') }}" alt="character post img">
-                </div>
+                <div class="d-flex p-0">
+                    <div class="character-post__img-container p-0">
+                        <div class="character-post__img-bg {{ $character->rarity->title }}">
+                            <img src="{{ asset('storage/' . $character->image) }}" alt="character post img">
+                        </div>
+                    </div>
 
-                <div class="character-post__title col-lg-6 p-4">
-                    <div>
-                        <h2><a href="#">Character</a></h2>
-                        <p>Information</p>
+                    <div class="character-post__title p-4">
+                        <div>
+                            <h2><a href="{{ route('character.show', $character->id) }}">{{ $character->name }}</a></h2>
+                            <p>{{ $character->spec->title }} {{ $character->weapon->element->title }}</p>
+                        </div>
                     </div>
                 </div>
             </article>
+            @endforeach
         </main>
 
 {{--        aside--}}
