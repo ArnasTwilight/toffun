@@ -8,8 +8,13 @@ use Illuminate\Support\Facades\Storage;
 
 class PostService
 {
+    private $data;
+    private $post;
+
     public function store($data)
     {
+        $this->data = $data;
+
         try {
             DB::beginTransaction();
 
@@ -18,11 +23,9 @@ class PostService
                 unset($data['tag_ids']);
             }
 
-            if (isset($data['image'])) {
-                $data['image'] = Storage::disk('public')->put('/images/post', $data['image']);
-            } else {
-                $data['image'] = 'images/post/no_image.jpg';
-            }
+            $this->saveImage();
+
+            $data['user_id'] = auth()->user()->id;
 
             $post = Post::firstOrCreate($data);
 
@@ -39,6 +42,9 @@ class PostService
 
     public function update($data, $post)
     {
+        $this->data = $data;
+        $this->post = $post;
+
         try {
             DB::beginTransaction();
 
@@ -47,11 +53,7 @@ class PostService
                 unset($data['tag_ids']);
             }
 
-            if (isset($data['image'])) {
-                $data['image'] = Storage::disk('public')->put('/images/post', $data['image']);
-            } else {
-                $data['image'] = 'images/post/no_image.jpg';
-            }
+            $this->saveImage();
 
             $post->update($data);
 
@@ -63,6 +65,17 @@ class PostService
         } catch (\Exception $exception) {
             DB::rollBack();
             abort(500);
+        }
+    }
+
+    private function saveImage()
+    {
+        if (isset($this->data['image'])) {
+            $this->data['image'] = Storage::disk('public')->put('/images/post', $this->data['image']);
+        } elseif (isset($this->post['image']) && $this->post['image'] != 'images/placeholder/no_post_image.png') {
+            $this->data['image'] = $this->post['image'];
+        } else {
+            $this->data['image'] = 'images/placeholder/no_post_image.png';
         }
     }
 }

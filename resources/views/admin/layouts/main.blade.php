@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="{{asset('dist/css/adminlte.min.css')}}">
 </head>
 <body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
-<div class="wrapper">
+<div id="app" class="wrapper">
 
     <!-- Navbar -->
     <nav class="main-header navbar navbar-expand navbar-dark">
@@ -34,6 +34,12 @@
 
         <!-- Right navbar links -->
         <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <form action="{{ route('logout') }}" method="post">
+                    @csrf
+                    <input class="btn btn-outline-primary" type="submit" value="Logout">
+                </form>
+            </li>
             <!-- Notifications Dropdown Menu -->
             <li class="nav-item">
                 <a class="nav-link" data-widget="fullscreen" href="#" role="button">
@@ -89,12 +95,15 @@
 <!-- ChartJS -->
 <script src="{{asset('plugins/chart.js/Chart.min.js')}}"></script>
 
+<!-- Summernote -->
 <script>
     $(document).ready(function () {
         $('#summernote').summernote();
     });
 </script>
 
+<!-- Vue -->
+<script src="{{ asset('js/app.js') }}" defer></script>
+
 </body>
 </html>
-

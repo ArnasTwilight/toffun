@@ -54,10 +54,10 @@ class GiftService
     {
         if (isset($this->data['image'])) {
             $this->data['image'] = Storage::disk('public')->put('/images/gift', $this->data['image']);
-        } elseif (isset($this->character['image']) && $this->gift['image'] != 'images/gift/no_gift_image.jpg') {
+        } elseif (isset($this->character['image']) && $this->gift['image'] != 'images/placeholder/no_gift_image.png') {
             $this->data['image'] = $this->gift['image'];
         } else {
-            $this->data['image'] = 'images/gift/no_gift_image.jpg';
+            $this->data['image'] = 'images/placeholder/no_gift_image.png';
         }
     }
 }

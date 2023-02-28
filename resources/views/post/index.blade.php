@@ -24,38 +24,55 @@
                         </div>
 
                         <div class="post__content mt-4">
-                            <p>{{ Str::limit($post->content, 512, ' ...') }}</p>
+                            <p>{!! Str::limit($post->content, 512, ' ...') !!}</p>
                         </div>
 
                         <div class="post__footer mt-4 d-flex">
                             <div class="post__author d-flex">
                                 <div class="post__author-img d-flex">
-                                    <img src="{{ asset('assets/image/user/avatar-1.png') }}" alt="author img">
+                                    @if($post['user_id'] != null)
+                                        <img src="{{ asset('storage/' . $post->user->image) }}" alt="author img">
+                                    @else
+                                        <img src="#" alt="author img">
+                                    @endif
                                     <div class="line-right"></div>
                                 </div>
                                 <div class="post__author-info">
                                     <p>
-                                        Author
+                                        @if($post['user_id'] != null)
+                                            {{ $post->user->name }}
+                                        @else
+                                            User Delete
+                                        @endif
                                     </p>
                                     <p class="post__author-item">
-                                        {{ $post->created_at }}
+                                        {{ $post->created_at->format('d.m.Y H:m') }}
                                     </p>
                                 </div>
                             </div>
                             <div class="post__action">
                                 <ul class="post__action-list d-flex">
                                     <li class="post__action-list-item">
-                                        0
+                                        {{ $post->likes->count() }}
                                     </li>
                                     <li class="post__action-list-item">
-                                        <a href="#">
-                                            <div class="like-icon"></div>
-                                        </a>
-                                    </li>
-                                    <li class="post__action-list-item">
-                                        <a href="#">
-                                            <div class="fav-icon"></div>
-                                        </a>
+                                        <form action="{{ route('post.like.store', $post->id) }}" method="post">
+                                            @csrf
+                                            @method('POST')
+                                            @auth()
+                                                @if(auth()->user()->LikedPosts->contains($post->id))
+                                                    <button type="submit"
+                                                            class="border-0 bg-transparent like-icon like-icon-true action-post">
+                                                    </button>
+                                                @else
+                                                    <button type="submit"
+                                                            class="border-0 bg-transparent like-icon action-post">
+                                                    </button>
+                                                @endif
+                                            @else
+                                                <div class="like-icon action-post"></div>
+                                            @endauth
+                                        </form>
                                     </li>
                                 </ul>
                             </div>

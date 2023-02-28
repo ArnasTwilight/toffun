@@ -29,7 +29,7 @@
                         <div class="info-box-content">
                             <span class="info-box-text">CPU Traffic</span>
                             <span class="info-box-number">
-                  -
+                  {{ $load }}
                   <small>%</small>
                 </span>
                         </div>
@@ -44,7 +44,7 @@
 
                         <div class="info-box-content">
                             <span class="info-box-text">Likes</span>
-                            <span class="info-box-number">-</span>
+                            <span class="info-box-number">{{ $likesCount }}</span>
                         </div>
                         <!-- /.info-box-content -->
                     </div>
@@ -57,11 +57,11 @@
 
                 <div class="col-12 col-sm-6 col-md-3">
                     <div class="info-box mb-3">
-                        <span class="info-box-icon bg-success elevation-1"><i class="fas fa-shopping-cart"></i></span>
+                        <span class="info-box-icon bg-success elevation-1"><i class="fa-solid fa-person"></i></span>
 
                         <div class="info-box-content">
-                            <span class="info-box-text">Gacha</span>
-                            <span class="info-box-number">-</span>
+                            <span class="info-box-text">Character</span>
+                            <span class="info-box-number">{{ $characterCount }}</span>
                         </div>
                         <!-- /.info-box-content -->
                     </div>
@@ -146,30 +146,12 @@
                         </div>
                         <!-- /.info-box-content -->
                     </div>
-                    <div class="info-box mb-3 bg-success">
-                        <span class="info-box-icon"><i class="far fa-heart"></i></span>
-
-                        <div class="info-box-content">
-                            <span class="info-box-text">Likes</span>
-                            <span class="info-box-number">0</span>
-                        </div>
-                        <!-- /.info-box-content -->
-                    </div>
-                    <div class="info-box mb-3 bg-danger">
-                        <span class="info-box-icon"><i class="fas fa-cloud-download-alt"></i></span>
-
-                        <div class="info-box-content">
-                            <span class="info-box-text">Character</span>
-                            <span class="info-box-number">{{ $characterCount }}</span>
-                        </div>
-                        <!-- /.info-box-content -->
-                    </div>
                     <div class="info-box mb-3 bg-info">
                         <span class="info-box-icon"><i class="far fa-comment"></i></span>
 
                         <div class="info-box-content">
                             <span class="info-box-text">Comments</span>
-                            <span class="info-box-number">0</span>
+                            <span class="info-box-number">{{ $commentsCount }}</span>
                         </div>
                         <!-- /.info-box-content -->
                     </div>
@@ -182,9 +164,8 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">New Members</h3>
-
                             <div class="card-tools">
-                                <span class="badge badge-danger">0 New Members</span>
+                                <span class="badge badge-danger">{{ $newUserCount }} New Members for week</span>
                                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
                                     <i class="fas fa-minus"></i>
                                 </button>
@@ -195,18 +176,20 @@
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body p-0">
-                            <ul class="users-list clearfix">
-                                <li>
-                                    <img src="dist/img/user1-128x128.jpg" alt="User Image">
-                                    <a class="users-list-name" href="#">Alexander Pierce</a>
-                                    <span class="users-list-date">Today</span>
-                                </li>
-                            </ul>
+                                <ul class="users-list clearfix">
+                                    @foreach($newUser as $user)
+                                    <li>
+                                        <img src="{{ asset('storage/' . $user->image) }}" alt="User Image">
+                                        <a class="users-list-name" href="{{ route('admin.user.show', $user->id) }}">{{ $user->name }}</a>
+                                        <span class="users-list-date">{{ $user->created_at->format('d.m.y H:i') }}</span>
+                                    </li>
+                                    @endforeach
+                                </ul>
                             <!-- /.users-list -->
                         </div>
                         <!-- /.card-body -->
                         <div class="card-footer text-center">
-                            <a href="javascript:">View All Users</a>
+                            <a href="{{ route('admin.user.index') }}">View All Users</a>
                         </div>
                         <!-- /.card-footer -->
                     </div>
@@ -229,23 +212,24 @@
                         <!-- /.card-header -->
                         <div class="card-body p-0">
                             <ul class="products-list product-list-in-card pl-2 pr-2">
+                                @foreach($comments as $comment)
                                 <li class="item">
                                     <div class="product-img">
-                                        <img src="dist/img/default-150x150.png" alt="Product Image" class="img-size-50">
+                                        <img src="{{ asset('storage/' . $comment->user->image) }}" alt="Product Image" class="img-size-50">
                                     </div>
                                     <div class="product-info">
-                                        <a href="#" class="product-title">User Name
-                                            <span class="badge badge-success float-right">OK</span></a>
+                                        <a href="{{ route('admin.user.show', $comment->user->id) }}" class="product-title">{{ $comment->user->name }}</a>
                                         <span class="product-description">
-                        Comment
+                        {{ Str::limit($comment->message, 125, '...') }}
                       </span>
                                     </div>
                                 </li>
+                                @endforeach
                             </ul>
                         </div>
                         <!-- /.card-body -->
                         <div class="card-footer text-center">
-                            <a href="javascript:void(0)" class="uppercase">View All Comments</a>
+                            <a href="{{ route('admin.comment.index') }}" class="uppercase">View All Comments</a>
                         </div>
                         <!-- /.card-footer -->
                     </div>

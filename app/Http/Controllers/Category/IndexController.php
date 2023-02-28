@@ -10,6 +10,7 @@ class IndexController extends Controller
     public function __invoke()
     {
         $categories = Category::all();
+//        return view('category.index', compact('categories'));
         return view('category.index', compact('categories'));
     }
 }

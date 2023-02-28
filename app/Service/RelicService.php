@@ -9,16 +9,17 @@ use Illuminate\Support\Facades\Storage;
 
 class RelicService
 {
+    private $data;
+    private $relic;
+
     public function store($data)
     {
+        $this->data = $data;
+
         try {
             DB::beginTransaction();
 
-            if (isset($data['image'])) {
-                $data['image'] = Storage::disk('public')->put('/images/relic', $data['image']);
-            } else {
-                $data['image'] = 'images/relic/no_relic_image.jpg';
-            }
+            $this->saveImage();
 
             for ($i = 1; $i <= 5; $i++) {
                 $stars['C' . $i] = $data['C' . $i];
@@ -39,14 +40,13 @@ class RelicService
 
     public function update($data, $relic, $star)
     {
+        $this->data = $data;
+        $this->relic = $relic;
+
         try {
             DB::beginTransaction();
 
-            if (isset($data['image'])) {
-                $data['image'] = Storage::disk('public')->put('/images/relic', $data['image']);
-            } elseif ($relic['image'] != 'images/relic/no_relic_image.jpg') {
-                $data['image'] = $relic['image'];
-            }
+            $this->saveImage();
 
             for ($i = 1; $i <= 5; $i++) {
                 $stars['C' . $i] = $data['C' . $i];
@@ -67,6 +67,17 @@ class RelicService
         } catch (\Exception $exception) {
             DB::rollBack();
             abort(500);
+        }
+    }
+
+    private function saveImage()
+    {
+        if (isset($this->data['image'])) {
+            $this->data['image'] = Storage::disk('public')->put('/images/relic', $this->data['image']);
+        } elseif (isset($this->relic['image']) && $this->relic['image'] != 'images/placeholder/no_relic_image.png') {
+            $this->data['image'] = $this->relic['image'];
+        } else {
+            $this->data['image'] = 'images/placeholder/no_relic_image.png';
         }
     }
 }

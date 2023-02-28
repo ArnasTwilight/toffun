@@ -8,16 +8,17 @@ use Illuminate\Support\Facades\Storage;
 
 class IngredientService
 {
+    private $data;
+    private $ingredient;
+
     public function store($data)
     {
+        $this->data = $data;
+
         try {
             DB::beginTransaction();
 
-            if (isset($data['image'])) {
-                $data['image'] = Storage::disk('public')->put('/images/ingredient', $data['image']);
-            } else {
-                $data['image'] = 'images/ingredient/no_ingredient_image.jpg';
-            }
+            $this->saveImage();
 
             Ingredient::firstOrCreate($data);
 
@@ -30,14 +31,13 @@ class IngredientService
 
     public function update($data, $ingredient)
     {
+        $this->data = $data;
+        $this->ingredient = $ingredient;
+
         try {
             DB::beginTransaction();
 
-            if (isset($data['image'])) {
-                $data['image'] = Storage::disk('public')->put('/images/ingredient', $data['image']);
-            } elseif ($ingredient['image'] != 'images/ingredient/no_ingredient_image.jpg') {
-                $data['image'] = $ingredient['image'];
-            }
+            $this->saveImage();
 
             $ingredient->update($data);
 
@@ -45,6 +45,17 @@ class IngredientService
         } catch (\Exception $exception) {
             DB::rollBack();
             abort(500);
+        }
+    }
+
+    private function saveImage()
+    {
+        if (isset($this->data['image'])) {
+            $this->data['image'] = Storage::disk('public')->put('/images/ingredient', $this->data['image']);
+        } elseif (isset($this->ingredient['image']) && $this->ingredient['image'] != 'images/placeholder/no_ingredient_image.png') {
+            $this->data['image'] = $this->ingredient['image'];
+        } else {
+            $this->data['image'] = 'images/placeholder/no_ingredient_image.png';
         }
     }
 }

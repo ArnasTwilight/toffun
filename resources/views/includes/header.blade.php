@@ -3,7 +3,9 @@
         <nav class="header-nav d-flex">
             <ul class="header-nav-list__logo d-flex">
                 <li>
-                    <a href="{{ route('main.index') }}"><div class="site-logo m-0"></div></a>
+                    <a href="{{ route('main.index') }}">
+                        <div class="site-logo m-0"></div>
+                    </a>
                 </li>
             </ul>
             <ul class="header-nav-list d-flex">
@@ -22,19 +24,28 @@
                     <div class="header-nav-list__icon"></div>
                 </li>
                 <li class="header-nav-list__item">
-                    <a href="#">Gacha</a>
-                </li>
-                <li class="header-nav-list__item">
-                    <a href="{{ route('map.index') }}">Map</a>
+                    <a href="{{ route('map.index') }}">Maps</a>
                 </li>
             </ul>
             <ul class="header-nav-list__user d-flex">
-                <li class="header-nav-list__user-img">
-                    <img src="{{ asset('assets/image/user/avatar-1.png') }}" alt="user_img">
-                </li>
-                <li class="header-nav-list__user-name">
-                    <a href="#">user name</a>
-                </li>
+                @guest
+                    <li class="header-nav-list__user-name">
+                        <a class="button" href="{{ route('login') }}"> Login </a>
+                    </li>
+                @else
+                    <li class="header-nav-list__user-img">
+                        <img src="{{ asset( 'storage/' . Auth::user()->image ) }}" alt="user_img">
+                    </li>
+                    <li class="header-nav-list__user-name">
+                        <a href="{{ route('personal.main.index') }}">{{ Auth::user()->name }}</a>
+                    </li>
+                    <li class="header-nav-list__user-name">
+                        <form action="{{ route('logout') }}" method="post">
+                            @csrf
+                            <input class="button" type="submit" value="Logout">
+                        </form>
+                    </li>
+                @endguest
             </ul>
         </nav>
     </header>

@@ -41,7 +41,7 @@
                                     </tr>
                                     <tr>
                                         <td>Content</td>
-                                        <td>{{ $post->content }}</td>
+                                        <td>{!! $post->content !!}</td>
                                     </tr>
                                     <tr>
                                         <td>Image</td>
@@ -54,7 +54,8 @@
                                         <td>
                                             @if(isset($post->category->title))
                                                 <a class="btn-sm btn-info"
-                                                   href="{{ route('admin.category.show', $post->category->id) }}">{{ $post->category->title }}</a>
+                                                   href="{{ url('/admin/categories/' . $post->category->id) }}">{{ $post->category->title }}</a>
+{{--                                                   href="{{ route('admin.category.show', $post->category->id) }}">{{ $post->category->title }}</a>--}}
                                             @endif
                                         </td>
                                     </tr>
@@ -63,7 +64,7 @@
                                         <td>
                                             @foreach($post->tags as $tag)
                                                 <a class="btn-sm btn-info"
-                                                   href="{{ route('admin.tag.show', $tag->id) }}">{{ $tag->title }}</a>
+                                                   href="{{ url('/admin/tags/' . $tag->id) }}">{{ $tag->title }}</a>
                                             @endforeach
                                         </td>
                                     </tr>

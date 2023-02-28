@@ -8,14 +8,17 @@ use Illuminate\Support\Facades\Storage;
 
 class RarityService
 {
+    private $data;
+    private $rarity;
+
     public function store($data)
     {
+        $this->data = $data;
+
         try {
             DB::beginTransaction();
 
-            if (isset($data['image'])) {
-                $data['image'] = Storage::disk('public')->put('/images/rarity', $data['image']);
-            }
+            $this->saveImage();
 
             Rarity::firstOrCreate($data);
 
@@ -28,12 +31,13 @@ class RarityService
 
     public function update($data, $rarity)
     {
+        $this->data = $data;
+        $this->rarity = $rarity;
+
         try {
             DB::beginTransaction();
 
-            if (isset($data['image'])) {
-                $data['image'] = Storage::disk('public')->put('/images/rarity', $data['image']);
-            }
+            $this->saveImage();
 
             $rarity->update($data);
 
@@ -41,6 +45,17 @@ class RarityService
         } catch (\Exception $exception) {
             DB::rollBack();
             abort(500);
+        }
+    }
+
+    private function saveImage()
+    {
+        if (isset($this->data['image'])) {
+            $this->data['image'] = Storage::disk('public')->put('/images/rarity', $this->data['image']);
+        } elseif (isset($this->rarity['image']) && $this->rarity['image'] != 'images/placeholder/no_rarity_image.png') {
+            $this->data['image'] = $this->rarity['image'];
+        } else {
+            $this->data['image'] = 'images/placeholder/no_rarity_image.png';
         }
     }
 }

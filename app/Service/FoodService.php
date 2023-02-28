@@ -8,8 +8,13 @@ use Illuminate\Support\Facades\Storage;
 
 class FoodService
 {
+    private $data;
+    private $food;
+
     public function store($data)
     {
+        $this->data = $data;
+
         try {
             DB::beginTransaction();
 
@@ -18,11 +23,7 @@ class FoodService
                 unset($data['ingredient_ids']);
             }
 
-            if (isset($data['image'])) {
-                $data['image'] = Storage::disk('public')->put('/images/food', $data['image']);
-            } else {
-                $data['image'] = 'images/food/no_food_image.jpg';
-            }
+            $this->saveImage();
 
             $food = Food::firstOrCreate($data);
 
@@ -39,6 +40,9 @@ class FoodService
 
     public function update($data, $food)
     {
+        $this->data = $data;
+        $this->food = $food;
+
         try {
             DB::beginTransaction();
 
@@ -47,11 +51,7 @@ class FoodService
                 unset($data['ingredient_ids']);
             }
 
-            if (isset($data['image'])) {
-                $data['image'] = Storage::disk('public')->put('/images/food', $data['image']);
-            } elseif ($food['image'] != 'images/food/no_food_image.jpg') {
-                $data['image'] = $food['image'];
-            }
+            $this->saveImage();
 
             $food->update($data);
 
@@ -65,4 +65,16 @@ class FoodService
             abort(500);
         }
     }
+
+    private function saveImage()
+    {
+        if (isset($this->data['image'])) {
+            $this->data['image'] = Storage::disk('public')->put('/images/food', $this->data['image']);
+        } elseif (isset($this->character['image']) && $this->food['image'] != 'images/placeholder/no_food_image.png') {
+            $this->data['image'] = $this->food['image'];
+        } else {
+            $this->data['image'] = 'images/placeholder/no_food_image.png';
+        }
+    }
+
 }

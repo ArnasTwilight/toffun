@@ -17,11 +17,16 @@
     --color-text: #FFFFFF;
     --color-text-second: #ACACAC;
     --color-text-accent: #5061FF;
+    --color-text-disabled: #424bba;
+    --color-text-danger: #ff0000;
 
     --btn-color: #5061FF;
+    --btn-color-hover: #2e41bf;
 
     --btn-color-category: #5061FF;
     --btn-color-category-hover: #2e41bf;
+    --btn-color-delete: #b60000;
+    --btn-color-delete-hover: #8b0000;
 
     --color-bg-avatar: #FFFFFF;
     --color-bg-comment: #FFFFFF;
@@ -270,7 +275,7 @@ body {
 .like-icon {
     width: 20px;
     height: 18px;
-    background: url("../image/icon/heart.svg") no-repeat;
+    background-image: url("../image/icon/heart.svg");
     background-size: contain;
 }
 
@@ -279,6 +284,13 @@ body {
     height: 24px;
     background: url("../image/icon/star.svg") no-repeat;
     background-size: contain;
+}
+
+.action-post {
+    cursor: pointer;
+}
+.like-icon-true {
+    background-image: url("../image/icon/heart-accent.svg");
 }
 
 /* character */
@@ -318,14 +330,16 @@ body {
 .aside-post {
     position: relative;
     margin-top: var(--spacing-medium);
-}
-
-.aside-post-container {
     width: 100%;
 }
 
+.aside-post-container {
+}
+
 .aside-post-container img {
-    max-width: 274px;
+    width: 100%;
+    max-height: 140px;
+    object-fit: cover;
 }
 
 .aside-post__title {
@@ -483,8 +497,8 @@ body {
 
 .form-comment__field {
     width: 100%;
-    height: 200px;
-    max-height: 350px;
+    height: 180px;
+    max-height: 200px;
     resize: vertical;
     padding: var(--spacing-medium);
     font-family: "Jura SemiBold", sans-serif;
@@ -501,6 +515,11 @@ body {
     font-size: var(--font-size-normal);
     font-family: "Jura SemiBold", sans-serif;
     width: 150px;
+
+}
+.button-pos {
+    display: flex;
+    justify-content: right;
 }
 
 /* user comment */
@@ -534,15 +553,17 @@ body {
 .comment__field {
     width: 100%;
     padding: var(--spacing-small);
+    overflow: hidden;
 }
 
 .comment__content {
-    width: 100%;
+    box-sizing:border-box;
+    width:100%;
     padding: var(--spacing-medium);
     background-color: var(--color-bg-comment);
     font-family: "Jura Medium", sans-serif;
     font-size: var(--font-size-normal);
-
+    overflow: hidden;
 }
 
 /* item */
@@ -1050,6 +1071,170 @@ body {
     margin-bottom: var(--spacing-medium);
 }
 
+/* personal */
+.user-card {
+    background-color: var(--color-second-frame);
+}
+
+.user-card__main {
+    align-items: center;
+}
+
+.user-avatar {
+    display: flex;
+    align-items: center;
+}
+
+.user-avatar__image {
+    max-width: 100px;
+    max-height: 100px;
+    background: var(--color-bg-avatar);
+}
+
+.user-info {
+    color: var(--color-text);
+    font-size: var(--font-size-normal);
+}
+
+.user-info label {
+    font-weight: bold;
+}
+
+.user-info li:not(:last-child) {
+    margin-bottom: var(--spacing-small);
+}
+
+.user-card-footer {
+    justify-content: space-around;
+}
+
+.button {
+    padding: var(--spacing-small);
+    color: var(--color-text);
+    background-color: var(--btn-color);
+    border: 0;
+    cursor: pointer;
+    font-size: var(--font-size-normal);
+    font-family: "Jura SemiBold", sans-serif;
+}
+.button:hover {
+    color: var(--color-text);
+    background-color: var(--btn-color-hover);
+}
+
+.user-delete {
+    background-color: var(--btn-color-delete);
+}
+
+.user-edit:hover {
+    background-color: var(--btn-color-hover);
+}
+
+.user-delete:hover {
+    background-color: var(--btn-color-delete-hover);
+}
+
+.user-card__liked {
+    display: block;
+}
+
+.user-card__liked-container {
+    display: flex;
+    justify-content: space-around;
+}
+
+
+.user-info li {
+    display: flex;
+    flex-direction: column;
+}
+
+.edit-info {
+    margin-top: var(--spacing-extra-small);
+
+    background-color: var(--color-frame);
+    color: var(--color-text);
+
+    height: calc(2.25rem + 2px);
+    padding: var(--spacing-medium);
+    font-size: var(--font-size-small);
+    font-weight: 400;
+    line-height: 1.5;
+    background-clip: padding-box;
+    border: 1px solid var(--color-third-frame);
+}
+
+.old-pass {
+    color: var(--color-text);
+    font-size: var(--font-size-normal);
+}
+
+.text-danger-message {
+    color: var(--color-text-danger);
+    font-size: var(--font-size-normal);
+}
+
+
+.liked-table {
+    color: var(--color-text);
+    font-size: var(--font-size-normal);
+    width: 100%;
+    border-collapse: collapse;
+
+}
+.liked-table thead th{
+    border-bottom: 2px solid var(--color-text);
+    padding: var(--spacing-small);
+    text-align: left;
+}
+.liked-table tbody td {
+    background-color: var(--color-third-frame);
+    padding: var(--spacing-small);
+    border-top: 1px solid var(--color-text);
+    vertical-align: top;
+    align-items: center;
+}
+.liked-action {
+    display: inline-block;
+}
+
+.ww-anywhere {
+    word-wrap: anywhere;
+}
+.ww-break {
+    word-wrap: break-word;
+}
+
+.pagination {
+    display: flex;
+    font-size: var(--font-size-normal);
+}
+.page-item {
+    background-color: var(--color-text-accent);
+    padding: var(--spacing-small);
+    margin: var(--spacing-extra-small);
+}
+.disabled {
+    color: var(--color-text-disabled);
+}
+.active {
+    color: var(--color-text);
+    background-color: var(--color-text-disabled);
+}
+
+.border-0 {
+    border: 0 !important;
+}
+.bg-transparent {
+    --bs-bg-opacity: 1;
+    background-color: transparent !important;
+}
+
+.liked-table-img {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+}
 @media (max-width: 1199.98px) {
     .pl-4-aside {
         padding-left: 0;
@@ -1089,21 +1274,48 @@ body {
         justify-content: unset;
     }
 
+    .user-card__liked {
+        display: flex;
+        justify-content: center;
+    }
+
+    .user-card__liked-container {
+        flex-direction: column;
+    }
+
+    .discord {
+        height: 462px;
+        width: 50%;
+        margin-top: var(--spacing-medium);
+    }
+
     /*.character-post__title {*/
     /*    text-align: center;*/
     /*}*/
-
     /*.character-post__img-container {*/
     /*    text-align: center;*/
     /*}*/
-
     /*.character-post__img-bg {*/
     /*    clip-path: unset;*/
     /*}*/
-
     /*.character-post__img-bg img {*/
     /*    object-fit: cover;*/
     /*    width: 100%;*/
     /*    height: 130px;*/
     /*}*/
+}
+
+@media (max-width: 576px) {
+    .aside-article-container {
+        display: initial;
+    }
+    .aside-post-container img {
+        width: 100%;
+        height: 140px;
+        object-fit: cover;
+    }
+    .discord {
+        width: 100%;
+        margin-top: var(--spacing-medium);
+    }
 }

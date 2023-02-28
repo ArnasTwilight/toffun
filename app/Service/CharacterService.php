@@ -72,11 +72,11 @@ class CharacterService
     private function saveImage()
     {
         if (isset($this->data['image'])) {
-            $this->data['image'] = Storage::disk('public')->put('/images/character/avatar', $this->data['image']);
-        } elseif (isset($this->character['image']) && $this->character['image'] != 'images/character/no_character_image.jpg') {
+            $this->data['image'] = Storage::disk('public')->put('/images/character', $this->data['image']);
+        } elseif (isset($this->character['image']) && $this->character['image'] != 'images/placeholder/no_character_image.png') {
             $this->data['image'] = $this->character['image'];
         } else {
-            $this->data['image'] = 'images/character/no_character_image.jpg';
+            $this->data['image'] = 'images/placeholder/no_character_image.png';
         }
     }
 
@@ -104,8 +104,7 @@ class CharacterService
 
     private function countEffects()
     {
-        if (!empty($this->data['title_effect']) && !empty($this->data['effect']))
-        {
+        if (!empty($this->data['title_effect']) && !empty($this->data['effect'])) {
             if (count($this->data['title_effect']) >= count($this->data['effect'])) {
                 $count = count($this->data['title_effect']);
             } else {
