@@ -41,7 +41,7 @@
                                     <tr>
                                         <td>Image</td>
                                         <td>
-                                            <img src="{{ asset('storage/' . $rarity->image) }}" alt="Rarity img">
+                                            <img src="{{ asset('storage/' . $rarity->image) }}" alt="Rarity img" width="128px">
                                         </td>
                                     </tr>
                                     </tbody>

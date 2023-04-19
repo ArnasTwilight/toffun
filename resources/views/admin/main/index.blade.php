@@ -179,7 +179,7 @@
                                 <ul class="users-list clearfix">
                                     @foreach($newUser as $user)
                                     <li>
-                                        <img src="{{ asset('storage/' . $user->image) }}" alt="User Image">
+                                        <img src="{{ asset('storage/' . $user->image) }}" alt="User Image" width="96px">
                                         <a class="users-list-name" href="{{ route('admin.user.show', $user->id) }}">{{ $user->name }}</a>
                                         <span class="users-list-date">{{ $user->created_at->format('d.m.y H:i') }}</span>
                                     </li>

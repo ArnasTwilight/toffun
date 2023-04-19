@@ -21,4 +21,14 @@ class Weapon extends Model
     {
         return $this->belongsTo(Rarity::class, 'rarity_id', 'id');
     }
+
+    public function stars()
+    {
+        return $this->belongsToMany(Star::class, 'weapon_stars', 'weapon_id', 'stars_id');
+    }
+
+    public function weaponAttacks()
+    {
+        return $this->hasMany(WeaponAttacks::class, 'weapon_id', 'id');
+    }
 }

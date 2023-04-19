@@ -13,7 +13,10 @@ class DeleteController extends BaseController
             Storage::disk('public')->delete($relic['image']);
         }
 
+        $relic->stars()->delete();
+
         $relic->delete();
+
         return redirect()->route('admin.relic.index');
     }
 }

@@ -6,7 +6,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Relic: {{ $relic->name }}</h1>
+                        <h1 class="m-0">Relic: {{ $relic->title }}</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -49,7 +49,7 @@
                                         <label for="InputImage">Image</label>
                                         <div class="mb-1">
                                             <img src="{{ asset('storage/' . $relic->image) }}" alt="relic image"
-                                                 width="10%">
+                                                 width="128px">
                                             <p class="text-gray">{{ asset('storage/' . $relic->image) }}</p>
                                         </div>
                                         <div class="input-group">
@@ -63,36 +63,58 @@
                                         <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
+                                    <div class="row p-0">
+                                        <div class="form-group col-xl-6">
+                                            <label>Rarity</label>
+                                            <select name="rarity_id" class="form-control">
+                                                @foreach($rarityList as $rarity)
+                                                    <option value="{{ $rarity->id }}"
+                                                        {{ $rarity->id == $relic->rarity_id ? ' selected' : '' }}
+                                                    >{{ $rarity->title }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-xl-6">
+                                            <label for="title">Cooldown</label>
+                                            <input type="number" class="form-control" name="cooldown"
+                                                   placeholder="Enter cooldown" value="{{ old('cooldown') }}">
+                                            @error('title')
+                                            <div class="text-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
                                     <div class="form-group">
-                                        <label>Bonus</label>
-                                        <textarea class="form-control" name="bonus"
-                                                  placeholder="Enter bonus" rows="2">{{ $relic->bonus }}</textarea>
+                                        <label>Description</label>
+                                        <textarea class="form-control" name="description"
+                                                  placeholder="Enter description"
+                                                  rows="3">{{ $relic->description }}</textarea>
                                         @error('bonus')
                                         <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
-                                    <div class="form-group">
-                                        <label>Stars</label>
-                                        <div class="d-flex">
-                                            @for($i = 1, $star = 'C' . $i; $i <= 5; $i++, $star = 'C' . $i)
-                                                <textarea class="mr-1 form-control" name="{{ $star }}" rows="4"
-                                                          placeholder="Enter Star {{ $star }} ...">{{ isset($stars->$star) ? $stars->$star : '' }}</textarea>
-                                                @error($star)
-                                                <div class="text-danger">{{ $message }}</div>
-                                                @enderror
-                                            @endfor
+                                    {{--Advancements--}}
+                                    <div id="relic_stars" class="row p-0">
+                                        <div class="form-group col-12 mb-1">
+                                            <label>Advancements</label>
+                                            <input class="btn btn-primary" type="button" value="+"
+                                                   onclick="relicStars();">
                                         </div>
+
+                                        @foreach($relic->stars as $star)
+                                            <div class="form-group col-xl-4 col-lg-6">
+                                                <div class="d-flex">
+                                                    <input class="form-control" type="number" name="star[]"
+                                                           value="{{ $star->star }}" placeholder="Star">
+                                                    <input class="btn btn-danger ml-1 mb-1" type="button" value="x"
+                                                           onclick="delElement(this);">
+                                                </div>
+                                                <textarea class="form-control" name="effect[]" rows="3"
+                                                          placeholder="Enter effect...">{{ $star->effect }}</textarea>
+                                                <input type="hidden" value="{{ $star->id }}" name="id_star[]">
+                                            </div>
+                                        @endforeach
                                     </div>
-                                    <div class="form-group">
-                                        <label>Rarity</label>
-                                        <select name="rarity_id" class="form-control">
-                                            @foreach($rarityList as $rarity)
-                                                <option value="{{ $rarity->id }}"
-                                                    {{ $rarity->id == $relic->rarity_id ? ' selected' : '' }}
-                                                >{{ $rarity->title }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
+                                    {{--Advancements end--}}
                                 </div>
                                 <!-- /.card-body -->
 

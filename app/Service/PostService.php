@@ -3,35 +3,33 @@
 namespace App\Service;
 
 use App\Models\Post;
+use App\Service\Modules\ImageModule;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
 
-class PostService
+class PostService extends ImageModule
 {
     private $data;
     private $post;
+    private $tagIds;
+    private $name = 'post';
 
     public function store($data)
     {
         $this->data = $data;
+        unset($data);
 
         try {
             DB::beginTransaction();
 
-            if (isset($data['tag_ids'])) {
-                $tagIds = $data['tag_ids'];
-                unset($data['tag_ids']);
-            }
+            $this->tagIds();
 
-            $this->saveImage();
+            $this->saveImage($this->data, $this->name);
 
-            $data['user_id'] = auth()->user()->id;
+            $this->data['user_id'] = auth()->user()->id;
 
-            $post = Post::firstOrCreate($data);
+            $this->post = Post::firstOrCreate($this->data);
 
-            if (isset($tagIds)) {
-                $post->tags()->attach($tagIds);
-            }
+            $this->tagsSync();
 
             DB::commit();
         } catch (\Exception $exception) {
@@ -44,22 +42,18 @@ class PostService
     {
         $this->data = $data;
         $this->post = $post;
+        unset($data, $post);
 
         try {
             DB::beginTransaction();
 
-            if (isset($data['tag_ids'])) {
-                $tagIds = $data['tag_ids'];
-                unset($data['tag_ids']);
-            }
+            $this->tagIds();
 
-            $this->saveImage();
+            $this->saveImage($this->data, $this->name, $this->post);
 
-            $post->update($data);
+            $this->post->update($this->data);
 
-            if (isset($tagIds)) {
-                $post->tags()->sync($tagIds);
-            }
+            $this->tagsSync();
 
             DB::commit();
         } catch (\Exception $exception) {
@@ -68,14 +62,18 @@ class PostService
         }
     }
 
-    private function saveImage()
+    private function tagIds()
     {
-        if (isset($this->data['image'])) {
-            $this->data['image'] = Storage::disk('public')->put('/images/post', $this->data['image']);
-        } elseif (isset($this->post['image']) && $this->post['image'] != 'images/placeholder/no_post_image.png') {
-            $this->data['image'] = $this->post['image'];
-        } else {
-            $this->data['image'] = 'images/placeholder/no_post_image.png';
+        if (isset($this->data['tag_ids'])) {
+            $this->tagIds = $this->data['tag_ids'];
+            unset($this->data['tag_ids']);
+        }
+    }
+
+    private function tagsSync()
+    {
+        if (isset($this->tagIds)) {
+            $this->post->tags()->sync($this->tagIds);
         }
     }
 }

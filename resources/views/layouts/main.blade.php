@@ -12,9 +12,8 @@
 
 <div class="container-xxl d-flex flex-column">
 
-@yield('content')
+    @yield('content')
 
 </div>
-
 </body>
 </html>

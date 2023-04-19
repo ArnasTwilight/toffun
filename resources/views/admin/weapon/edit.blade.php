@@ -48,6 +48,11 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="InputImage">Image</label>
+                                        <div>
+                                            <img src="{{ asset('storage/' . $weapon->image) }}" alt="weapon image"
+                                                 width="10%">
+                                            <p class="text-gray">{{ asset('storage/' . $weapon->image) }}</p>
+                                        </div>
                                         <div class="input-group">
                                             <div class="custom-file">
                                                 <input type="file" class="custom-file-input" name="image">
@@ -55,53 +60,91 @@
                                                     image</label>
                                             </div>
                                         </div>
-                                        <div class="mb-1">
-                                            <img src="{{ asset('storage/' . $weapon->image) }}" alt="weapon image"
-                                                 width="10%">
-                                            <p class="text-gray">{{ asset('storage/' . $weapon->image) }}</p>
-                                        </div>
+
                                         @error('image')
                                         <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
-                                    <div class="form-group">
-                                        <label for="title">Shatter</label>
-                                        <input type="text" class="form-control" name="shatter" placeholder="Enter title"
-                                               value="{{ $weapon->shatter }}"
-                                        >
-                                        @error('shatter')
-                                        <div class="text-danger">{{ $message }}</div>
-                                        @enderror
+
+                                    <div class="row p-0">
+                                        <div class="form-group col-xl-3 col-md-6">
+                                            <label for="title">Shatter</label>
+                                            <input type="text" class="form-control" name="shatter"
+                                                   placeholder="Enter title"
+                                                   value="{{ $weapon->shatter }}"
+                                            >
+                                            @error('shatter')
+                                            <div class="text-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                        <div class="form-group col-xl-3 col-md-6">
+                                            <label for="title">Charge</label>
+                                            <input type="text" class="form-control" name="charge"
+                                                   placeholder="Enter charge"
+                                                   value="{{ $weapon->charge }}"
+                                            >
+                                            @error('charge')
+                                            <div class="text-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                        <div class="form-group col-xl-3 col-md-6">
+                                            <label>Element</label>
+                                            <select name="element_id" class="form-control">
+                                                @foreach($elements as $element)
+                                                    <option value="{{ $element->id }}"
+                                                        {{ $element->id == $weapon->element_id ? ' selected' : '' }}
+                                                    >{{ $element->title }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-xl-3 col-md-6">
+                                            <label>Rarity</label>
+                                            <select name="rarity_id" class="form-control">
+                                                @foreach($rarityList as $rarity)
+                                                    <option value="{{ $rarity->id }}"
+                                                        {{ $rarity->id == $weapon->rarity_id ? ' selected' : '' }}
+                                                    >{{ $rarity->title }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="title">Charge</label>
-                                        <input type="text" class="form-control" name="charge" placeholder="Enter charge"
-                                               value="{{ $weapon->charge }}"
-                                        >
-                                        @error('charge')
-                                        <div class="text-danger">{{ $message }}</div>
-                                        @enderror
+
+                                    {{--Attacks--}}
+                                    <div id="weapon_attacks" class="row p-0">
+                                        <div class="form-group col-12 mb-1">
+                                            <label>Attacks</label>
+                                            <input class="btn btn-primary" type="button" value="+"
+                                                   onclick="weaponAttacks();">
+                                        </div>
+                                        @foreach($weapon->weaponAttacks as $attack)
+                                            <div class="form-group col-xl-4 col-lg-6">
+                                                <div class="d-flex">
+                                                    <select class="form-control mb-1" name="type[]">
+                                                        <option value="1" {{ $attack->type == 1 ? ' selected' : '' }}>
+                                                            Normal
+                                                        </option>
+                                                        <option value="2" {{ $attack->type == 2 ? ' selected' : '' }}>
+                                                            Dodge
+                                                        </option>
+                                                        <option value="3" {{ $attack->type == 3 ? ' selected' : '' }}>
+                                                            Skill
+                                                        </option>
+                                                        <option value="4" {{ $attack->type == 4 ? ' selected' : '' }}>
+                                                            Discharge
+                                                        </option>
+                                                    </select>
+                                                    <input class="btn btn-danger ml-1 mb-1" type="button" value="x"
+                                                           onclick="delElement(this);">
+                                                </div>
+                                                <input class="form-control mb-1" type="text" placeholder="Name attack"
+                                                       name="title_attacks[]" value="{{ $attack->title }}">
+                                                <textarea class="form-control" name="description[]" rows="3"
+                                                          placeholder="Description attack">{{ $attack->description }}</textarea>
+                                                <input type="hidden" value="{{ $attack->id }}" name="id_attacks[]">
+                                            </div>
+                                        @endforeach
                                     </div>
-                                    <div class="form-group">
-                                        <label>Element</label>
-                                        <select name="element_id" class="form-control">
-                                            @foreach($elements as $element)
-                                                <option value="{{ $element->id }}"
-                                                    {{ $element->id == $weapon->element_id ? ' selected' : '' }}
-                                                >{{ $element->title }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Rarity</label>
-                                        <select name="rarity_id" class="form-control">
-                                            @foreach($rarityList as $rarity)
-                                                <option value="{{ $rarity->id }}"
-                                                    {{ $rarity->id == $weapon->rarity_id ? ' selected' : '' }}
-                                                >{{ $rarity->title }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
+                                    {{--Attacks end--}}
                                 </div>
                                 <!-- /.card-body -->
 

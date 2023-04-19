@@ -23,7 +23,7 @@
         <section class="content">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-12">
                         <div class="card">
                             <div class="card-header">
                                 <h3 class="card-title">Gifts table</h3>
@@ -45,8 +45,15 @@
                                     <tr>
                                         <td>{{ $gift->id }}</td>
                                         <td>{{ $gift->title }}</td>
-                                        <td><img src="{{ asset('storage/' . $gift->image) }}" alt="gift image"></td>
-                                        <td><img src="{{ asset('storage/' . $gift->rarity->image) }}" alt="rarity image"></td>
+                                        <td>
+                                            <img src="{{ asset('storage/' . $gift->image) }}" alt="gift image" width="128px">
+                                        </td>
+                                        <td>
+                                            @if(isset($gift->rarity->title))
+                                                <a class="btn-sm btn-info"
+                                                   href="{{ route('admin.rarity.show', $gift->rarity->id) }}">{{ $gift->rarity->title }}</a>
+                                            @endif
+                                        </td>
                                         <td><a href="{{ route('admin.gift.show', $gift->id) }}"
                                                class="btn btn-primary">View</a></td>
                                         <td><a href="{{ route('admin.gift.edit', $gift->id) }}"

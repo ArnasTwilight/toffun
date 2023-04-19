@@ -25,7 +25,7 @@
             <section class="post row mt-4 bg-color p-4">
                 <div class="p-0 d-flex">
                     <div class="{{ $matrix->rarity->title }}">
-                        <img src="{{ asset('storage/' . $matrix->image) }}" class="item-image" alt="recipe img">
+                        <img src="{{ asset('storage/' . $matrix->image) }}" class="item-image" alt="matrix img">
                     </div>
 
                     <div class="line-vertical-white mx-4"></div>
@@ -41,9 +41,16 @@
                         <div class="description-single__item">
                             <h2>Bonus</h2>
                             <div class="bg-color-second p-2">
-                                <p class="description-single__text">
-                                    {{ $matrix->bonus }}
-                                </p>
+                                <ul class="">
+                                    @foreach($matrixBonus as $bonus)
+                                        <li class="character-matrix bg-color-third">
+                                            <div class="star-container bg-color-second d-flex p-2">
+                                                <p class="star-num"> {{$bonus->quantity}}x </p>
+                                            </div>
+                                            <p>{{$bonus->bonus}}</p>
+                                        </li>
+                                    @endforeach
+                                </ul>
                             </div>
                         </div>
                     </section>

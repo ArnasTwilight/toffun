@@ -24,14 +24,14 @@
         <section class="content">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-6">
+                    <div class="col-12">
                         <div class="card card-primary">
                             <div class="card-header">
                                 <h3 class="card-title">Add New Gift</h3>
                             </div>
                             <!-- /.card-header -->
                             <!-- form start -->
-                            <form action="{{ route('admin.gift.store') }}" method="POST">
+                            <form action="{{ route('admin.gift.store') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="card-body">
                                     <div class="form-group">

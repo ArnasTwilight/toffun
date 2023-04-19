@@ -12,16 +12,26 @@
                 <li class="header-nav-list__item active-header">
                     <a href="{{ route('main.index') }}">Home</a>
                 </li>
-                <li class="header-nav-list__item d-flex">
+                <li class="header-nav-list__item sub-menu">
                     <a href="{{ route('post.index') }}">News</a>
                     <div class="header-nav-list__icon"></div>
+                    <div class="header-nav__sub-news">
+                        <a href="{{ route('category.index') }}">Categories</a>
+                        <a href="{{ route('tag.index') }}">Tags</a>
+                    </div>
                 </li>
                 <li class="header-nav-list__item">
                     <a href="{{ route('character.index') }}">Character</a>
                 </li>
-                <li class="header-nav-list__item d-flex">
+                <li class="header-nav-list__item sub-menu">
                     <a href="{{ route('item.index') }}">Item</a>
                     <div class="header-nav-list__icon"></div>
+                    <div class="header-nav__sub-item">
+                        <a href="{{ route('food.index') }}">Food</a>
+                        <a href="{{ route('relic.index') }}">Relic</a>
+                        <a href="{{ route('matrix.index') }}">Matrix</a>
+                        <a href="{{ route('gift.index') }}">Gift</a>
+                    </div>
                 </li>
                 <li class="header-nav-list__item">
                     <a href="{{ route('map.index') }}">Maps</a>

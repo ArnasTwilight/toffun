@@ -3,33 +3,31 @@
 namespace App\Service;
 
 use App\Models\Food;
+use App\Service\Modules\ImageModule;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
 
-class FoodService
+class FoodService extends ImageModule
 {
     private $data;
+    private $ingredientIds;
     private $food;
+    private $name = 'food';
 
     public function store($data)
     {
         $this->data = $data;
+        unset($data);
 
         try {
             DB::beginTransaction();
 
-            if (isset($data['ingredient_ids'])) {
-                $ingredientIds = $data['ingredient_ids'];
-                unset($data['ingredient_ids']);
-            }
+            $this->ingredientIds();
 
-            $this->saveImage();
+            $this->data = $this->saveImage($this->data, $this->name);
 
-            $food = Food::firstOrCreate($data);
+            $this->food = Food::firstOrCreate($this->data);
 
-            if (isset($ingredientIds)) {
-                $food->ingredient()->attach($ingredientIds);
-            }
+            $this->ingredientsSync();
 
             DB::commit();
         } catch (\Exception $exception) {
@@ -42,22 +40,18 @@ class FoodService
     {
         $this->data = $data;
         $this->food = $food;
+        unset($data, $food);
 
         try {
             DB::beginTransaction();
 
-            if (isset($data['ingredient_ids'])) {
-                $ingredientIds = $data['ingredient_ids'];
-                unset($data['ingredient_ids']);
-            }
+            $this->ingredientIds();
 
-            $this->saveImage();
+            $this->data = $this->saveImage($this->data, $this->name, $this->food);
 
-            $food->update($data);
+            $this->food->update($this->data);
 
-            if (isset($ingredientIds)) {
-                $food->ingredients()->attach($ingredientIds);
-            }
+            $this->ingredientsSync();
 
             DB::commit();
         } catch (\Exception $exception) {
@@ -66,15 +60,18 @@ class FoodService
         }
     }
 
-    private function saveImage()
+    private function ingredientIds()
     {
-        if (isset($this->data['image'])) {
-            $this->data['image'] = Storage::disk('public')->put('/images/food', $this->data['image']);
-        } elseif (isset($this->character['image']) && $this->food['image'] != 'images/placeholder/no_food_image.png') {
-            $this->data['image'] = $this->food['image'];
-        } else {
-            $this->data['image'] = 'images/placeholder/no_food_image.png';
+        if (isset($this->data['ingredient_ids'])) {
+            $this->ingredientIds = $this->data['ingredient_ids'];
+            unset($this->data['ingredient_ids']);
         }
     }
 
+    private function ingredientsSync()
+    {
+        if (isset($this->ingredientIds)) {
+            $this->food->ingredients()->sync($this->ingredientIds);
+        }
+    }
 }

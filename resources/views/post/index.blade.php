@@ -10,13 +10,16 @@
             @foreach($posts as $post)
                 <article class="post row mt-4 bg-color">
                     <div class="post__img-container p-0">
-                        <h1><a href="{{ route('post.show', $post->id) }}" class="post__title">{{ $post->title }}</a></h1>
+                        <h1><a href="{{ route('post.show', $post->id) }}" class="post__title">{{ $post->title }}</a>
+                        </h1>
                         <img src="{{ asset('storage/' . $post->image) }}" alt="post_img">
                     </div>
 
                     <div class="post__main-container p-4">
                         <div class="post__category">
-                            <h2><a href="{{ route('category.show', $post->category->id) }}">{{ $post->category->title }}</a></h2>
+                            <h2>
+                                <a href="{{ route('category.show', $post->category->id) }}">{{ $post->category->title }}</a>
+                            </h2>
                         </div>
 
                         <div class="line mt-4">
@@ -33,7 +36,7 @@
                                     @if($post['user_id'] != null)
                                         <img src="{{ asset('storage/' . $post->user->image) }}" alt="author img">
                                     @else
-                                        <img src="#" alt="author img">
+                                        <img src="{{ asset('storage/images/placeholder/no_user_image.png') }}" alt="author img">
                                     @endif
                                     <div class="line-right"></div>
                                 </div>
@@ -80,6 +83,9 @@
                     </div>
                 </article>
             @endforeach
+            <div class="user-card-footer d-flex p-2">
+                {{ $posts->links() }}
+            </div>
         </main>
     </div>
     <!--    main end-->

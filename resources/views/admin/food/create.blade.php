@@ -56,37 +56,31 @@
                                         <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
-                                    <div class="form-group">
-                                        <label>Bonus</label>
-                                        <textarea class="form-control" name="bonus"
-                                                  placeholder="Enter bonus" rows="2">{{ old('bonus') }}</textarea>
-                                        @error('bonus')
-                                        <div class="text-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Rarity</label>
-                                        <select name="rarity_id" class="form-control">
-                                            @foreach($rarityList as $rarity)
-                                                <option value="{{ $rarity->id }}"
-                                                    {{ $rarity->id == old('rarity_id') ? ' selected' : '' }}
-                                                >{{ $rarity->title }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Spec</label>
-                                        <select name="spec_id" class="form-control">
-                                            @foreach($specList as $spec)
-                                                <option value="{{ $spec->id }}"
-                                                    {{ $spec->id == old('spec_id') ? ' selected' : '' }}
-                                                >{{ $spec->title }}</option>
-                                            @endforeach
-                                        </select>
+                                    <div class="row p-0">
+                                        <div class="form-group col-xl-6">
+                                            <label>Rarity</label>
+                                            <select name="rarity_id" class="form-control">
+                                                @foreach($rarityList as $rarity)
+                                                    <option value="{{ $rarity->id }}"
+                                                        {{ $rarity->id == old('rarity_id') ? ' selected' : '' }}
+                                                    >{{ $rarity->title }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-xl-6">
+                                            <label>Spec</label>
+                                            <select name="spec_id" class="form-control">
+                                                @foreach($specList as $spec)
+                                                    <option value="{{ $spec->id }}"
+                                                        {{ $spec->id == old('spec_id') ? ' selected' : '' }}
+                                                    >{{ $spec->title }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
                                     </div>
                                     <div class="form-group">
                                         <label>Ingredients</label>
-                                        <select name="ingredient_ids[]" class="select2" multiple="multiple"
+                                        <select name="ingredient_ids[]" class="form-control select2" multiple="multiple"
                                                 data-placeholder="Select a ingredients"
                                                 style="width: 100%">
                                             @foreach($ingredients as $ingredient)
@@ -95,6 +89,14 @@
                                                 >{{ $ingredient->title }}</option>
                                             @endforeach
                                         </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Bonus</label>
+                                        <textarea class="form-control" name="bonus"
+                                                  placeholder="Enter bonus" rows="4">{{ old('bonus') }}</textarea>
+                                        @error('bonus')
+                                        <div class="text-danger">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                 </div>
                                 <!-- /.card-body -->

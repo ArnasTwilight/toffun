@@ -3,22 +3,20 @@
 namespace App\Service;
 
 use App\Models\Spec;
+use App\Service\Modules\ImageModule;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
-class SpecService
+class SpecService extends ImageModule
 {
-    private $data;
-    private $spec;
+    private $name = 'spec';
 
     public function store($data)
     {
-        $this->data = $data;
-
         try {
             DB::beginTransaction();
 
-            $this->saveImage();
+            $data = $this->saveImage($data, $this->name);
 
             Spec::firstOrCreate($data);
 
@@ -31,13 +29,10 @@ class SpecService
 
     public function update($data, $spec)
     {
-        $this->data = $data;
-        $this->spec = $spec;
-
         try {
             DB::beginTransaction();
 
-            $this->saveImage();
+            $data = $this->saveImage($data, $this->name, $spec);
 
             $spec->update($data);
 
@@ -45,17 +40,6 @@ class SpecService
         } catch (\Exception $exception) {
             DB::rollBack();
             abort(500);
-        }
-    }
-
-    private function saveImage()
-    {
-        if (isset($this->data['image'])) {
-            $this->data['image'] = Storage::disk('public')->put('/images/spec', $this->data['image']);
-        } elseif (isset($this->spec['image']) && $this->spec['image'] != 'images/placeholder/no_spec_image.png') {
-            $this->data['image'] = $this->spec['image'];
-        } else {
-            $this->data['image'] = 'images/placeholder/no_spec_image.png';
         }
     }
 }

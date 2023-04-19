@@ -3,25 +3,21 @@
 namespace App\Service;
 
 use App\Models\Gift;
+use App\Service\Modules\ImageModule;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
 
-class GiftService
+class GiftService extends ImageModule
 {
-    private $data;
-    private $gift;
+    private $name = 'gift';
 
     public function store($data)
     {
-        $this->data = $data;
-        unset($data);
-
         try {
             DB::beginTransaction();
 
-            $this->saveImage();
+            $data = $this->saveImage($data, $this->name);
 
-            Gift::firstOrCreate($this->data);
+            Gift::firstOrCreate($data);
 
             DB::commit();
         } catch (\Exception $exception) {
@@ -32,32 +28,17 @@ class GiftService
 
     public function update($data, $gift)
     {
-        $this->data = $data;
-        $this->gift = $gift;
-        unset($data, $gift);
-
         try {
             DB::beginTransaction();
 
-            $this->saveImage();
+            $data = $this->updateImage($data, $this->name, $gift);
 
-            $this->gift->update($this->data);
+            $gift->update($data);
 
             DB::commit();
         } catch (\Exception $exception) {
             DB::rollBack();
             abort(500);
-        }
-    }
-
-    private function saveImage()
-    {
-        if (isset($this->data['image'])) {
-            $this->data['image'] = Storage::disk('public')->put('/images/gift', $this->data['image']);
-        } elseif (isset($this->character['image']) && $this->gift['image'] != 'images/placeholder/no_gift_image.png') {
-            $this->data['image'] = $this->gift['image'];
-        } else {
-            $this->data['image'] = 'images/placeholder/no_gift_image.png';
         }
     }
 }

@@ -30,11 +30,12 @@ class UpdateRequest extends FormRequest
             'description' => 'nullable|string',
             'rarity_id' => 'nullable|integer',
 
-            'C1' => 'nullable|string',
-            'C2' => 'nullable|string',
-            'C3' => 'nullable|string',
-            'C4' => 'nullable|string',
-            'C5' => 'nullable|string',
+            'id_star' => 'array',
+            'id_star.*' => 'required|integer',
+            'star' => 'array',
+            'star.*' => 'required|integer',
+            'effect' => 'array',
+            'effect.*' => 'required|string',
         ];
     }
 }

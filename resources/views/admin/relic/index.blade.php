@@ -47,7 +47,7 @@
                                             <td>{{ $relic->id }}</td>
                                             <td>{{ $relic->title }}</td>
                                             <td>
-                                                <img src="{{ asset('storage/' . $relic->image) }}" alt="relic image" width="15%">
+                                                <img src="{{ asset('storage/' . $relic->image) }}" alt="relic image" width="64px">
                                             </td>
                                             <td>{{ $relic->bonus }}</td>
                                             <td>

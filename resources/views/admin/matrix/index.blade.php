@@ -36,7 +36,6 @@
                                         <th>ID</th>
                                         <th>Title</th>
                                         <th>Image</th>
-                                        <th>Bonus</th>
                                         <th>Rarity</th>
                                         <th colspan="3">Action</th>
                                     </tr>
@@ -47,9 +46,8 @@
                                             <td>{{ $matrix->id }}</td>
                                             <td>{{ $matrix->title }}</td>
                                             <td>
-                                                <img src="{{ asset('storage/' . $matrix->image) }}" alt="matrix image" width="15%">
+                                                <img src="{{ asset('storage/' . $matrix->image) }}" alt="matrix image" width="64px">
                                             </td>
-                                            <td>{{ $matrix->bonus }}</td>
                                             <td>
                                                 @if(isset($matrix->rarity->title))
                                                     <a class="btn-sm btn-info"

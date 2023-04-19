@@ -46,7 +46,7 @@
                                         <td>{{ $user->id }}</td>
                                         <td>{{ $user->name }}</td>
                                         <td>{{ $user->email }}</td>
-                                        <td>-</td>
+                                        <td><img src="{{ asset('storage/' . $user->image) }}" alt="user image" width="64px"></td>
                                         <td><a href="{{ route('admin.user.show', $user->id) }}"
                                                class="btn btn-primary">View</a></td>
                                         <td><a href="{{ route('admin.user.edit', $user->id) }}"

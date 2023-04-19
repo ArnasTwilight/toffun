@@ -40,18 +40,25 @@
                                     </tr>
                                     <tr>
                                         <td>Image</td>
-                                        <td><img src="{{ asset('storage/' . $gift->image) }}" alt="gift image"></td>
+                                        <td><img src="{{ asset('storage/' . $gift->image) }}" alt="gift image"
+                                                 width="128px"></td>
                                     </tr>
                                     <tr>
                                         <td>Rarity</td>
-                                        <td><img src="{{ asset('storage/' . $gift->rarity->image) }}" alt="rarity image"></td>
+                                        <td>
+                                            @if(isset($gift->rarity->title))
+                                                <a class="btn-sm btn-info"
+                                                   href="{{ route('admin.rarity.show', $gift->rarity->id) }}">{{ $gift->rarity->title }}</a>
+                                            @endif
+                                        </td>
                                     </tr>
                                     </tbody>
                                 </table>
                             </div>
                             <!-- /.card-body -->
                             <div class="card-footer clearfix d-flex">
-                                <a href="{{ route('admin.gift.edit', $gift->id) }}" class="btn btn-success mr-1">Edit</a>
+                                <a href="{{ route('admin.gift.edit', $gift->id) }}"
+                                   class="btn btn-success mr-1">Edit</a>
                                 <form action="{{ route('admin.gift.delete', $gift->id) }}"
                                       method="post">
                                     @csrf

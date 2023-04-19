@@ -26,9 +26,9 @@ class UpdateRequest extends FormRequest
         return [
             'title' => 'required|string',
             'image' => 'file',
-            'bonus' => 'required|string',
             'rarity_id' => 'required|integer',
-            'stars_id' => 'required|integer',
+            'num' => 'nullable|array',
+            'bonus' => 'nullable|array',
         ];
     }
 }

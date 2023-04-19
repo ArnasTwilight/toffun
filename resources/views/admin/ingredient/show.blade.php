@@ -11,7 +11,8 @@
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item active">{{ $ingredient->title }}</li>
-                            <li class="breadcrumb-item"><a href="{{ route('admin.ingredient.index') }}">Ingredients</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.ingredient.index') }}">Ingredients</a>
+                            </li>
                             <li class="breadcrumb-item"><a href="{{ route('admin.main.index') }}">Main</a></li>
                         </ol>
                     </div><!-- /.col -->
@@ -42,7 +43,8 @@
                                     <tr>
                                         <td>Image</td>
                                         <td>
-                                            <img src="{{ asset( 'storage/' . $ingredient->image) }}" alt="ingredient image" width="25%">
+                                            <img src="{{ asset( 'storage/' . $ingredient->image) }}"
+                                                 alt="ingredient image" width="96px">
                                         </td>
                                     </tr>
                                     <tr>
@@ -50,7 +52,9 @@
                                         <td>
                                             @if(isset($ingredient->rarity->title))
                                                 <a class="btn-sm btn-info"
-                                                   href="{{ route('admin.rarity.show', $ingredient->rarity->id) }}">{{ $ingredient->rarity->title }}</a>
+                                                   href="{{ route('admin.rarity.show', $ingredient->rarity->id) }}">
+                                                    {{ $ingredient->rarity->title }}
+                                                </a>
                                             @endif
                                         </td>
                                     </tr>

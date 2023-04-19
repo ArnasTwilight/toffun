@@ -38,7 +38,8 @@
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label for="title">Title</label>
-                                        <input type="text" class="form-control" name="title" placeholder="Enter title" value="{{ old('title') }}">
+                                        <input type="text" class="form-control" name="title" placeholder="Enter title"
+                                               value="{{ old('title') }}">
                                         @error('title')
                                         <div class="text-danger">{{ $message }}</div>
                                         @enderror
@@ -56,42 +57,55 @@
                                         <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
-                                    <div class="form-group">
-                                        <label>Shatter</label>
-                                        <input class="form-control" name="shatter"
-                                                  placeholder="Enter shatter" value="{{ old('shatter') }}">
-                                        @error('shatter')
-                                        <div class="text-danger">{{ $message }}</div>
-                                        @enderror
+
+                                    <div class="row p-0">
+                                        <div class="form-group col-xl-3 col-md-6">
+                                            <label>Shatter</label>
+                                            <input class="form-control" name="shatter"
+                                                   placeholder="Enter shatter" value="{{ old('shatter') }}">
+                                            @error('shatter')
+                                            <div class="text-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                        <div class="form-group col-xl-3 col-md-6">
+                                            <label>Charge</label>
+                                            <input class="form-control" name="charge"
+                                                   placeholder="Enter charge" value="{{ old('charge') }}">
+                                            @error('charge')
+                                            <div class="text-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                        <div class="form-group col-xl-3 col-md-6">
+                                            <label>Element</label>
+                                            <select name="element_id" class="form-control">
+                                                @foreach($elements as $element)
+                                                    <option value="{{ $element->id }}"
+                                                        {{ $element->id == old('element_id') ? ' selected' : '' }}
+                                                    >{{ $element->title }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-xl-3 col-md-6">
+                                            <label>Rarity</label>
+                                            <select name="rarity_id" class="form-control">
+                                                @foreach($rarityList as $rarity)
+                                                    <option value="{{ $rarity->id }}"
+                                                        {{ $rarity->id == old('rarity_id') ? ' selected' : '' }}
+                                                    >{{ $rarity->title }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label>Charge</label>
-                                        <input class="form-control" name="charge"
-                                               placeholder="Enter charge" value="{{ old('charge') }}">
-                                        @error('charge')
-                                        <div class="text-danger">{{ $message }}</div>
-                                        @enderror
+
+                                    {{--Attacks--}}
+                                    <div id="weapon_attacks" class="row p-0">
+                                        <div class="form-group col-12 mb-1">
+                                            <label>Attacks</label>
+                                            <input class="btn btn-primary" type="button" value="+"
+                                                   onclick="weaponAttacks();">
+                                        </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label>Element</label>
-                                        <select name="element_id" class="form-control">
-                                            @foreach($elements as $element)
-                                                <option value="{{ $element->id }}"
-                                                    {{ $element->id == old('element_id') ? ' selected' : '' }}
-                                                >{{ $element->title }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Rarity</label>
-                                        <select name="rarity_id" class="form-control">
-                                            @foreach($rarityList as $rarity)
-                                                <option value="{{ $rarity->id }}"
-                                                    {{ $rarity->id == old('rarity_id') ? ' selected' : '' }}
-                                                >{{ $rarity->title }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
+                                    {{--Attacks end--}}
                                 </div>
                                 <!-- /.card-body -->
 

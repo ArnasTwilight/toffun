@@ -42,16 +42,67 @@
                                     <tr>
                                         <td>Image</td>
                                         <td>
-                                            <img src="{{ asset( 'storage/' . $weapon->image) }}" alt="weapon image" width="25%">
+                                            <img src="{{ asset( 'storage/' . $weapon->image) }}" alt="weapon image"
+                                                 width="25%">
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>Shatter</td>
-                                        <td>{{ $weapon->shatter }}</td>
+                                        <td>
+                                            <img src="{{ asset('storage/' . $weapon->shatter_img) }}"
+                                                 alt="shatter image" width="32px">
+                                            {{ $weapon->shatter }}
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>Charge</td>
-                                        <td>{{ $weapon->charge }}</td>
+                                        <td>
+                                            <img src="{{ asset('storage/' . $weapon->charge_img) }}" alt="charge image"
+                                                 width="32px">
+                                            {{ $weapon->charge }}
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Weapon Attacks:</td>
+                                        <td>
+                                            @if(isset($weaponAttacks['normal']))
+                                                <details>
+                                                    <summary>Normal</summary>
+                                                    @foreach($weaponAttacks['normal'] as $item)
+                                                        <h5>{{ $item->title }}</h5>
+                                                        <p>{{ $item->description }}</p>
+                                                    @endforeach
+                                                </details>
+                                            @endif
+                                            @if(isset($weaponAttacks['dodge']))
+                                                <details>
+                                                    <summary>Dodge</summary>
+                                                    @foreach($weaponAttacks['dodge'] as $item)
+                                                        <h5>{{ $item->title }}</h5>
+                                                        <p>{{ $item->description }}</p>
+                                                    @endforeach
+                                                </details>
+                                            @endif
+                                            @if(isset($weaponAttacks['skill']))
+                                                <details>
+                                                    <summary>Skill</summary>
+                                                    @foreach($weaponAttacks['skill'] as $item)
+                                                        <h5>{{ $item->title }}</h5>
+                                                        <p>{{ $item->description }}</p>
+                                                    @endforeach
+                                                </details>
+                                            @endif
+                                            @if(isset($weaponAttacks['discharge']))
+                                                <details>
+                                                    <summary>Discharge</summary>
+                                                    @foreach($weaponAttacks['discharge'] as $item)
+                                                        <h5>{{ $item->title }}</h5>
+                                                        <p>{{ $item->description }}</p>
+                                                    @endforeach
+                                                </details>
+                                            @endif
+                                        </td>
                                     </tr>
                                     </tbody>
                                 </table>

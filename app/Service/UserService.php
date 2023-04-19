@@ -2,24 +2,19 @@
 
 namespace App\Service;
 
-use App\Models\Element;
+use App\Service\Modules\ImageModule;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
 
-class UserService
+class UserService extends ImageModule
 {
-    private $data;
-    private $user;
+    private $name = 'user';
 
     public function update($data, $user)
     {
-        $this->data = $data;
-        $this->user = $user;
-
         try {
             DB::beginTransaction();
 
-            $this->saveImage();
+            $data = $this->saveImage($data, $this->name);
 
             $user->update($data);
 
@@ -27,17 +22,6 @@ class UserService
         } catch (\Exception $exception) {
             DB::rollBack();
             abort(500);
-        }
-    }
-
-    private function saveImage()
-    {
-        if (isset($this->data['image'])) {
-            $this->data['image'] = Storage::disk('public')->put('/images/user', $this->data['image']);
-        } elseif (isset($this->user['image']) && $this->user['image'] != 'images/placeholder/no_user_image.png') {
-            $this->data['image'] = $this->user['image'];
-        } else {
-            $this->data['image'] = 'images/placeholder/no_user_image.png';
         }
     }
 }

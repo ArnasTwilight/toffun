@@ -8,7 +8,8 @@ class IndexController extends BaseController
 {
     public function __invoke()
     {
-        $gifts = Gift::paginate(9);
+        $gifts = Gift::orderByDesc('updated_at')->paginate(9);
+
         return view('admin.gift.index', compact('gifts'));
     }
 }

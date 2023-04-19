@@ -43,23 +43,9 @@
                                         <td>Image</td>
                                         <td>
                                             <img src="{{ asset( 'storage/' . $relic->image) }}" alt="relic image"
-                                                 width="25%">
+                                                 width="128px">
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td>Bonus</td>
-                                        <td>{{ $relic->description }}</td>
-                                    </tr>
-                                    @if(isset($relic->stars))
-                                        <tr>
-                                            <td>Stars</td>
-                                            @for($i = 1, $star = 'C' . $i; $i <= 5; $i++, $star = 'C' . $i)
-                                                @if (isset($relic->stars->$star))
-                                                    <td class="d-flex">{{ $i }} - {{ $relic->stars->$star }}</td>
-                                                @endif
-                                            @endfor
-                                        </tr>
-                                    @endif
                                     <tr>
                                         <td>Rarity</td>
                                         <td>
@@ -69,6 +55,27 @@
                                             @endif
                                         </td>
                                     </tr>
+                                    <tr>
+                                        <td>Cooldown</td>
+                                        <td>{{ $relic->cooldown }} sec</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Description</td>
+                                        <td>{{ $relic->description }}</td>
+                                    </tr>
+                                    {{--Stars--}}
+                                    <tr>
+                                        <td>Stars</td>
+                                        <td>
+                                            @foreach($relic->stars as $star)
+                                                <details open>
+                                                    <summary>Star {{ $star->star }}</summary>
+                                                    <p>{{ $star->effect }}</p>
+                                                </details>
+                                            @endforeach
+                                        </td>
+                                    </tr>
+                                    {{--Stars end--}}
                                     </tbody>
                                 </table>
                             </div>

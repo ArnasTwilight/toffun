@@ -25,7 +25,7 @@
         <section class="content">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-12">
+                    <div class="col-6">
                         <div class="card card-primary">
                             <div class="card-header">
                                 <h3 class="card-title">Add New Matrix</h3>
@@ -38,7 +38,8 @@
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label for="title">Title</label>
-                                        <input type="text" class="form-control" name="title" placeholder="Enter title" value="{{ old('title') }}">
+                                        <input type="text" class="form-control" name="title" placeholder="Enter title"
+                                               value="{{ old('title') }}">
                                         @error('title')
                                         <div class="text-danger">{{ $message }}</div>
                                         @enderror
@@ -57,14 +58,6 @@
                                         @enderror
                                     </div>
                                     <div class="form-group">
-                                        <label>Bonus</label>
-                                        <textarea class="form-control" name="bonus"
-                                                  placeholder="Enter bonus" rows="2">{{ old('bonus') }}</textarea>
-                                        @error('bonus')
-                                        <div class="text-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                    <div class="form-group">
                                         <label>Rarity</label>
                                         <select name="rarity_id" class="form-control">
                                             @foreach($rarityList as $rarity)
@@ -73,6 +66,37 @@
                                                 >{{ $rarity->title }}</option>
                                             @endforeach
                                         </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Bonus</label>
+                                        <div class="form-group">
+                                            <p class="mb-0">Number of matrices</p>
+                                            <input class="form-control w-25" type="number" name="num[]">
+                                        </div>
+                                        <div class="form-group">
+                                            <p class="mb-0">Bonus description</p>
+                                            <textarea class="form-control"
+                                                      name="bonus[]"
+                                                      placeholder="Enter bonus"
+                                                      rows="2"></textarea>
+                                            @error('bonus')
+                                            <div class="text-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                        <div class="form-group">
+                                            <p class="mb-0">Number of matrices</p>
+                                            <input class="form-control w-25" type="number" name="num[]">
+                                        </div>
+                                        <div class="form-group">
+                                            <p class="mb-0">Bonus description</p>
+                                            <textarea class="form-control"
+                                                      name="bonus[]"
+                                                      placeholder="Enter bonus"
+                                                      rows="2"></textarea>
+                                            @error('bonus')
+                                            <div class="text-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
                                     </div>
                                 </div>
                                 <!-- /.card-body -->

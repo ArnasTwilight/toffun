@@ -8,7 +8,8 @@ class IndexController extends BaseController
 {
     public function __invoke()
     {
-        $relics = Relic::paginate(9);
+        $relics = Relic::orderByDesc('updated_at')->paginate(9);
+
         return view('admin.relic.index', compact('relics'));
     }
 }

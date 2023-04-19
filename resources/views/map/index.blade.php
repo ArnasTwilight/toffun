@@ -18,15 +18,15 @@
                 <ul class="map-list p-4">
                     <li class="map-list__item">
                         <h2 class="map-list__item-num">1</h2>
-                        <a href="https://tower-of-fantasy-map.appsample.com/">Tower of Fantasy Interactive Map</a>
+                        <a href="https://tower-of-fantasy-map.appsample.com/">Tower of fantasy map appsample com</a>
                     </li>
                     <li class="map-list__item">
                         <h2 class="map-list__item-num">2</h2>
-                        <a href="https://genshin.gg/tof/map/">Tower of Fantasy Interactive Map - TOF.GG</a>
+                        <a href="https://genshin.gg/tof/map/">Genshin.gg tof map</a>
                     </li>
                     <li class="map-list__item">
                         <h2 class="map-list__item-num">3</h2>
-                        <a href="https://toweroffantasy.interactivemap.app/?map=1">Tower of Fantasy Interactive Map</a>
+                        <a href="https://toweroffantasy.interactivemap.app/?map=1">Tower of fantasy interactive map app</a>
                     </li>
                 </ul>
             </section>

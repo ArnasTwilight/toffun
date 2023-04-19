@@ -17,7 +17,7 @@ class IndexController extends Controller
         $posts = Post::orderBy('updated_at', 'DESC')->get()->take(5);
         $postsCount = Post::count();
         $usersCount = User::count();
-        $newUser = User::orderBy('updated_at', 'DESC')->get()->take(4);
+        $newUser = User::orderBy('updated_at', 'DESC')->get()->take(8);
         $newUserCount = User::all()->where('created_at', '>=', date_sub(NOW(), DateInterval::createFromDateString('7 day'))->format('Y-m-d H:m:i'))->count();
         $load = $this->CPUload();
         $characterCount = Character::count();

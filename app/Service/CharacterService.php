@@ -4,16 +4,17 @@ namespace App\Service;
 
 use App\Models\Character;
 use App\Models\Star;
-use App\Models\WeaponEffects;
+use App\Service\Modules\ImageModule;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
-class CharacterService
+class CharacterService extends ImageModule
 {
     private $data;
     private $character;
     private $stars;
     private $effects;
+    private $name = 'character';
 
     public function store($data)
     {
@@ -24,7 +25,7 @@ class CharacterService
 
             $this->effects();
 
-            $this->saveImage();
+            $this->data = $this->saveImage($this->data, $this->name);
 
             $this->stars();
 
@@ -51,7 +52,9 @@ class CharacterService
 
             $this->effects();
 
-            $this->saveImage();
+            $this->data = $this->saveImage($this->data, $this->name, $this->character);
+
+            $this->deleteOldImage();
 
             $this->effectsUpdate($character);
 
@@ -65,18 +68,6 @@ class CharacterService
         } catch (\Exception $exception) {
             DB::rollBack();
             abort(500);
-        }
-    }
-
-
-    private function saveImage()
-    {
-        if (isset($this->data['image'])) {
-            $this->data['image'] = Storage::disk('public')->put('/images/character', $this->data['image']);
-        } elseif (isset($this->character['image']) && $this->character['image'] != 'images/placeholder/no_character_image.png') {
-            $this->data['image'] = $this->character['image'];
-        } else {
-            $this->data['image'] = 'images/placeholder/no_character_image.png';
         }
     }
 
@@ -153,5 +144,12 @@ class CharacterService
         }
 
         unset($this->data['id_effect'], $this->data['title_effect'], $this->data['effect']);
+    }
+
+    private function deleteOldImage()
+    {
+        if ($this->character['image'] != 'images/placeholder/no_'. $this->name .'_image.png'){
+            Storage::disk('public')->delete($this->character['image']);
+        }
     }
 }

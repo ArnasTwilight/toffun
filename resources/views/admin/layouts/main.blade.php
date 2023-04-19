@@ -30,6 +30,18 @@
             <li class="nav-item d-none d-sm-inline-block">
                 <a href="{{ route('main.index') }}" class="nav-link">Home</a>
             </li>
+            <li class="nav-item d-none d-sm-inline-block">
+                <a href="{{ route('post.index') }}" class="nav-link">News</a>
+            </li>
+            <li class="nav-item d-none d-sm-inline-block">
+                <a href="{{ route('character.index') }}" class="nav-link">Character</a>
+            </li>
+            <li class="nav-item d-none d-sm-inline-block">
+                <a href="{{ route('item.index') }}" class="nav-link">Item</a>
+            </li>
+            <li class="nav-item d-none d-sm-inline-block">
+                <a href="{{ route('map.index') }}" class="nav-link">Maps</a>
+            </li>
         </ul>
 
         <!-- Right navbar links -->
@@ -104,6 +116,10 @@
 
 <!-- Vue -->
 <script src="{{ asset('js/app.js') }}" defer></script>
+
+<script src="{{ asset('js/script/weaponAttacks.js') }}"></script>
+<script src="{{ asset('js/script/relicStars.js') }}"></script>
+<script src="{{ asset('js/script/linkActive.js') }}"></script>
 
 </body>
 </html>

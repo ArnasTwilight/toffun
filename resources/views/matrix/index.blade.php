@@ -29,7 +29,7 @@
                     </tr>
                     @foreach($matrices as $matrix)
                         <tr class="bg-color-second">
-                            <td class="food-table__image p-4 {{ $matrix->rarity->title }}">
+                            <td class="food-table__image p-2 {{ $matrix->rarity->title }}">
                                 <a href="{{ route('matrix.show', $matrix->id) }}">
                                     <img src="{{ asset('storage/' . $matrix->image) }}" alt="matrix image">
                                 </a>

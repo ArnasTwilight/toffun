@@ -9,7 +9,11 @@ class DeleteController extends BaseController
 {
     public function __invoke(User $user)
     {
-        if ($user['image'] != 'images/placeholder/no_user_image.png'){
+        if (auth()->user()->id == $user->id) {
+            return redirect()->route('admin.user.index');
+        }
+
+        if ($user['image'] != 'images/placeholder/no_user_image.png') {
             Storage::disk('public')->delete($user['image']);
         }
 

@@ -47,10 +47,16 @@
                                             <td>{{ $weapon->id }}</td>
                                             <td>{{ $weapon->title }}</td>
                                             <td>
-                                                <img src="{{ asset('storage/' . $weapon->image) }}" alt="weapon image" width="15%">
+                                                <img src="{{ asset('storage/' . $weapon->image) }}" alt="weapon image" width="96px">
                                             </td>
-                                            <td>{{ $weapon->shatter }}</td>
-                                            <td>{{ $weapon->charge }}</td>
+                                            <td>
+                                                <img src="{{ asset('storage/' . $weapon->shatter_img) }}" alt="shatter image" width="32px">
+                                                {{ $weapon->shatter }}
+                                            </td>
+                                            <td>
+                                                <img src="{{ asset('storage/' . $weapon->charge_img) }}" alt="charge image" width="32px">
+                                                {{ $weapon->charge }}
+                                            </td>
                                             <td><a href="{{ route('admin.weapon.show', $weapon->id) }}"
                                                    class="btn btn-primary">View</a></td>
                                             <td><a href="{{ route('admin.weapon.edit', $weapon->id) }}"

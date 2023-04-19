@@ -5,15 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class WeaponEffects extends Model
+class MatrixBonus extends Model
 {
     use HasFactory;
 
-    protected $table = 'weapon_effects';
+    protected $table = 'matrix_bonus';
     protected $guarded = false;
 
-    public function character()
+    public function matrix()
     {
-        return $this->belongsTo(Character::class, 'id', 'character_id');
+        return $this->belongsTo(Matrix::class,'matrix_id','id');
     }
 }

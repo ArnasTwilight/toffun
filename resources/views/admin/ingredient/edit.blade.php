@@ -52,21 +52,13 @@
                                                 <label class="custom-file-label" for="InputImage">Choose
                                                     image</label>
                                             </div>
-                                            <div class="mb-1">
-                                                <img src="{{ asset('storage/' . $ingredient->image) }}" alt="ingredient image"
-                                                     width="10%">
-                                                <p class="text-gray">{{ asset('storage/' . $ingredient->image) }}</p>
-                                            </div>
+                                        </div>
+                                        <div class="mt-1">
+                                            <img src="{{ asset('storage/' . $ingredient->image) }}" alt="ingredient image"
+                                                 width="96px">
+                                            <p class="text-gray">{{ asset('storage/' . $ingredient->image) }}</p>
                                         </div>
                                         @error('image')
-                                        <div class="text-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Bonus</label>
-                                        <textarea class="form-control" name="bonus"
-                                                  placeholder="Enter bonus" rows="2">{{ $ingredient->bonus }}</textarea>
-                                        @error('bonus')
                                         <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
@@ -79,6 +71,14 @@
                                                 >{{ $rarity->title }}</option>
                                             @endforeach
                                         </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Bonus</label>
+                                        <textarea class="form-control" name="bonus"
+                                                  placeholder="Enter bonus" rows="4">{{ $ingredient->bonus }}</textarea>
+                                        @error('bonus')
+                                        <div class="text-danger">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                 </div>
                                 <!-- /.card-body -->

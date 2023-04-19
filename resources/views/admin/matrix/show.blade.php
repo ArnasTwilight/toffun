@@ -42,12 +42,9 @@
                                     <tr>
                                         <td>Image</td>
                                         <td>
-                                            <img src="{{ asset( 'storage/' . $matrix->image) }}" alt="matrix image" width="25%">
+                                            <img src="{{ asset( 'storage/' . $matrix->image) }}" alt="matrix image"
+                                                 width="128px">
                                         </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Bonus</td>
-                                        <td>{{ $matrix->bonus }}</td>
                                     </tr>
                                     <tr>
                                         <td>Rarity</td>
@@ -58,6 +55,14 @@
                                             @endif
                                         </td>
                                     </tr>
+                                    @if(!$matrixBonus->isEmpty())
+                                        @foreach($matrixBonus as $bonus)
+                                            <tr>
+                                                <td>Bonus {{$bonus->quantity}}x</td>
+                                                <td>{{$bonus->bonus }}</td>
+                                            </tr>
+                                        @endforeach
+                                    @endif
                                     </tbody>
                                 </table>
                             </div>

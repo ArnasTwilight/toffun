@@ -30,6 +30,15 @@ class UpdateRequest extends FormRequest
             'charge' => 'nullable|numeric',
             'element_id' => 'nullable|integer',
             'rarity_id' => 'nullable|integer',
+
+            'id_attacks'=> 'array',
+            'id_attacks.*'=> 'required|integer',
+            'type' => 'array',
+            'type.*' => 'required|numeric',
+            'title_attacks' => 'array',
+            'title_attacks.*' => 'required|string',
+            'description' => 'array',
+            'description.*' => 'required|string',
         ];
     }
 }

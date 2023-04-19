@@ -47,21 +47,6 @@
                                                  alt="character avatar" width="25%">
                                         </td>
                                     </tr>
-                                    @for($i = 0; $i < count($effects); $i++)
-                                        <tr>
-                                            <td>{{ $effects[$i]->title_effect }}</td>
-                                            <td>
-                                                {{ $effects[$i]->effect }}
-                                            </td>
-                                        </tr>
-                                    @endfor
-                                    <tr>
-                                        <td>Traits </td>
-                                        <td class="d-flex">1200 Awakening:</td>
-                                        <td class="d-flex">{{ $character->trait_1 }}</td>
-                                        <td class="d-flex">4000 Awakening:</td>
-                                        <td class="d-flex">{{ $character->trait_2 }}</td>
-                                    </tr>
                                     @if(isset($character->stars))
                                         <tr>
                                             <td>Stars</td>
@@ -104,6 +89,17 @@
                                                 <a class="btn-sm btn-info"
                                                    href="{{ route('admin.matrix.show', $character->matrix->id) }}">{{ $character->matrix->title }}</a>
                                             @endif
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Awakening</td>
+                                        <td>
+                                            @foreach($character->reward as $reward)
+                                                <details>
+                                                    <summary>Points: {{ $reward->points }}</summary>
+                                                    <p>{{ $reward->reward }}</p>
+                                                </details>
+                                            @endforeach
                                         </td>
                                     </tr>
                                     </tbody>

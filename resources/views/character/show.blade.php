@@ -85,18 +85,14 @@
 
                 <div class="description-main-character p-0 mt-4">
                     <div class="description-single__item">
-                        <h2>Weapon Effects</h2>
+                        <h2>Attacks</h2>
                         <ul class="description-single__cooldown bg-color-second p-2">
-                            @for($i = 0; $i < count($effects); $i++)
+                            <h2>Normal</h2>
                             <li class="bg-color-third p-2">
                                 <p class="description-single__text">
-                                    {{ $effects[$i]->title_effect }}
-                                </p>
-                                <p class="description-single__text">
-                                    {{ $effects[$i]->effect }}
+                                    Text
                                 </p>
                             </li>
-                            @endfor
                         </ul>
                     </div>
 
@@ -104,63 +100,71 @@
                         <h2>Advancements</h2>
                         <div class="description-single__cooldown bg-color-second p-2">
                             <ul>
-                                @for($i = 1, $star = 'C' . $i; $i <= 6; $i++, $star = 'C' . $i)
-                                    @if(isset($character->stars->$star))
-                                        <li class="character-star bg-color-third p-2">
+                                @foreach($character->weapon->stars as $star)
+                                    <li class="character-star bg-color-third p-2">
+                                        <div class="star-container bg-color-second d-flex p-2">
+                                            <img src="{{ asset('assets/image/item/skill_star.png') }}"
+                                                 class="star-image" alt="star">
+                                            <p class="star-num"> {{ $star->star }} </p>
+                                        </div>
+                                        <p class="star-description">
+                                            {{ $star->effect }}
+                                        </p>
+                                    </li>
+                                @endforeach
+                                {{--                                @for($i = 1, $star = 'C' . $i; $i <= 6; $i++, $star = 'C' . $i)--}}
+                                {{--                                    @if(isset($character->stars->$star))--}}
+                                {{--                                        <li class="character-star bg-color-third p-2">--}}
+                                {{--                                            <div class="star-container bg-color-second d-flex p-2">--}}
+                                {{--                                                <img src="{{ asset('assets/image/item/skill_star.png') }}"--}}
+                                {{--                                                     class="star-image" alt="star">--}}
+                                {{--                                                <p class="star-num"> {{ $i }} </p>--}}
+                                {{--                                            </div>--}}
+                                {{--                                            <p class="star-description">--}}
+                                {{--                                                {{ $character->stars->$star }}--}}
+                                {{--                                            </p>--}}
+                                {{--                                        </li>--}}
+                                {{--                                    @endif--}}
+                                {{--                                @endfor--}}
+                            </ul>
+                        </div>
+                    </div>
+                    @if(isset($character->matrix))
+                        <div class="description-single__item mt-4">
+                            <h2>Matrices</h2>
+                            <div class="character-matrix-container bg-color-second p-2 d-flex">
+                                <div class="character-matrix-image">
+                                    <img src="{{ asset('storage/' . $character->matrix->image) }}" alt="matrix image">
+                                </div>
+                                <ul>
+                                    @foreach($character->matrix->matrixBonus as $bonus)
+                                        <li class="character-matrix bg-color-third">
                                             <div class="star-container bg-color-second d-flex p-2">
-                                                <img src="{{ asset('assets/image/item/skill_star.png') }}"
-                                                     class="star-image" alt="star">
-                                                <p class="star-num"> {{ $i }} </p>
+                                                <p class="star-num"> {{$bonus->quantity}}x </p>
                                             </div>
-                                            <p class="star-description">
-                                                {{ $character->stars->$star }}
+                                            <p>
+                                                {{ $bonus->bonus }}
                                             </p>
                                         </li>
-                                    @endif
-                                @endfor
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="description-single__item mt-4">
-                        <h2>Matrices</h2>
-                        <div class="character-matrix-container bg-color-second p-2 d-flex">
-                            <div class="character-matrix-image">
-                                <img src="{{ asset('storage/' . $character->matrix->image) }}" alt="matrix image">
+                                    @endforeach
+                                </ul>
                             </div>
-                            <ul class="">
-                                <li class="character-matrix bg-color-third">
-                                    <div class="star-container bg-color-second d-flex p-2">
-                                        <p class="star-num"> 2x </p>
-                                    </div>
-                                    <p>
-                                        {{ $character->matrix->bonus }}
-                                    </p>
-                                </li>
-                            </ul>
                         </div>
-                    </div>
-
+                    @endif
                     <div class="description-single__item mt-4">
                         <h2>Traits</h2>
                         <div class="character-matrix-container bg-color-second p-2 d-flex">
                             <ul>
-                                <li class="character-matrix bg-color-third">
-                                    <div class="star-container bg-color-second d-flex p-2">
-                                        <p class="star-num"> 1200 </p>
-                                    </div>
-                                    <p>
-                                        {{ $character->trait_1 }}
-                                    </p>
-                                </li>
-                                <li class="character-matrix bg-color-third">
-                                    <div class="star-container bg-color-second d-flex p-2">
-                                        <p class="star-num"> 4000 </p>
-                                    </div>
-                                    <p>
-                                        {{ $character->trait_2 }}
-                                    </p>
-                                </li>
+                                @foreach($character->reward as $reward)
+                                    <li class="character-matrix bg-color-third">
+                                        <div class="star-container bg-color-second d-flex p-2">
+                                            <p class="star-num"> {{$reward->points}} points </p>
+                                        </div>
+                                        <p>
+                                            {{$reward->reward}}
+                                        </p>
+                                    </li>
+                                @endforeach
                             </ul>
                         </div>
                     </div>

@@ -1,7 +1,7 @@
-@extends('personal.layouts.main')
+@extends('layouts.main')
 @section('content')
     <!--    header-->
-    @include('personal.includes.header')
+    @include('includes.header')
     <!--    header end-->
 
     <div class="row d-flex mb-5">
@@ -46,6 +46,6 @@
     </div>
 
     <!--    footer-->
-    @include('personal.includes.footer')
+    @include('includes.footer')
     <!--    footer end-->
 @endsection

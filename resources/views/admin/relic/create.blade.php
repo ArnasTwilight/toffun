@@ -38,14 +38,8 @@
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label for="title">Title</label>
-                                        <input type="text" class="form-control" name="title" placeholder="Enter title" value="{{ old('title') }}">
-                                        @error('title')
-                                        <div class="text-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="title">Cooldown</label>
-                                        <input type="text" class="form-control" name="cooldown" placeholder="Enter cooldown" value="{{ old('title') }}">
+                                        <input type="text" class="form-control" name="title" placeholder="Enter title"
+                                               value="{{ old('title') }}">
                                         @error('title')
                                         <div class="text-danger">{{ $message }}</div>
                                         @enderror
@@ -63,6 +57,26 @@
                                         <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
+                                    <div class="row p-0">
+                                        <div class="form-group col-xl-6">
+                                            <label>Rarity</label>
+                                            <select name="rarity_id" class="form-control">
+                                                @foreach($rarityList as $rarity)
+                                                    <option value="{{ $rarity->id }}"
+                                                        {{ $rarity->id == old('rarity_id') ? ' selected' : '' }}
+                                                    >{{ $rarity->title }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-xl-6">
+                                            <label for="title">Cooldown</label>
+                                            <input type="number" class="form-control" name="cooldown"
+                                                   placeholder="Enter cooldown" value="{{ old('title') }}">
+                                            @error('title')
+                                            <div class="text-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
                                     <div class="form-group">
                                         <label>Description</label>
                                         <textarea class="form-control" name="description"
@@ -71,28 +85,16 @@
                                         <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
-                                    <div class="form-group">
-                                        <label>Stars</label>
-                                        <div class="d-flex">
-                                            @for($i = 1; $i <= 5; $i++)
-                                                <textarea class="mr-1 form-control" name="C{{ $i }}" rows="4"
-                                                          placeholder="Enter Star {{ $i }} ...">{{ old('C' . $i) }}</textarea>
-                                                @error('C' . $i)
-                                                <div class="text-danger">{{ $message }}</div>
-                                                @enderror
-                                            @endfor
+
+                                    {{--Advancements--}}
+                                    <div id="relic_stars"  class="row p-0">
+                                        <div class="form-group col-12 mb-1">
+                                            <label>Advancements</label>
+                                            <input class="btn btn-primary" type="button" value="+"
+                                                   onclick="relicStars();">
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label>Rarity</label>
-                                        <select name="rarity_id" class="form-control">
-                                            @foreach($rarityList as $rarity)
-                                                <option value="{{ $rarity->id }}"
-                                                    {{ $rarity->id == old('rarity_id') ? ' selected' : '' }}
-                                                >{{ $rarity->title }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
+                                    {{--Advancements end--}}
                                 </div>
                                 <!-- /.card-body -->
 

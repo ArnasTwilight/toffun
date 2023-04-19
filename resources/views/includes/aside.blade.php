@@ -8,12 +8,14 @@
 
             <div class="aside-article-container">
                 <div>
-                    <article class="aside-post">
-                        <div class="aside-post-container">
-                            <h3><a href="#" class="aside-post__title">Lorem ipsum</a></h3>
-                            <img src="{{ asset('assets/image/post/popular-img-1.png') }}" alt="aside_recent_post">
-                        </div>
-                    </article>
+                    @foreach($popularPosts as $post)
+                        <article class="aside-post">
+                            <div class="aside-post-container">
+                                <h3><a href="{{ route('post.show', $post->id) }}" class="aside-post__title">{{ $post->title }}</a></h3>
+                                <img src="{{ asset('storage/' . $post->image) }}" alt="aside_recent_post">
+                            </div>
+                        </article>
+                    @endforeach
                 </div>
 
                 <iframe class="discord" src="https://discord.com/widget?id=772884627320864839&theme=dark" width="100%" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>

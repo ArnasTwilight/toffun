@@ -64,18 +64,18 @@
                             <h2>Advancements</h2>
                             <div class="bg-color-second p-2">
                                 <ul class="advancements-list">
-                                    @for($i = 1, $star = 'C' . $i; $i <= 5; $i++, $star = 'C' . $i)
+                                    @foreach($relic->stars as $star)
                                         <li class="bg-color-third p-2 d-flex">
                                             <div class="advancements-item__star-container bg-color-second d-flex">
                                                 <img src="{{ asset('assets/image/item/skill_star.png') }}"
                                                      alt="star">
-                                                <p>{{ $i }}</p>
+                                                <p>{{ $star->star }}</p>
                                             </div>
                                             <p class="description-single__text">
-                                                {{ isset($relic->stars->$star) ? $relic->stars->$star : '' }}
+                                                {{ $star->effect }}
                                             </p>
                                         </li>
-                                    @endfor
+                                    @endforeach
                                 </ul>
                             </div>
                         </div>

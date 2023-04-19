@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Character;
 use App\Http\Controllers\Controller;
 use App\Models\Character;
 use App\Models\Element;
+use App\Models\Post;
 use App\Models\Rarity;
 use App\Models\Spec;
 
@@ -16,6 +17,13 @@ class IndexController extends Controller
         $specList = Spec::all();
         $elements = Element::all();
         $rarityList = Rarity::all();
-        return view('character.index', compact('characters', 'specList', 'elements', 'rarityList'));
+        $popularPosts = Post::withCount('likes')->orderBy('likes_count', 'desc')->take(3)->get();
+
+        return view('character.index', compact(
+            'characters',
+            'specList',
+            'elements',
+            'rarityList',
+            'popularPosts'));
     }
 }

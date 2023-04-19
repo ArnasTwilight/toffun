@@ -14,6 +14,7 @@ class UpdateConnectFkRarityToCharacterTable extends Migration
     public function up()
     {
         Schema::table('character', function (Blueprint $table) {
+            $table->dropForeign('character_rarity_fk');
             $table->foreign('rarity_id', 'character_rarity_fk')->on('rarity')->references('id')->cascadeOnUpdate()->nullOnDelete();
         });
     }

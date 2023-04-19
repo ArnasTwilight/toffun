@@ -8,7 +8,7 @@ class IndexController extends BaseController
 {
     public function __invoke()
     {
-        $matrices = Matrix::paginate(9);
+        $matrices = Matrix::query()->orderBy('created_at', 'desc')->paginate(7);
         return view('admin.matrix.index', compact('matrices'));
     }
 }

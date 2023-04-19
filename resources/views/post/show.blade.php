@@ -39,7 +39,7 @@
                                 @if($post['user_id'] != null)
                                     <img src="{{ asset('storage/' . $post->user->image) }}" alt="author img">
                                 @else
-                                    <img src="#" alt="author img">
+                                    <img src="{{ asset('storage/images/placeholder/no_user_image.png') }}" alt="author img">
                                 @endif
                                 <div class="line-right"></div>
                             </div>
@@ -123,9 +123,9 @@
                         </div>
                     </div>
                 @endforeach
-                    <div class="user-card-footer comment mt-4 p-4 bg-color d-flex">
-                        {{ $comments->links() }}
-                    </div>
+                <div class="user-card-footer comment mt-3 d-flex">
+                    {{ $comments->links() }}
+                </div>
             </div>
         </main>
     </div>

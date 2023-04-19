@@ -19,6 +19,6 @@ class Relic extends Model
 
     public function stars()
     {
-        return $this->belongsTo(Star::class, 'stars_id', 'id');
+        return $this->belongsToMany(Star::class, 'relics_stars', 'relics_id', 'stars_id');
     }
 }

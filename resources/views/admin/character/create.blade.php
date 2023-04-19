@@ -64,7 +64,7 @@
                                     {{--Image end--}}
 
                                     {{--Rarity, Spec, Weapon, Matrix--}}
-                                    <div class="row col-xl-12 p-0">
+                                    <div class="row p-0">
                                         <div class="form-group col-xl-3 col-md-6">
                                             <label>Rarity</label>
                                             <select name="rarity_id" class="form-control">
@@ -109,10 +109,11 @@
                                     {{--Rarity, Spec, Weapon, Matrix end--}}
 
                                     {{--Effects--}}
-                                    <div class="row col-xl-12 p-0">
+                                    <div class="row p-0">
                                         <div class="form-group col-lg-6">
                                             <label>Effect</label>
-                                            <input type="text" class="form-control mb-1" name="title_effect[0]" placeholder="Enter title effect"
+                                            <input type="text" class="form-control mb-1" name="title_effect[0]"
+                                                   placeholder="Enter title effect"
                                                    value="{{ old('title_effect[0]') }}">
                                             @error('title_effect')
                                             <div class="text-danger">{{ $message }}</div>
@@ -125,7 +126,8 @@
                                         </div>
                                         <div class="form-group col-lg-6">
                                             <label>Effect</label>
-                                            <input type="text" class="form-control mb-1" name="title_effect[1]" placeholder="Enter title effect"
+                                            <input type="text" class="form-control mb-1" name="title_effect[1]"
+                                                   placeholder="Enter title effect"
                                                    value="{{ old('title_effect[1]') }}">
                                             @error('title_effect')
                                             <div class="text-danger">{{ $message }}</div>
@@ -136,61 +138,29 @@
                                             <div class="text-danger">{{ $message }}</div>
                                             @enderror
                                         </div>
-
-                                        <div class="form-group col-lg-6">
-                                            <label>Skills</label>
-                                            <textarea class="form-control" name="skills" rows="2"
-                                                      placeholder="Enter skills ...">{{ old('skills') }}</textarea>
-                                            @error('skills')
-                                            <div class="text-danger">{{ $message }}</div>
-                                            @enderror
-                                        </div>
                                     </div>
                                     {{--Effects end--}}
 
-                                    {{--Traits--}}
-                                    <div class="row col-xl-12 p-0">
+                                    {{--Rewards--}}
+                                    <div class="row p-0">
                                         <div class="form-group col-12 mb-0">
-                                            <label>Traits</label>
+                                            <label>Recollection Rewards</label>
                                         </div>
-                                        <div class="form-group col-lg-6">
-                                            <textarea
-                                                class="form-control"
-                                                name="trait_1" rows="2"
-                                                placeholder="Enter trait 1200 Awakening...">{{ old('trait_1') }}</textarea>
-                                            @error('trait_1')
-                                            <div class="text-danger">{{ $message }}</div>
-                                            @enderror
-                                        </div>
-                                        <div class="form-group col-lg-6">
-                                            <textarea
-                                                class="form-control"
-                                                name="trait_2" rows="2"
-                                                placeholder="Enter trait 4000 Awakening...">{{ old('trait_2') }}</textarea>
-                                            @error('trait_2')
-                                            <div class="text-danger">{{ $message }}</div>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    {{--Traits end--}}
 
-                                    {{--Stars--}}
-                                    <div class="row col-xl-12 p-0">
-                                        <div class="form-group col-12 mb-0">
-                                            <label>Stars</label>
-                                        </div>
-                                        @for($i = 1; $i <= 6; $i++)
+                                        @for($i = 1; $i != 7; $i++)
                                             <div class="form-group col-xl-4 col-lg-6">
-                                                <textarea class="form-control" name="C[{{ $i }}]"
-                                                          rows="3"
-                                                          placeholder="Enter Star {{ $i }} ...">{{ old('C' . $i) }}</textarea>
-                                                @error('C' . $i)
-                                                <div class="text-danger">{{ $message }}</div>
-                                                @enderror
+                                                <input class="form-control mb-1" type="number" name="points[]"
+                                                       placeholder="{{$i}} Required points">
+                                                <textarea
+                                                    class="form-control"
+                                                    name="reward[]" rows="2"
+                                                    placeholder="Enter reward..."></textarea>
                                             </div>
                                         @endfor
+
                                     </div>
-                                    {{--Stars end--}}
+                                    {{--Rewards end--}}
+
                                 </div>
                                 <!-- /.card-body -->
 

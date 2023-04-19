@@ -25,7 +25,7 @@ class UpdateRequest extends FormRequest
     {
         return [
             'title' => 'required|string',
-            'image' => 'required|file',
+            'image' => 'file',
             'rarity_id' => 'nullable|integer',
         ];
     }

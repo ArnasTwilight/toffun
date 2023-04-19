@@ -46,7 +46,7 @@
                                             <td>{{ $ingredient->id }}</td>
                                             <td>{{ $ingredient->title }}</td>
                                             <td>
-                                                <img src="{{ asset('storage/' . $ingredient->image) }}" alt="ingredient image" width="15%">
+                                                <img src="{{ asset('storage/' . $ingredient->image) }}" alt="ingredient image" width="64px">
                                             </td>
                                             <td>
                                                 @if(isset($ingredient->rarity->title))

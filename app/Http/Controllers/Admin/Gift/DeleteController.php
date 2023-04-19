@@ -14,6 +14,7 @@ class DeleteController extends BaseController
         }
 
         $gift->delete();
+
         return redirect()->route('admin.gift.index');
     }
 }

@@ -47,12 +47,12 @@
                                         <td>Role</td>
                                         <td>{{ $role }}</td>
                                     </tr>
-{{--                                    <tr>--}}
-{{--                                        <td>Image</td>--}}
-{{--                                        <td>--}}
-{{--                                            <img src="{{ asset( 'storage/' . $user->image) }}" alt="user image" width="50%">--}}
-{{--                                        </td>--}}
-{{--                                    </tr>--}}
+                                    <tr>
+                                        <td>Image</td>
+                                        <td>
+                                            <img src="{{ asset( 'storage/' . $user->image) }}" alt="user image" width="128px">
+                                        </td>
+                                    </tr>
                                     </tbody>
                                 </table>
                             </div>

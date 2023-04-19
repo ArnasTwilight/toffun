@@ -3,22 +3,19 @@
 namespace App\Service;
 
 use App\Models\Rarity;
+use App\Service\Modules\ImageModule;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
 
-class RarityService
+class RarityService extends ImageModule
 {
-    private $data;
-    private $rarity;
+    private $name = 'rarity';
 
     public function store($data)
     {
-        $this->data = $data;
-
         try {
             DB::beginTransaction();
 
-            $this->saveImage();
+            $data = $this->saveImage($data, $this->name);
 
             Rarity::firstOrCreate($data);
 
@@ -31,13 +28,10 @@ class RarityService
 
     public function update($data, $rarity)
     {
-        $this->data = $data;
-        $this->rarity = $rarity;
-
         try {
             DB::beginTransaction();
 
-            $this->saveImage();
+            $data = $this->saveImage($data, $this->name, $rarity);
 
             $rarity->update($data);
 
@@ -48,14 +42,4 @@ class RarityService
         }
     }
 
-    private function saveImage()
-    {
-        if (isset($this->data['image'])) {
-            $this->data['image'] = Storage::disk('public')->put('/images/rarity', $this->data['image']);
-        } elseif (isset($this->rarity['image']) && $this->rarity['image'] != 'images/placeholder/no_rarity_image.png') {
-            $this->data['image'] = $this->rarity['image'];
-        } else {
-            $this->data['image'] = 'images/placeholder/no_rarity_image.png';
-        }
-    }
 }

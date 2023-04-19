@@ -187,23 +187,6 @@
                                     </div>
                                     {{--Traits end--}}
 
-                                    {{--Stars--}}
-                                    <div class="row col-xl-12 p-0">
-                                        <div class="form-group col-12 mb-0">
-                                            <label>Stars</label>
-                                        </div>
-                                        @for($i = 1, $star = 'C' . $i; $i <= 6; $i++, $star = 'C' . $i)
-                                            <div class="form-group col-xl-4 col-lg-6">
-                                                <textarea class="form-control" name="C[{{ $i }}]" rows="3"
-                                                          placeholder="Enter Star {{ $star }} ...">{{ isset($stars->$star) ? $stars->$star : '' }}</textarea>
-                                                @error($star)
-                                                <div class="text-danger">{{ $message }}</div>
-                                                @enderror
-                                            </div>
-                                        @endfor
-                                    </div>
-                                    {{--Stars end--}}
-
                                 </div>
                                 <!-- /.card-body -->
 

@@ -16,4 +16,9 @@ class Matrix extends Model
     {
         return $this->belongsTo(Rarity::class, 'rarity_id', 'id');
     }
+
+    public function matrixBonus()
+    {
+        return $this->hasMany(MatrixBonus::class, 'matrix_id', 'id');
+    }
 }
